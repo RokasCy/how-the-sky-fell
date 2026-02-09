@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ci5hir3ycucwr"]
+
+[ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="1_j5px3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j5px3"]
+noise_type = 0
+frequency = 0.5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_twpsu"]
+noise = SubResource("FastNoiseLite_j5px3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twpsu"]
+shader = ExtResource("1_j5px3")
+shader_parameter/topSkyDay = Color(0.30980393, 0.7058824, 0.972549, 1)
+shader_parameter/horizonSkyDay = Color(0.25784063, 0.336663, 0.5077665, 1)
+shader_parameter/topSkyNight = Color(0.03502069, 0.06216643, 0.14955217, 1)
+shader_parameter/horizonSkyNight = Color(0.015686275, 0, 0.05882353, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_twpsu")
+
+[sub_resource type="Sky" id="Sky_lrqlo"]
+sky_material = SubResource("ShaderMaterial_twpsu")
+
+[sub_resource type="Environment" id="Environment_sqa0i"]
+background_mode = 2
+sky = SubResource("Sky_lrqlo")
+
+[node name="Root" type="Node3D" unique_id=180768219]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=616575656]
+environment = SubResource("Environment_sqa0i")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=471613688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7950459, 0)
