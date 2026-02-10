@@ -14,10 +14,10 @@ void sky() {
 	vec3 skyColorNight = mix(horizonSkyNight, topSkyNight, colorGradient);
 	vec3 color = skyColorNight;
 	
-	vec2 uv = (EYEDIR.xz + 1.0) * 2.0;
-	float stars = texture(noise_texture, uv).r;
-	if (EYEDIR.y > 0.0 && stars > star_threshold){
-		color = vec3(1.0);
-	}
+	//vec2 uv = (EYEDIR.xz + 1.0) * 2.0;
+	//float stars = texture(noise_texture, uv).r;
+	//if (EYEDIR.y > 0.0 && stars > star_threshold){
+		//color = vec3(1.0);
+	//}
 	COLOR = color;
 }

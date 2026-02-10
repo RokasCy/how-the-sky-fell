@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ci5hir3ycucwr"]
 
 [ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="1_j5px3"]
+[ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://scenes/player.tscn" id="2_twpsu"]
+[ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://scenes/constellations.tscn" id="3_sqa0i"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j5px3"]
 noise_type = 0
@@ -24,10 +26,29 @@ sky_material = SubResource("ShaderMaterial_twpsu")
 background_mode = 2
 sky = SubResource("Sky_lrqlo")
 
+[sub_resource type="BoxMesh" id="BoxMesh_twpsu"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twpsu"]
+size = Vector3(100, 1, 100)
+
 [node name="Root" type="Node3D" unique_id=180768219]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=616575656]
 environment = SubResource("Environment_sqa0i")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=471613688]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7950459, 0)
+[node name="Platform" type="StaticBody3D" parent="." unique_id=1417305914]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform" unique_id=2068014163]
+mesh = SubResource("BoxMesh_twpsu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform" unique_id=231961420]
+shape = SubResource("BoxShape3D_twpsu")
+
+[node name="Player" parent="." unique_id=1326059467 instance=ExtResource("2_twpsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9584532, 0)
+
+[node name="Constellations" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=417320531]
+transform = Transform3D(1, 0, 0, 0, 0.8332591, 0.5528827, 0, -0.5528827, 0.8332591, 0, 23.935947, 0)
