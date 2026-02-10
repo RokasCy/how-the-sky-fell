@@ -1,0 +1,189 @@
+extends Node
+
+var star_path = "res://star_data/hip_constellation_line_star.csv"
+var const_lines = "res://star_data/hip_constellation_line.csv"
+
+var headers = ["HIP","RA_hour","RA_min","RA_sec","DEC_deg","DEC_min","DEC_sec","Magnitude", "B-V"]
+var star_data = load_csv(star_path)
+var connections = load_connections(const_lines)
+
+@export var distance := 100
+@export var scale_factor := 11
+
+func _ready() -> void:
+	generate_stars()
+	generate_constellations()
+
+#----debug utility----#
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("left_click"):
+		scale_factor += 1
+		print("new_scale_factor :", scale_factor)
+		remove_stars()
+		generate_stars()
+	if Input.is_action_just_pressed("right_click"):
+		scale_factor -= 1
+		print("new_scale_factor :", scale_factor)
+		remove_stars()
+		generate_stars()
+			
+func remove_stars():
+	for child in self.get_children():
+		child.queue_free()
+		
+func generate_constellations():
+
+	for c in connections:
+		var star1 : Dictionary
+		var star2 : Dictionary
+
+		for star in star_data:
+			var hip = float(star["HIP"])
+			if hip == c[0]:
+				star1 = star
+			elif hip == c[1]:
+				star2 = star
+		
+		
+		
+		
+func generate_stars():
+	var b_v_list = []
+	for star in star_data:
+		if len(star) <= 1:
+			continue
+			
+		var ra_hour = float(star["RA_hour"]) + float(star["RA_min"]) / 60 + float(star["RA_sec"]) / 3600
+		var dec_deg = abs(float(star["DEC_deg"])) + abs(float(star["DEC_min"])) / 60 + abs(float(star["DEC_sec"])) / 3600
+		
+		if int(star["DEC_deg"]) < 0:
+			dec_deg = -dec_deg
+		
+		var position = coord_to_position(ra_hour, dec_deg)
+		
+		var mag = star["Magnitude"]
+		var b_v = star["B-V"]
+		create_star(position, mag, b_v)
+		
+		if typeof(b_v) == TYPE_FLOAT:
+			b_v_list.append(b_v)
+	
+	#print(b_v_list.max(), " ", b_v_list.min())
+	
+	
+func coord_to_position(ra_hour, dec_deg):
+	var ra_rad = deg_to_rad(ra_hour * 15) 
+	var dec_rad = deg_to_rad(dec_deg) 
+	
+	var x = distance * cos(dec_rad) * cos(-ra_rad)
+	var y = distance * sin(dec_rad)
+	var z = distance * cos(dec_rad) * sin(-ra_rad)
+	
+	return Vector3(x, y, z)
+
+func create_star(position, mag, b_v):
+	if mag > 5:
+		return 
+	var star := MeshInstance3D.new()
+	var mesh = SphereMesh.new()
+	var material : StandardMaterial3D = load("res://material/const_star.tres").duplicate()
+	
+	#--brightness--#
+	star.scale = star_scale(mag)
+	
+	#--color--#
+	if typeof(b_v) == TYPE_FLOAT:
+		material.albedo_color = bv_to_rgb(b_v)
+	else:
+		material.albedo_color = Color(1.0, 1.0, 1.0)
+	
+	
+	mesh.material = material
+	star.mesh = mesh
+	star.position = position
+	self.add_child(star)
+	
+func star_scale(mag):
+	var F0 = 3.6e-8  # flux of magnitude 0 star in V-band
+	var F = F0 * 10**(-0.4 * mag)
+	
+	var scale = 2**scale_factor * (F**0.3)
+	return Vector3(scale, scale, scale)
+
+func bv_to_rgb(bv):
+	var r = 0.0
+	var g = 0.0
+	var b = 0.0
+	var t = 0.0 #helper to map bv range from 0 to 1
+
+	bv = clamp(bv, -0.4, 2.0)
+
+	if bv < 0.0:  # very hot blue stars
+		t = (bv + 0.4) / 0.4
+		r = 0.55 + 0.11*t + 0.1*t*t
+		g = 0.7 + 0.07*t + 0.1*t*t
+		b = 1.0
+	elif bv < 0.4:  # white-yellow stars
+		t = bv / 0.4
+		r = 0.83 + 0.17*t
+		g = 0.87 + 0.11*t
+		b = 1.0 - 0.5*t*t
+	elif bv < 1.5:  # yellow-orange stars
+		t = (bv - 0.4) / 1.1
+		r = 1.0
+		g = 0.98 - 0.16*t
+		b = 0.8 - 0.5*t*t
+	else:  # red stars
+		t = (bv - 1.5) / 0.5
+		r = 1.0
+		g = 0.75 - 0.5*t*t
+		b = 0.6 - 0.6*t*t
+
+	r = clamp(r, 0, 1)
+	g = clamp(g, 0, 1)
+	b = clamp(b, 0, 1)
+	
+	return Color(r, g, b)
+
+func load_csv(path: String) -> Array:
+	var result = []
+	var file = FileAccess.open(path, FileAccess.READ)
+	
+	if file:
+		while not file.eof_reached():
+			var line = file.get_line()
+			var values = line.split(",")
+			
+			var dict_values = {}
+			for i in range(len(headers)):
+				if i+1 > len(values):
+					continue
+				
+				var value = values[i]
+				if i == 8:
+					value = values[12]
+				if value.is_valid_float():
+					dict_values[headers[i]] = float(value)
+				else:
+					dict_values[headers[i]] = value
+					
+			result.append(dict_values)
+		file.close()
+	else:
+		print("Failed to open CSV file: ", path)
+		
+	return result
+
+func load_connections(path : String) -> Array:
+	var results = []
+	var file = FileAccess.open(path, FileAccess.READ)
+	
+	if file:
+		while not file.eof_reached():
+			var line = file.get_line()
+			var values = line.split(",")
+			if len(values) <= 1:
+				continue
+			var connection = [float(values[1]), float(values[2])]
+			results.append(connection)
+	return results

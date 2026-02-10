@@ -54,7 +54,7 @@ speed = 20
 
 [node name="Constellations" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
 distance = 1000
-scale_factor = 12
+scale_factor = 12.0
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=417320531]
 transform = Transform3D(1, 0, 0, 0, 0.8332591, 0.5528827, 0, -0.5528827, 0.8332591, 0, 23.935947, 0)

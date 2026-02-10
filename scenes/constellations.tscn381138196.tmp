@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dxb4lufoh4iia"]
 
-[ext_resource type="Script" uid="uid://bvvl8lf2bpu45" path="res://scripts/constellation_stars.gd" id="1_yb2uq"]
+[ext_resource type="Script" uid="uid://bvvl8lf2bpu45" path="res://scripts/constellations.gd" id="1_yb2uq"]
 
 [node name="Constellations" type="Node3D" unique_id=1768846438]
 script = ExtResource("1_yb2uq")
-scale_factor = 10
