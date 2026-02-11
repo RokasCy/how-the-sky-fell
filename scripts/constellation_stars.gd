@@ -1,11 +1,10 @@
 extends Node3D
 
 var star_path = "res://star_data/hip_constellation_line_star.csv"
-var const_lines = "res://star_data/hip_constellation_line.csv"
+var const_lines_path = "res://star_data/hip_constellation_line.csv"
 
 var headers = ["HIP","RA_hour","RA_min","RA_sec","DEC_deg","DEC_min","DEC_sec","Magnitude", "B-V"]
 var star_data = load_csv(star_path)
-var connections = load_connections(const_lines)
 
 @export_group("Sky")
 @export_range(-90.0, 90.0) var longitude := 90.0
@@ -19,9 +18,7 @@ var connections = load_connections(const_lines)
 func _ready() -> void:
 	#setting location
 	self.rotation.x = deg_to_rad(90 - longitude)
-	
 	generate_stars()
-	#generate_constellations()
 
 #----debug utility----#
 func _physics_process(delta: float) -> void:
@@ -41,81 +38,28 @@ func _physics_process(delta: float) -> void:
 			
 func remove_stars():
 	for child in self.get_children():
-		child.queue_free()
-
-func draw_line(star1, star2):
-	var line = MeshInstance3D.new()
-	var mesh = QuadMesh.new()
-	var material : StandardMaterial3D = load("res://material/const_line.tres").duplicate()
-	line.mesh = mesh
-	line.material_override = material
-	
-	#--position line--#
-	var ra_hour1 = float(star1["RA_hour"]) + float(star1["RA_min"]) / 60 + float(star1["RA_sec"]) / 3600
-	var dec_deg1 = abs(float(star1["DEC_deg"])) + abs(float(star1["DEC_min"])) / 60 + abs(float(star1["DEC_sec"])) / 3600
-	if star1["DEC_deg"] < 0:
-		dec_deg1 = -dec_deg1
-	var ra_hour2 = float(star2["RA_hour"]) + float(star2["RA_min"]) / 60 + float(star2["RA_sec"]) / 3600
-	var dec_deg2 = abs(float(star2["DEC_deg"])) + abs(float(star2["DEC_min"])) / 60 + abs(float(star2["DEC_sec"])) / 3600
-	if star2["DEC_deg"] < 0:
-		dec_deg2 = -dec_deg2
-	var a = coord_to_position(ra_hour1, dec_deg1)
-	var b = coord_to_position(ra_hour2, dec_deg2)
-	#print(a, b)
-	var dir = b - a
-	var length = dir.length()
-	var center = (a + b) / 2.0
-	
-	var dy = a.y - b.y
-
-	line.position = center
-	add_child(line)
-	line.scale = Vector3(length, 10, 1)
-	line.rotation.z = asin(dy / length)
-	
-func generate_constellations():
-	var hip_dict = {}
-	#var star3 = {"RA_hour": 1, "RA_min": 1, "RA_sec": 1, "DEC_deg": 1, "DEC_min": 1, "DEC_sec": 1}
-	#var star4 = {"RA_hour": 2, "RA_min": 1, "RA_sec": 1, "DEC_deg": 10, "DEC_min": 1, "DEC_sec": 1}
-	#draw_line(star3, star4)
-	for star in star_data:
-		hip_dict[float(star["HIP"])] = star  # assume star["HIP"] exists
-	for c in connections:
-		var star1 = hip_dict.get(c[0], null)
-		var star2 = hip_dict.get(c[1], null)
-		
-		if star1 != null and star2 != null:
-			draw_line(star1, star2)
-			pass
-		
-		
+		child.queue_free()	
 		
 func generate_stars():
-	var b_v_list = []
 	for star in star_data:
 		if len(star) <= 1:
 			continue
 			
-		var ra_hour = float(star["RA_hour"]) + float(star["RA_min"]) / 60 + float(star["RA_sec"]) / 3600
-		var dec_deg = abs(float(star["DEC_deg"])) + abs(float(star["DEC_min"])) / 60 + abs(float(star["DEC_sec"])) / 3600
-		
-		if int(star["DEC_deg"]) < 0:
-			dec_deg = -dec_deg
-		
-		var position = coord_to_position(ra_hour, dec_deg)
-		
+		var position = star_to_position(star)
 		var mag = star["Magnitude"]
 		var b_v = star["B-V"]
+		
 		create_star(position, mag, b_v)
+
+	
+	
+func star_to_position(star):
+	var ra_hour = float(star["RA_hour"]) + float(star["RA_min"]) / 60 + float(star["RA_sec"]) / 3600
+	var dec_deg = abs(float(star["DEC_deg"])) + abs(float(star["DEC_min"])) / 60 + abs(float(star["DEC_sec"])) / 3600
 		
-		if typeof(b_v) == TYPE_FLOAT:
-			b_v_list.append(b_v)
+	if int(star["DEC_deg"]) < 0:
+		dec_deg = -dec_deg
 		
-	
-	#print(b_v_list.max(), " ", b_v_list.min())
-	
-	
-func coord_to_position(ra_hour, dec_deg):
 	var ra_rad = deg_to_rad(ra_hour * 15) 
 	var dec_rad = deg_to_rad(dec_deg) 
 	
@@ -126,7 +70,7 @@ func coord_to_position(ra_hour, dec_deg):
 	return Vector3(x, y, z)
 
 func create_star(position, mag, b_v):
-	if mag > 5:
+	if mag > 10:
 		return 
 	var star := MeshInstance3D.new()
 	var mesh = QuadMesh.new()
@@ -226,17 +170,3 @@ func load_csv(path: String) -> Array:
 		print("Failed to open CSV file: ", path)
 		
 	return result
-
-func load_connections(path : String) -> Array:
-	var results = []
-	var file = FileAccess.open(path, FileAccess.READ)
-	
-	if file:
-		while not file.eof_reached():
-			var line = file.get_line()
-			var values = line.split(",")
-			if len(values) <= 1:
-				continue
-			var connection = [float(values[1]), float(values[2])]
-			results.append(connection)
-	return results

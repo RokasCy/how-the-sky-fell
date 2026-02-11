@@ -14,7 +14,7 @@ func _ready() -> void:
 	
 func random_point_on_sphere():
 	var theta = randf() * TAU
-	var phi = randf() * PI
+	var phi = randf() * TAU
 	
 	var x = star_distance * sin(theta) * cos(phi)
 	var y = star_distance * cos(theta)

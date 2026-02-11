@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://dxb4lufoh4iia"]
 
 [ext_resource type="Script" uid="uid://bvvl8lf2bpu45" path="res://scripts/constellation_stars.gd" id="1_yb2uq"]
+[ext_resource type="Script" uid="uid://cdsgpkgikin2e" path="res://scripts/constellations_lines.gd" id="2_k8hjp"]
 
-[node name="Constellations" type="Node3D" unique_id=1768846438]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_k8hjp"]
+
+[node name="Stars" type="Node3D" unique_id=1768846438]
 script = ExtResource("1_yb2uq")
-longitude = 0.0
-rotation_rate = 0.1
 distance = 1000
-scale_factor = 9
+scale_factor = 8
+
+[node name="Constellations" type="MeshInstance3D" parent="." unique_id=1513724612]
+mesh = SubResource("ImmediateMesh_k8hjp")
+script = ExtResource("2_k8hjp")
