@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 var star_path = "res://star_data/hip_constellation_line_star.csv"
 var const_lines = "res://star_data/hip_constellation_line.csv"
@@ -7,12 +7,21 @@ var headers = ["HIP","RA_hour","RA_min","RA_sec","DEC_deg","DEC_min","DEC_sec","
 var star_data = load_csv(star_path)
 var connections = load_connections(const_lines)
 
+@export_group("Sky")
+@export_range(-90.0, 90.0) var longitude := 90.0
+@export_range(0.0, 1.0) var rotation_rate := 0.0
+
+@export_group("Star properties")
 @export var distance := 100
 @export var scale_factor := 11
+@export var flux_factor := 8
 
 func _ready() -> void:
+	#setting location
+	self.rotation.x = deg_to_rad(90 - longitude)
+	
 	generate_stars()
-	generate_constellations()
+	#generate_constellations()
 
 #----debug utility----#
 func _physics_process(delta: float) -> void:
@@ -26,24 +35,58 @@ func _physics_process(delta: float) -> void:
 		print("new_scale_factor :", scale_factor)
 		remove_stars()
 		generate_stars()
+	
+	#rotate around local basis.y axis
+	rotate(global_transform.basis.y, deg_to_rad(rotation_rate * delta))
 			
 func remove_stars():
 	for child in self.get_children():
 		child.queue_free()
-		
+
+func draw_line(star1, star2):
+	var line = MeshInstance3D.new()
+	var mesh = QuadMesh.new()
+	var material : StandardMaterial3D = load("res://material/const_line.tres").duplicate()
+	line.mesh = mesh
+	line.material_override = material
+	
+	#--position line--#
+	var ra_hour1 = float(star1["RA_hour"]) + float(star1["RA_min"]) / 60 + float(star1["RA_sec"]) / 3600
+	var dec_deg1 = abs(float(star1["DEC_deg"])) + abs(float(star1["DEC_min"])) / 60 + abs(float(star1["DEC_sec"])) / 3600
+	if star1["DEC_deg"] < 0:
+		dec_deg1 = -dec_deg1
+	var ra_hour2 = float(star2["RA_hour"]) + float(star2["RA_min"]) / 60 + float(star2["RA_sec"]) / 3600
+	var dec_deg2 = abs(float(star2["DEC_deg"])) + abs(float(star2["DEC_min"])) / 60 + abs(float(star2["DEC_sec"])) / 3600
+	if star2["DEC_deg"] < 0:
+		dec_deg2 = -dec_deg2
+	var a = coord_to_position(ra_hour1, dec_deg1)
+	var b = coord_to_position(ra_hour2, dec_deg2)
+	#print(a, b)
+	var dir = b - a
+	var length = dir.length()
+	var center = (a + b) / 2.0
+	
+	var dy = a.y - b.y
+
+	line.position = center
+	add_child(line)
+	line.scale = Vector3(length, 10, 1)
+	line.rotation.z = asin(dy / length)
+	
 func generate_constellations():
-
+	var hip_dict = {}
+	#var star3 = {"RA_hour": 1, "RA_min": 1, "RA_sec": 1, "DEC_deg": 1, "DEC_min": 1, "DEC_sec": 1}
+	#var star4 = {"RA_hour": 2, "RA_min": 1, "RA_sec": 1, "DEC_deg": 10, "DEC_min": 1, "DEC_sec": 1}
+	#draw_line(star3, star4)
+	for star in star_data:
+		hip_dict[float(star["HIP"])] = star  # assume star["HIP"] exists
 	for c in connections:
-		var star1 : Dictionary
-		var star2 : Dictionary
-
-		for star in star_data:
-			var hip = float(star["HIP"])
-			if hip == c[0]:
-				star1 = star
-			elif hip == c[1]:
-				star2 = star
+		var star1 = hip_dict.get(c[0], null)
+		var star2 = hip_dict.get(c[1], null)
 		
+		if star1 != null and star2 != null:
+			draw_line(star1, star2)
+			pass
 		
 		
 		
@@ -67,6 +110,7 @@ func generate_stars():
 		
 		if typeof(b_v) == TYPE_FLOAT:
 			b_v_list.append(b_v)
+		
 	
 	#print(b_v_list.max(), " ", b_v_list.min())
 	
@@ -85,17 +129,18 @@ func create_star(position, mag, b_v):
 	if mag > 5:
 		return 
 	var star := MeshInstance3D.new()
-	var mesh = SphereMesh.new()
+	var mesh = QuadMesh.new()
 	var material : StandardMaterial3D = load("res://material/const_star.tres").duplicate()
 	
 	#--brightness--#
 	star.scale = star_scale(mag)
+	material.emission_energy_multiplier = star_flux(mag)
 	
 	#--color--#
 	if typeof(b_v) == TYPE_FLOAT:
-		material.albedo_color = bv_to_rgb(b_v)
+		material.emission = bv_to_rgb(b_v)
 	else:
-		material.albedo_color = Color(1.0, 1.0, 1.0)
+		material.emission  = Color(1.0, 1.0, 1.0)
 	
 	
 	mesh.material = material
@@ -107,8 +152,16 @@ func star_scale(mag):
 	var F0 = 3.6e-8  # flux of magnitude 0 star in V-band
 	var F = F0 * 10**(-0.4 * mag)
 	
-	var scale = 2**scale_factor * (F**0.3)
+	var scale = 2**scale_factor * (F**0.2)
 	return Vector3(scale, scale, scale)
+
+func star_flux(mag):
+	var F0 = 3.6e-8  # flux of magnitude 0 star in V-band
+	var F = F0 * 10**(-0.4 * mag)
+	var f = 2**flux_factor * (F ** 0.7)-0.3
+	if f < 4:
+		return 4
+	return f
 
 func bv_to_rgb(bv):
 	var r = 0.0

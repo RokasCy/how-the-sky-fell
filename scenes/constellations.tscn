@@ -4,4 +4,7 @@
 
 [node name="Constellations" type="Node3D" unique_id=1768846438]
 script = ExtResource("1_yb2uq")
-scale_factor = 10
+longitude = 0.0
+rotation_rate = 0.1
+distance = 1000
+scale_factor = 9

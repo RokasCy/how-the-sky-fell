@@ -25,9 +25,8 @@ sky_material = SubResource("ShaderMaterial_twpsu")
 [sub_resource type="Environment" id="Environment_sqa0i"]
 background_mode = 2
 sky = SubResource("Sky_lrqlo")
-glow_enabled = true
 glow_hdr_threshold = 0.5
-glow_hdr_scale = 1.05
+glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 103.56
 
 [sub_resource type="BoxMesh" id="BoxMesh_twpsu"]
@@ -35,8 +34,6 @@ size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_twpsu"]
 size = Vector3(100, 1, 100)
-
-[sub_resource type="QuadMesh" id="QuadMesh_lrqlo"]
 
 [node name="Root" type="Node3D" unique_id=180768219]
 
@@ -56,10 +53,8 @@ transform = Transform3D(0.99996996, 0, 0.007749184, 0, 1, 0, -0.007749184, 0, 0.
 speed = 20
 
 [node name="Constellations" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
-transform = Transform3D(0.9999756, -0.001212283, -0.0068751997, 0, 0.98480767, -0.1736482, 0.00698126, 0.17364393, 0.9847838, 0, 0, 0)
+distance = 1000
+scale_factor = 12
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=417320531]
 transform = Transform3D(1, 0, 0, 0, 0.8332591, 0.5528827, 0, -0.5528827, 0.8332591, 0, 23.935947, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=347321341]
-mesh = SubResource("QuadMesh_lrqlo")
