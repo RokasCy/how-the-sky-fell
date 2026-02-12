@@ -2,6 +2,8 @@ extends Node3D
 
 var star_path = "res://star_data/hip_constellation_line_star.csv"
 
+@onready var constellation_type = $Constellations.constellation_type
+
 var headers = ["HIP","RA_hour","RA_min","RA_sec","DEC_deg","DEC_min","DEC_sec","Magnitude", "B-V"]
 var star_data = load_csv(star_path)
 
@@ -13,10 +15,10 @@ var star_data = load_csv(star_path)
 @export var distance := 100
 @export var scale_factor := 11
 @export var flux_factor := 8
-
 func _ready() -> void:
 	#setting location
 	self.rotation.x = deg_to_rad(90 - longitude)
+	#print(self.rotation)
 	generate_stars()
 
 #----debug utility----#
@@ -33,8 +35,9 @@ func _physics_process(delta: float) -> void:
 		generate_stars()
 	
 	#rotate around local basis.y axis
-	rotate(global_transform.basis.y, deg_to_rad(rotation_rate * delta))
-			
+	rotate(global_transform.basis.y, -deg_to_rad(rotation_rate * delta))
+	#print(self.rotation)
+	
 func remove_stars():
 	for child in self.get_children():
 		child.queue_free()	
