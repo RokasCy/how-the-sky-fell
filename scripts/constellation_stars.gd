@@ -1,7 +1,6 @@
 extends Node3D
 
 var star_path = "res://star_data/hip_constellation_line_star.csv"
-var const_lines_path = "res://star_data/hip_constellation_line.csv"
 
 var headers = ["HIP","RA_hour","RA_min","RA_sec","DEC_deg","DEC_min","DEC_sec","Magnitude", "B-V"]
 var star_data = load_csv(star_path)

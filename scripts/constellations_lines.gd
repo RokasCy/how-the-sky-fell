@@ -10,7 +10,7 @@ func _ready():
 		mesh = ImmediateMesh.new()
 		
 	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	generate_constellations()
+	#generate_constellations()
 	mesh.surface_end()
 	
 func draw_line(star1, star2):

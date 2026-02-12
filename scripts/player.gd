@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var jump_speed := 15
 @export var gravity := -0.5
 
-@onready var camera = $Camera3D
+@onready var camera = $Main_camera
 
 
 var _camera_input_direction := Vector2.ZERO
@@ -58,7 +58,6 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 	else:
 		velocity.y += gravity
-
 	
 	move_and_slide()
 	
