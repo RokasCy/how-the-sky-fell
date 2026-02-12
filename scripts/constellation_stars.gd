@@ -3,6 +3,7 @@ extends Node3D
 var star_path = "res://star_data/hip_constellation_line_star.csv"
 
 @onready var constellation_type = $Constellations.constellation_type
+@onready var hip_dict = $Constellations.hip_dict
 
 var headers = ["HIP","RA_hour","RA_min","RA_sec","DEC_deg","DEC_min","DEC_sec","Magnitude", "B-V"]
 var star_data = load_csv(star_path)
@@ -15,6 +16,7 @@ var star_data = load_csv(star_path)
 @export var distance := 100
 @export var scale_factor := 11
 @export var flux_factor := 8
+
 func _ready() -> void:
 	#setting location
 	self.rotation.x = deg_to_rad(90 - longitude)
@@ -23,20 +25,9 @@ func _ready() -> void:
 
 #----debug utility----#
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("left_click"):
-		scale_factor += 1
-		print("new_scale_factor :", scale_factor)
-		remove_stars()
-		generate_stars()
-	if Input.is_action_just_pressed("right_click"):
-		scale_factor -= 1
-		print("new_scale_factor :", scale_factor)
-		remove_stars()
-		generate_stars()
 	
 	#rotate around local basis.y axis
 	rotate(global_transform.basis.y, -deg_to_rad(rotation_rate * delta))
-	#print(self.rotation)
 	
 func remove_stars():
 	for child in self.get_children():
@@ -71,7 +62,7 @@ func star_to_position(star):
 	
 	return Vector3(x, y, z)
 
-func create_star(position, mag, b_v):
+func create_star(position, mag, b_v, mat=null):
 	if mag > 10:
 		return 
 	var star := MeshInstance3D.new()
@@ -88,8 +79,11 @@ func create_star(position, mag, b_v):
 	else:
 		material.emission  = Color(1.0, 1.0, 1.0)
 	
-	
-	mesh.material = material
+	if mat==null:
+		mesh.material = material
+	else:
+		mesh.material = mat
+		
 	star.mesh = mesh
 	star.position = position
 	self.add_child(star)

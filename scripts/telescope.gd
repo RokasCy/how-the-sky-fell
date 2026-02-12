@@ -8,25 +8,15 @@ extends Control
 @export var zoom_speed = 10
 
 var star_coords_dict = {}
+var stars_clicked = {}
 
-var cord_squish = 10
-
-
+var looking_at_hip = 0
 
 func _ready():
 	telescope.fov = fov
 	
 	for star in stars.star_data:
-		if len(star) <= 1:
-			continue
-		if star["HIP"] != 24608.0:
-			continue
-		
-		var ra = star["RA_hour"] + star["RA_min"] / 60 + star["RA_sec"] / 3600
-		
-		var ra_ = round(ra * cord_squish)
-		var dec_ = round(star["DEC_deg"] / 15 * cord_squish)
-		star_coords_dict[[ra_, dec_]] = star
+		stars_clicked[star["HIP"]] = false
 	
 func _physics_process(delta):
 	telescope.global_transform = main.global_transform
@@ -42,8 +32,22 @@ func _physics_process(delta):
 	if Input.is_action_pressed("fov+"):
 		telescope.fov += zoom_speed * delta
 	
+	#if zoomed in
 	if visible == true:
 		angle_to_skycoords()
+		if looking_at_hip == 0:
+			return 
+		
+		if Input.is_action_just_pressed("left_click"):
+			stars_clicked[looking_at_hip] = true
+			var clicked_star = stars.hip_dict[looking_at_hip]
+			
+			var starpos = stars.star_to_position(clicked_star)
+			var mag = clicked_star["Magnitude"]
+			
+			var mat : StandardMaterial3D = load("res://material/selected_star.tres").duplicate()
+			stars.create_star(starpos, mag, 0, mat)
+		
 		
 func angle_to_skycoords():
 	#forward direction of telescope (-Z)
@@ -64,13 +68,15 @@ func angle_to_skycoords():
 	var ra_deg = rad_to_deg(ra_rad) - 90
 	if ra_deg < 0:
 		ra_deg += 360
+	
+	looking_at_hip = 0
+	for star in stars.star_data:
+		if len(star) <= 1:
+			continue
+		var star_ra = (star["RA_hour"] + star["RA_min"] / 60 + star["RA_sec"] / 3600) * 15
+		var star_dec = star["DEC_deg"] + star["DEC_min"] / 60 + star["DEC_sec"] / 3600 
 		
-	var ra_hour = round(ra_deg / 15)
-	
-	var coord_id = [ra_hour * cord_squish, round(dec_deg / 15 * cord_squish)]
-	if coord_id in star_coords_dict:
-		var hip = star_coords_dict[coord_id]["HIP"]
-		print('found')
-	
-	
-	print(coord_id)
+		#looking at star
+		if abs(star_ra - ra_deg) < 1 and abs(star_dec - dec_deg) < 1:
+			looking_at_hip = star["HIP"]
+			break
