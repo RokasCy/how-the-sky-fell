@@ -14,6 +14,10 @@ config/name="how the sky fell"
 run/main_scene="res://scenes/root.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 left_click={

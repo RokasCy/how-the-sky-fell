@@ -2,5 +2,5 @@
 
 [resource]
 shading_mode = 0
-albedo_color = Color(1, 0.654902, 1, 1)
+albedo_color = Color(0.86921597, 0.20405951, 0.70426345, 1)
 billboard_keep_scale = true

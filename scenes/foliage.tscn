@@ -1,0 +1,126 @@
+[gd_scene format=4 uid="uid://bj7sgysa6rhnj"]
+
+[ext_resource type="PackedScene" uid="uid://dmlgtruhvpxk3" path="res://assets/models/foliage/foliage.glb" id="1_j12j6"]
+[ext_resource type="Texture2D" uid="uid://dpa0csjgr50or" path="res://assets/models/foliage/foliage_small_foliage.png" id="2_4dxek"]
+
+[sub_resource type="Shader" id="Shader_3wrhr"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.6.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx, depth_prepass_alpha;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_nearest_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+group_uniforms wind;
+uniform sampler2D noise_tex;
+uniform float wind_speed = .1;
+uniform float wind_strength = .01;
+ 
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	vec3 GLOBAL_VERTEX = (MODEL_MATRIX * vec4(VERTEX, 1.)).xyz;
+ 
+	float offset = TIME * wind_speed;
+	float noise = texture(noise_tex, vec2(GLOBAL_VERTEX.x-offset)).r;
+	noise -= .5;
+	noise *= wind_strength;
+	VERTEX.xy += noise * length(VERTEX.y) * length(VERTEX.xz);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_42bwu"]
+frequency = 0.005
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5et1i"]
+noise = SubResource("FastNoiseLite_42bwu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6i53n"]
+resource_name = "Foliage"
+render_priority = 0
+shader = SubResource("Shader_3wrhr")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_4dxek")
+shader_parameter/albedo_texture_size = Vector2i(64, 64)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_5et1i")
+shader_parameter/wind_speed = 0.4
+shader_parameter/wind_strength = 0.01
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lvl4o"]
+_surfaces = [{
+"aabb": AABB(-0.75, 1.433014e-15, -0.75, 1.5, 1.5, 1.5),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"name": "Foliage",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAP9/AAD//////38AAP//AAD/fwAAAAD///9/AAB9JQAAfSUAAIHa//+B2gAAgdoAAIHaAAB9Jf//fSUAAP9/AAAAAAAA/3//////AAD/fwAA//8AAP9///8AAAAAgdoAAH0lAAB9Jf//gdoAAH0lAACB2gAAgdr//30lAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_saofh"]
+resource_name = "foliage_Plane"
+_surfaces = [{
+"aabb": AABB(-0.75, 1.433014e-15, -0.75, 1.5, 1.5, 1.5),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAAAA/////wAA/////wAAAAAAAP////8AAP////8AAAAAAAD/////AAD/////AAAAAA=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"material": SubResource("ShaderMaterial_6i53n"),
+"name": "Foliage",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAP9/AID//////38AgP//AAD/fwCAAAD///9/AIB9JQAAfSX/n4Ha//+B2v+fgdoAAIHa/599Jf//fSX/n/9/AAAAAP+//3///////7//fwAA////v/9///8AAP+/gdoAAH0l/999Jf//gdr/330lAACB2v/fgdr//30l/9//f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_lvl4o")
+
+[node name="foliage" unique_id=1192763217 instance=ExtResource("1_j12j6")]
+
+[node name="Plane" parent="." index="0" unique_id=420165506]
+mesh = SubResource("ArrayMesh_saofh")
