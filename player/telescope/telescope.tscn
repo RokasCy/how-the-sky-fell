@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bqfbjdapj84fo"]
+
+[ext_resource type="Shader" uid="uid://26gb8u78cf1d" path="res://shaders/telescope_overlay.gdshader" id="1_6gvpi"]
+[ext_resource type="Script" uid="uid://6saq2nqwnsqf" path="res://player/telescope/telescope.gd" id="1_cmv3v"]
+
+[sub_resource type="GDScript" id="GDScript_4unxv"]
+script/source = "extends SubViewport
+
+@onready var subviewport := $\".\"
+
+func _ready():
+	# Make the telescope camera see the main world
+	subviewport.world_3d = get_viewport().world_3d
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jh1ax"]
+shader = ExtResource("1_6gvpi")
+shader_parameter/window_size = Vector2(1152, 644)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cmv3v"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Telescope UI" type="Control" unique_id=1221093567]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_cmv3v")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1506235746]
+size = Vector2i(320, 180)
+size_2d_override = Vector2i(1, 0)
+script = SubResource("GDScript_4unxv")
+
+[node name="camera" type="Camera3D" parent="SubViewport" unique_id=1155090277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.399078, 18.25797)
+fov = 30.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1499536827]
+material = SubResource("ShaderMaterial_jh1ax")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = SubResource("ViewportTexture_cmv3v")

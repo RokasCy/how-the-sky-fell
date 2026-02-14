@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://ci5hir3ycucwr"]
 
 [ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="1_j5px3"]
-[ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://scenes/player.tscn" id="2_twpsu"]
-[ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://scenes/constellations.tscn" id="3_sqa0i"]
-[ext_resource type="PackedScene" uid="uid://usieysgideta" path="res://scenes/starfield.tscn" id="4_sqa0i"]
-[ext_resource type="PackedScene" uid="uid://bqfbjdapj84fo" path="res://scenes/telescope.tscn" id="5_jh1ax"]
+[ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://player/player.tscn" id="2_twpsu"]
+[ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="3_sqa0i"]
+[ext_resource type="PackedScene" uid="uid://bqfbjdapj84fo" path="res://player/telescope/telescope.tscn" id="5_jh1ax"]
 [ext_resource type="Texture2D" uid="uid://cq4cboyo1pwix" path="res://assets/textures/ground.png" id="6_j287u"]
-[ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://meshes/foliage_mesh.tres" id="8_3hfy5"]
-[ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://meshes/tree_mesh.tres" id="8_7pvxh"]
-[ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/campfire.tscn" id="9_7pvxh"]
+[ext_resource type="Texture2D" uid="uid://co5b7agmyq114" path="res://assets/textures/ground_normal.png" id="7_7pvxh"]
+[ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="8_3hfy5"]
+[ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="8_7pvxh"]
+[ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenery/campfire.tscn" id="9_7pvxh"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j5px3"]
 noise_type = 0
@@ -35,11 +35,16 @@ glow_enabled = true
 glow_hdr_threshold = 0.5
 glow_hdr_scale = 1.05
 glow_hdr_luminance_cap = 103.56
+fog_light_energy = 0.8
+fog_density = 0.0005
+volumetric_fog_density = 0.0005
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3hfy5"]
 albedo_texture = ExtResource("6_j287u")
 metallic_specular = 0.0
 normal_enabled = true
+normal_scale = 0.25
+normal_texture = ExtResource("7_7pvxh")
 uv1_scale = Vector3(25, 25, 25)
 texture_filter = 0
 
@@ -58,22 +63,15 @@ environment = SubResource("Environment_sqa0i")
 [node name="Player" parent="." unique_id=1326059467 instance=ExtResource("2_twpsu")]
 transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 0, 1.027, -10)
 speed = 4
-jump_speed = 5
+jump_speed = 7
 
 [node name="Main_camera" type="Camera3D" parent="Player" unique_id=1619508799]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 
-[node name="Stars" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
-transform = Transform3D(-4.37114e-08, 0, 1.0000002, 0, 0.9999999, 0, -1.0000002, 0, -4.37114e-08, 0, 0, 0)
-longitude = 35.0
-rotation_rate = 1.0
-scale_factor = 9
-
-[node name="starfield" parent="Player/Stars" unique_id=250727164 instance=ExtResource("4_sqa0i")]
-transform = Transform3D(0.9999756, -1.4551915e-11, 0.0069812597, -0.0012122833, 0.98480785, 0.17364396, -0.006875199, -0.17364816, 0.98478365, 0, 0, 0)
-
 [node name="Telescope" parent="Player" unique_id=1221093567 instance=ExtResource("5_jh1ax")]
 fov = 50
+
+[node name="Stars" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=595141351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112713814, 0)
@@ -89,7 +87,7 @@ mesh_library = ExtResource("8_7pvxh")
 cell_size = Vector3(1, 2, 1)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(11, 65525, 0, 1, 65519, 0, 65525, 65521, 0, 65517, 65533, 0, 65522, 8, 0, 1, 14, 0, 9, 10, 0, 14, 0, 0, 65520, 65527, 0, 65531, 65518, 0, 8, 65521, 0, 65528, 12, 0, 65529, 12, 0, 65520, 4, 0, 14, 65530, 0, 13, 5, 0, 65498, 65501, 0, 65502, 65513, 0, 65498, 65529, 0, 65502, 13, 0, 65500, 31, 0, 65520, 35, 0, 65514, 25, 0, 1, 28, 0, 65534, 37, 0, 65534, 38, 0, 20, 34, 0, 21, 34, 0, 29, 16, 0, 41, 25, 0, 36, 0, 0, 26, 65514, 0, 34, 65499, 0, 65533, 65498, 0, 65518, 65504, 0, 65512, 65497, 0, 65504, 65505, 0, 65495, 65518, 0, 5, 65495, 0, 16, 65498, 0, 16, 65499, 0, 15, 65508, 0, 5, 65502, 0, 65522, 65495, 0, 65531, 65491, 0, 34, 65503, 0, 35, 65503, 0, 39, 65513, 0, 43, 65522, 0, 24, 65502, 0, 32, 65519, 0, 24, 65518, 0, 19, 65510, 0, 26, 65508, 0, 27, 65508, 0, 27, 65509, 0, 34, 65513, 0, 37, 65522, 0, 34, 65532, 0, 29, 9, 0, 38, 15, 0, 30, 31, 0, 30, 30, 0, 33, 22, 0, 37, 27, 0, 36, 36, 0, 25, 39, 0, 10, 40, 0, 4, 33, 0, 14, 33, 0, 65529, 41, 0, 65524, 38, 0, 65524, 37, 0, 65518, 30, 0, 65507, 33, 0, 65494, 29, 0, 65492, 14, 0, 65496, 3, 0, 65503, 8, 0, 65499, 6, 0, 65497, 18, 0, 65501, 26, 0, 65507, 29, 0, 65512, 40, 0, 65502, 65527, 0, 65503, 65520, 0, 65510, 65504, 0, 65511, 65513, 0, 65520, 17, 0, 65531, 65512, 0, 65509, 65526, 0, 21, 19, 0)
+"cells": PackedInt32Array(65498, 65501, 0, 65502, 65513, 0, 65498, 65529, 0, 65502, 13, 0, 65500, 31, 0, 65520, 35, 0, 65514, 25, 0, 1, 28, 0, 65534, 37, 0, 65534, 38, 0, 20, 34, 0, 21, 34, 0, 29, 16, 0, 41, 25, 0, 36, 0, 0, 26, 65514, 0, 34, 65499, 0, 65533, 65498, 0, 65518, 65504, 0, 65512, 65497, 0, 65504, 65505, 0, 65495, 65518, 0, 5, 65495, 0, 16, 65498, 0, 16, 65499, 0, 15, 65508, 0, 5, 65502, 0, 65522, 65495, 0, 65531, 65491, 0, 34, 65503, 0, 35, 65503, 0, 39, 65513, 0, 43, 65522, 0, 24, 65502, 0, 32, 65519, 0, 24, 65518, 0, 19, 65510, 0, 26, 65508, 0, 27, 65508, 0, 27, 65509, 0, 34, 65513, 0, 37, 65522, 0, 34, 65532, 0, 29, 9, 0, 38, 15, 0, 30, 31, 0, 30, 30, 0, 33, 22, 0, 37, 27, 0, 36, 36, 0, 25, 39, 0, 10, 40, 0, 4, 33, 0, 14, 33, 0, 65529, 41, 0, 65524, 38, 0, 65524, 37, 0, 65518, 30, 0, 65507, 33, 0, 65494, 29, 0, 65492, 14, 0, 65496, 3, 0, 65503, 8, 0, 65499, 6, 0, 65497, 18, 0, 65501, 26, 0, 65507, 29, 0, 65512, 40, 0, 65502, 65527, 0, 65503, 65520, 0, 65510, 65504, 0, 65511, 65513, 0, 65520, 17, 0, 65531, 65512, 0, 65509, 65526, 0, 21, 19, 0, 8, 65521, 0, 1, 65519, 0, 65531, 65518, 0, 65525, 65521, 0, 65520, 65527, 0, 65517, 65533, 0, 65520, 4, 0, 65522, 8, 0, 9, 10, 0, 1, 14, 0, 65528, 12, 0, 65529, 12, 0, 11, 65525, 0, 14, 65530, 0, 14, 0, 0, 13, 5, 0, 48, 65533, 0)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -102,8 +100,17 @@ data = {
 }
 
 [node name="campfire" parent="." unique_id=2129771687 instance=ExtResource("9_7pvxh")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=499639444]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75999475, -0.11298704)
-omni_range = 15.0
-omni_attenuation = 0.75
+[node name="OmniLight3D" type="OmniLight3D" parent="campfire" unique_id=499639444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17825395, 1.9163132, 0.054926455)
+light_color = Color(1, 0.8, 0.050980393, 1)
+light_energy = 0.8
+light_size = 0.045
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 0.105
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=59321894]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 7.6666565, 0)
+light_color = Color(1, 1, 0.94509804, 1)

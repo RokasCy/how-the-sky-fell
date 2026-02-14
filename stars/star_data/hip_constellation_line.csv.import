@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://chsidhi54xlf5"
+
+[deps]
+
+files=["res://stars/star_data/hip_constellation_line.98036.translation", "res://stars/star_data/hip_constellation_line.97649.translation"]
+
+source_file="res://stars/star_data/hip_constellation_line.csv"
+dest_files=["res://stars/star_data/hip_constellation_line.98036.translation", "res://stars/star_data/hip_constellation_line.97649.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

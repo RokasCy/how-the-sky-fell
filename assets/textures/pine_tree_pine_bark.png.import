@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7smuwatmlalg"
-path.s3tc="res://.godot/imported/pine_tree_pine_bark.png-2d6e0d781694d603f031453f8808790d.s3tc.ctex"
+uid="uid://c7vdfq02e0y2j"
+path.s3tc="res://.godot/imported/pine_tree_pine_bark.png-3e4d832f4ce7d31fec62661348a3f1e3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/models/trees/pine_tree_pine_bark.png"
-dest_files=["res://.godot/imported/pine_tree_pine_bark.png-2d6e0d781694d603f031453f8808790d.s3tc.ctex"]
+source_file="res://assets/textures/pine_tree_pine_bark.png"
+dest_files=["res://.godot/imported/pine_tree_pine_bark.png-3e4d832f4ce7d31fec62661348a3f1e3.s3tc.ctex"]
 
 [params]
 

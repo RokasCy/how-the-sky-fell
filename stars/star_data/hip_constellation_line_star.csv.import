@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://do2hsbkgnd1rh"
+
+[deps]
+
+files=["res://stars/star_data/hip_constellation_line_star.6.translation", "res://stars/star_data/hip_constellation_line_star.49.translation", "res://stars/star_data/hip_constellation_line_star.56.14.translation", "res://stars/star_data/hip_constellation_line_star.36.translation", "res://stars/star_data/hip_constellation_line_star.51.8.translation", "res://stars/star_data/hip_constellation_line_star.2.94.translation", "res://stars/star_data/hip_constellation_line_star.17.85.translation", "res://stars/star_data/hip_constellation_line_star.34.23.translation", "res://stars/star_data/hip_constellation_line_star.K0III....translation", "res://stars/star_data/hip_constellation_line_star.1.207.translation"]
+
+source_file="res://stars/star_data/hip_constellation_line_star.csv"
+dest_files=["res://stars/star_data/hip_constellation_line_star.6.translation", "res://stars/star_data/hip_constellation_line_star.49.translation", "res://stars/star_data/hip_constellation_line_star.56.14.translation", "res://stars/star_data/hip_constellation_line_star.36.translation", "res://stars/star_data/hip_constellation_line_star.51.8.translation", "res://stars/star_data/hip_constellation_line_star.2.94.translation", "res://stars/star_data/hip_constellation_line_star.17.85.translation", "res://stars/star_data/hip_constellation_line_star.34.23.translation", "res://stars/star_data/hip_constellation_line_star.K0III....translation", "res://stars/star_data/hip_constellation_line_star.1.207.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
