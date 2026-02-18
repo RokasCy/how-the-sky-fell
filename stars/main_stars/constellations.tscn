@@ -4,10 +4,13 @@
 [ext_resource type="Material" uid="uid://5qoxx2c6vp77" path="res://assets/material/const_line.tres" id="2_1pfql"]
 [ext_resource type="Script" uid="uid://cdsgpkgikin2e" path="res://stars/main_stars/constellations_lines.gd" id="2_k8hjp"]
 [ext_resource type="Material" uid="uid://d2rhqtaqogxya" path="res://assets/material/drawn_const_line.tres" id="3_dnaa7"]
+[ext_resource type="Material" uid="uid://bvmagcxp2b84o" path="res://assets/material/wrong_const_line.tres" id="5_mnp46"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_k8hjp"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_dnaa7"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_j0rq6"]
 
 [node name="Stars" type="Node3D" unique_id=1768846438]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
@@ -23,3 +26,7 @@ script = ExtResource("2_k8hjp")
 [node name="Finished" type="MeshInstance3D" parent="." unique_id=1233572757]
 material_override = ExtResource("2_1pfql")
 mesh = SubResource("ImmediateMesh_dnaa7")
+
+[node name="Wrong" type="MeshInstance3D" parent="." unique_id=1739420306]
+material_override = ExtResource("5_mnp46")
+mesh = SubResource("ImmediateMesh_j0rq6")

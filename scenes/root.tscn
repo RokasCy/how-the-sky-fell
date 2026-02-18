@@ -61,6 +61,12 @@ size = Vector2(100, 100)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y3xxt"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3xxt"]
+shading_mode = 0
+albedo_color = Color(1, 0.6784314, 0.3529412, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_y3xxt"]
+
 [node name="Root" type="Node3D" unique_id=180768219]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=616575656]
@@ -110,7 +116,7 @@ data = {
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="campfire" unique_id=499639444]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17825395, 1.9163132, 0.054926455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17825395, 1.0845184, 0.054926455)
 light_color = Color(1, 0.8, 0.050980393, 1)
 light_energy = 0.8
 light_size = 0.045
@@ -131,3 +137,8 @@ transform = Transform3D(0.09348274, 0, -0.99562097, 0, 1, 0, 0.99562097, 0, 0.09
 
 [node name="log3" parent="Logs" unique_id=2080054370 instance=ExtResource("12_xsp7o")]
 transform = Transform3D(-0.6628553, 0, -0.7487475, 0, 1, 0, 0.7487475, 0, -0.6628553, -2.091414, 0.027969122, 2.2468586)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1236577439]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 150, 800, -1000)
+material_override = SubResource("StandardMaterial3D_y3xxt")
+mesh = SubResource("SphereMesh_y3xxt")
