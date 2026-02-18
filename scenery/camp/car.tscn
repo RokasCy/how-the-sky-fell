@@ -1,0 +1,60 @@
+[gd_scene format=4 uid="uid://d73iwn6t74k7"]
+
+[ext_resource type="PackedScene" uid="uid://b2ck2ghsxrxbu" path="res://assets/models/camp/car.glb" id="1_yiwbq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hujm7"]
+size = Vector3(3.525, 1.47, 7.36)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u8q26"]
+size = Vector3(3.46, 0.425, 3.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yiwbq"]
+albedo_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+emission = Color(0.9647059, 0.9647059, 0.6666667, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hujm7"]
+_surfaces = [{
+"aabb": AABB(-1.498746, 0.015280157, -4.1846538, 2.9964113, 0.32035732, 0.32035756),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYACAAJAAoACAALAAkADAAKAAkACwAMAAkADQAIAAoACwAIAA0ADAAOAAoADQAKAA4ACwAPAAwACwANAA8ADwAOAAwADwANAA4A"),
+"name": "Head lights",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("Nc1zCov1AAA1zYv1cwoAADXNi/WL9QAANc1zCnMKAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAAAAAAD//wAAAAD//wAAAAAAAP////8AAAAAAAAAAAAAyTKL9XMKAADJMnMKi/UAAMkyi/WL9QAAyTJzCnMKAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_u8q26"]
+resource_name = "car_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1.498746, 0.015280157, -4.1846538, 2.9964113, 0.32035732, 0.32035756),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8//1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8/"),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0A"),
+"material": SubResource("StandardMaterial3D_yiwbq"),
+"name": "Head lights",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("Nc1zCov1VNU1zYv1cwpU1TXNi/WL9VTVNc1zCnMKVNU1zXMKcwpc//////8AAFz/Nc2L9XMKXP///wAAAABc////AAAAAFTV////////VNX/////AABU1f//AAD//1TV//8AAP//AMA1zYv1i/UAwP///////wDANc1zCov1AMA1zXMKcwr/v///AAD//wHA//8AAAAABMA1zXMKi/X/v/////8AAJ//Nc2L9Yv1IP81zYv1cwq6/v//////////AAAAAP//VNUAAP//AABU1QAA/////1TVAAAAAAAAVNUAAAAAAABc/8kyi/VzClz/AAD//wAAXP/JMnMKcwpc/8kycwpzClTVyTKL9Yv1VNXJMov1cwpU1ckycwqL9VTVyTJzCov1AMAAAP////8AwMkyi/WL9QDAAAAAAP//AMAAAAAAAAD/v8kycwqL9QHAyTJzCnMKBMAAAAAA////v8kyi/VzCpn/AAD/////Gf8AAP//AAC6/skyi/WL9f//VNVU1VTVVNVU1VTVVNVU1VjAWMBYwFjAWMBYwFjAWMCqKqoqqiqqKqoqqiqqKqoqnv6e/p7+nv6e/p7+nv6e/sEC44HBAs6AwQL/f8ECwIICf4C/jn/Hv/9/AcBRfie/VNVU1VTVVNVU1VTVVNVU1aY/pj+mP6Y/pj+mP6Y/pj+qKqoqqiqqKqoqqiqqKqoqYAFgAWABYAFgAWABYAFgAfIBPn3dAD59AAA+fcECPX2EP/UAyz9pAAFAAAAoP60B")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_hujm7")
+
+[node name="car" unique_id=758288718 instance=ExtResource("1_yiwbq")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body" parent_id_path=PackedInt32Array(1049805095) index="0" unique_id=1741455314]
+
+[node name="Body" type="CollisionShape3D" parent="Body/StaticBody3D" index="0" unique_id=1307336432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03833866, 0)
+shape = SubResource("BoxShape3D_hujm7")
+
+[node name="Head" type="CollisionShape3D" parent="Body/StaticBody3D" index="1" unique_id=1439549449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0250227, 1.012907)
+shape = SubResource("BoxShape3D_u8q26")
+
+[node name="Head lights" parent="." index="2" unique_id=52696301]
+mesh = SubResource("ArrayMesh_u8q26")
