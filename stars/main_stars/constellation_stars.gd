@@ -20,7 +20,6 @@ var star_data = load_csv(star_path)
 func _ready() -> void:
 	#setting location
 	self.rotation.x = deg_to_rad(90 - longitude)
-	#print(self.rotation)
 	generate_stars()
 
 #----debug utility----#
@@ -37,11 +36,12 @@ func generate_stars():
 	for star in star_data:
 		if len(star) <= 1:
 			continue
-			
+		
+		var id = star["HIP"]
 		var starposition = star_to_position(star)
 		var mag = star["Magnitude"]
 		var b_v = star["B-V"]
-		create_star(starposition, mag, b_v)
+		create_star(id, starposition, mag, b_v)
 
 	
 	
@@ -61,7 +61,7 @@ func star_to_position(star):
 	
 	return Vector3(x, y, z)
 
-func create_star(starposition, mag, b_v, mat=null):
+func create_star(id, starposition, mag, b_v, mat=null):
 	if mag > 10:
 		return 
 	var star := MeshInstance3D.new()
@@ -85,6 +85,8 @@ func create_star(starposition, mag, b_v, mat=null):
 		
 	star.mesh = mesh
 	star.position = starposition
+	
+	star.name = str(id)
 	self.add_child(star)
 	
 func star_scale(mag):
@@ -97,9 +99,11 @@ func star_scale(mag):
 func star_flux(mag):
 	var F0 = 3.6e-8  # flux of magnitude 0 star in V-band
 	var F = F0 * 10**(-0.4 * mag)
-	var f = 2**flux_factor * (F ** 0.7)-0.3
-	if f < 4:
-		return 4
+	var f = 2**flux_factor * F
+	
+	#upper limit
+	if f > 6:
+		f = 6
 	return f
 
 func bv_to_rgb(bv):

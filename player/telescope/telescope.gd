@@ -1,5 +1,7 @@
 extends Control
 
+signal star_click(hip)
+
 @onready var stars : Node3D = $"../Stars"
 
 @onready var main : Camera3D = $"../Main_camera"
@@ -8,15 +10,11 @@ extends Control
 @export var zoom_speed = 10
 
 var star_coords_dict = {}
-var stars_clicked = {}
 
 var looking_at_hip = 0
 
 func _ready():
 	telescope.fov = fov
-	
-	for star in stars.star_data:
-		stars_clicked[star["HIP"]] = false
 	
 func _physics_process(delta):
 	telescope.global_transform = main.global_transform
@@ -39,14 +37,14 @@ func _physics_process(delta):
 			return 
 		
 		if Input.is_action_just_pressed("left_click"):
-			stars_clicked[looking_at_hip] = true
 			var clicked_star = stars.hip_dict[looking_at_hip]
 			
 			var starpos = stars.star_to_position(clicked_star)
 			var mag = clicked_star["Magnitude"]
 			
 			var mat : StandardMaterial3D = load("res://assets/material/selected_star.tres").duplicate()
-			stars.create_star(starpos, mag, 0, mat)
+			var sname = "green_" + str(int(clicked_star["HIP"]))
+			star_click.emit(looking_at_hip)
 		
 		
 func angle_to_skycoords():

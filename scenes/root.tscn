@@ -68,7 +68,7 @@ environment = SubResource("Environment_sqa0i")
 
 [node name="Player" parent="." unique_id=1326059467 instance=ExtResource("2_twpsu")]
 transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 0, 1.027, -10)
-speed = 4
+speed = 8
 jump_speed = 8
 
 [node name="Main_camera" type="Camera3D" parent="Player" unique_id=1619508799]
@@ -78,6 +78,7 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.41657376
 fov = 50
 
 [node name="Stars" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
+flux_factor = 27
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=595141351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009725571, 0.11271429, 0.008360863)

@@ -9,8 +9,11 @@ script/source = "extends SubViewport
 @onready var subviewport := $\".\"
 
 func _ready():
-	# Make the telescope camera see the main world
-	subviewport.world_3d = get_viewport().world_3d
+	var width = ProjectSettings.get_setting(\"display/window/size/viewport_width\")
+	var height = ProjectSettings.get_setting(\"display/window/size/viewport_height\")
+	subviewport.size = Vector2(width, height)
+	pass
+	#subviewport.world_3d = get_viewport().world_3d
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jh1ax"]
