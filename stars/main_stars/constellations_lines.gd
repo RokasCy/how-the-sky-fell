@@ -4,6 +4,7 @@ extends MeshInstance3D
 @onready var constellations_done = $"../Finished"
 @onready var constellations_wrong = $"../Wrong"
 @onready var telescope = $"../../Telescope"
+@onready var logic = $"../../../Game logic/constellation"
 
 var const_lines_path = "res://stars/star_data/hip_constellation_line.csv"
 
@@ -45,7 +46,7 @@ var current_constellation_selected : String = ""
 var current_timer = null
 
 func time_limit():	
-	current_timer = get_tree().create_timer(8.0)
+	current_timer = get_tree().create_timer(6.0)
 	var my_timer = current_timer
 	
 	await my_timer.timeout
@@ -63,6 +64,9 @@ func time_limit():
 func line_update(hip):
 	if constellation_type[hip] in constellations_finished:
 		return
+	if constellation_type[hip] not in logic.current_targets:
+		if green_star_list == []:
+			return
 	if get_node_or_null("../green_" + str(int(hip))) != null:
 		return
 		
