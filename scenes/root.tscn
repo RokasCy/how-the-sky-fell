@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="3_sqa0i"]
 [ext_resource type="PackedScene" uid="uid://bqfbjdapj84fo" path="res://player/telescope/telescope.tscn" id="5_jh1ax"]
 [ext_resource type="PackedScene" uid="uid://8uws18s5ec7t" path="res://scenes/planets/ecliptic.tscn" id="5_l5cgh"]
+[ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="6_dylgi"]
 [ext_resource type="Texture2D" uid="uid://cq4cboyo1pwix" path="res://assets/textures/ground.png" id="6_j287u"]
 [ext_resource type="Texture2D" uid="uid://co5b7agmyq114" path="res://assets/textures/ground_normal.png" id="7_7pvxh"]
 [ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="8_3hfy5"]
@@ -81,11 +82,13 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.41657376
 fov = 50
 
 [node name="Stars" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
-longitude = 79.142
 rotation_rate = 0.1
 flux_factor = 27
 
 [node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_l5cgh")]
+
+[node name="milkyway" parent="Player/Stars" unique_id=1541727212 instance=ExtResource("6_dylgi")]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=595141351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07046509, 0.11270857, -0.109233856)

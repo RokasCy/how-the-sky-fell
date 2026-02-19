@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://depnt4l4ne40t"]
+
+[ext_resource type="Script" uid="uid://diajsm6p8tgo8" path="res://scenes/planets/milkyway_fade.gd" id="1_knk6r"]
+[ext_resource type="Material" uid="uid://dxoqh2rhxyoas" path="res://assets/material/sky.tres" id="2_knk6r"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_30fnj"]
+
+[node name="milkyway" type="Node3D" unique_id=290874618]
+script = ExtResource("1_knk6r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=563017121]
+mesh = SubResource("SphereMesh_30fnj")
+surface_material_override/0 = ExtResource("2_knk6r")

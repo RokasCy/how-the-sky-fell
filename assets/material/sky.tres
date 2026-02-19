@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dxoqh2rhxyoas"]
+
+[ext_resource type="Texture2D" uid="uid://82id2m1xrbsa" path="res://assets/planets/milky_way8k_nostars.jpg" id="1_vtbyb"]
+
+[resource]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.25490198)
+albedo_texture = ExtResource("1_vtbyb")
+texture_filter = 2
+texture_repeat = false

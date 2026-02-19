@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://beai6byfm0amo" path="res://scenes/planets/venus.tscn" id="3_td48e"]
 [ext_resource type="PackedScene" uid="uid://c17ksq6sp823t" path="res://scenes/planets/saturn.tscn" id="4_segic"]
 [ext_resource type="PackedScene" uid="uid://cjfk1h2r6h220" path="res://scenes/planets/jupiter.tscn" id="5_141ji"]
+[ext_resource type="PackedScene" uid="uid://6njnkk63g6lf" path="res://scenes/planets/moon.tscn" id="6_a0ajq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tchbl"]
 transparency = 1
@@ -41,3 +42,8 @@ distance = 1500
 [node name="jupiter" parent="." unique_id=755711679 instance=ExtResource("5_141ji")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 334.9263, 0, -367.73395)
 script = ExtResource("2_dt6i7")
+
+[node name="moon" parent="." unique_id=627701337 instance=ExtResource("6_a0ajq")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -163.9673, 3.5762787e-06, -128.42473)
+script = ExtResource("2_dt6i7")
+distance = 70

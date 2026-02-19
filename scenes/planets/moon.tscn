@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://6njnkk63g6lf"]
+
+[ext_resource type="PackedScene" uid="uid://cyocxwi31gpfl" path="res://assets/planets/moon.glb" id="1_njpme"]
+
+[node name="moon" unique_id=627701337 instance=ExtResource("1_njpme")]
+
+[node name="Sphere_006" parent="." index="0" unique_id=1542842269]
+layers = 3

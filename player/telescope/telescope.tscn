@@ -18,7 +18,7 @@ func _ready():
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jh1ax"]
 shader = ExtResource("1_6gvpi")
-shader_parameter/window_size = Vector2(1152, 644)
+shader_parameter/window_size = Vector2(640, 480)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_cmv3v"]
 viewport_path = NodePath("SubViewport")
