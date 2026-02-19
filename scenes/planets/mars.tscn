@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cjfje5v5nicw4"]
+
+[ext_resource type="PackedScene" uid="uid://8xyrjvxc2l23" path="res://assets/planets/mars.glb" id="1_4u6dv"]
+
+[node name="mars" unique_id=1083466470 instance=ExtResource("1_4u6dv")]
+
+[node name="Sphere" parent="." index="0" unique_id=1822871766]
+transform = Transform3D(-0.2933055, 0, -1.978376, 0, 2, 0, 1.978376, 0, -0.2933055, 0, 0, 0)
+layers = 2

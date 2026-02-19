@@ -84,7 +84,8 @@ radius = 0.35
 
 [node name="pine_tree" unique_id=315942851 instance=ExtResource("1_05o1w")]
 
-[node name="Cone_001" parent="." index="0" unique_id=314014456]
+[node name="Cone_001" parent="." index="0" unique_id=177626405]
+layers = 2
 mesh = SubResource("ArrayMesh_cf4nm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cone_001" index="0" unique_id=457639032]

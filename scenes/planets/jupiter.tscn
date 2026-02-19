@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cjfk1h2r6h220"]
+
+[ext_resource type="PackedScene" uid="uid://b0cen8moav17k" path="res://assets/planets/jupiter.glb" id="1_rid86"]
+
+[node name="jupiter" unique_id=755711679 instance=ExtResource("1_rid86")]
+
+[node name="Sphere_002" parent="." index="0" unique_id=1883034847]
+layers = 3

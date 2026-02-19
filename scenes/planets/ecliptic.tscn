@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://8uws18s5ec7t"]
+
+[ext_resource type="PackedScene" uid="uid://cjfje5v5nicw4" path="res://scenes/planets/mars.tscn" id="1_1bqhe"]
+[ext_resource type="Script" uid="uid://pt56cy1du5fi" path="res://scenes/planets/force_distance.gd" id="2_dt6i7"]
+[ext_resource type="PackedScene" uid="uid://beai6byfm0amo" path="res://scenes/planets/venus.tscn" id="3_td48e"]
+[ext_resource type="PackedScene" uid="uid://c17ksq6sp823t" path="res://scenes/planets/saturn.tscn" id="4_segic"]
+[ext_resource type="PackedScene" uid="uid://cjfk1h2r6h220" path="res://scenes/planets/jupiter.tscn" id="5_141ji"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tchbl"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.5254902, 1, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bqhe"]
+size = Vector2(1000, 1000)
+
+[node name="Ecliptic" type="Node3D" unique_id=1939243606]
+transform = Transform3D(0.99927497, -0.021968111, -0.031095877, 0.00982137, 0.9378375, -0.34693566, 0.0367844, 0.3463787, 0.9373733, 0, 0, 0)
+
+[node name="Ecliptic" type="MeshInstance3D" parent="." unique_id=310775930]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_tchbl")
+mesh = SubResource("PlaneMesh_1bqhe")
+
+[node name="mars" parent="." unique_id=1083466470 instance=ExtResource("1_1bqhe")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -3.1613574, 29.914612, -497.2239)
+script = ExtResource("2_dt6i7")
+distance = 800
+
+[node name="venus" parent="." unique_id=1346411416 instance=ExtResource("3_td48e")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -297.8684, 3.784895e-06, -182.85724)
+script = ExtResource("2_dt6i7")
+distance = 600
+
+[node name="saturn" parent="." unique_id=1928700230 instance=ExtResource("4_segic")]
+transform = Transform3D(0.8756584, 0.48293093, 0, -0.4829309, 0.87565845, 0, 0, 0, 1, -318.53665, 49.045364, -72.38476)
+script = ExtResource("2_dt6i7")
+distance = 1500
+
+[node name="jupiter" parent="." unique_id=755711679 instance=ExtResource("5_141ji")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 334.9263, 0, -367.73395)
+script = ExtResource("2_dt6i7")

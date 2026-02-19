@@ -36,14 +36,7 @@ func _physics_process(delta):
 		if looking_at_hip == 0:
 			return 
 		
-		if Input.is_action_just_pressed("left_click"):
-			var clicked_star = stars.hip_dict[looking_at_hip]
-			
-			var starpos = stars.star_to_position(clicked_star)
-			var mag = clicked_star["Magnitude"]
-			
-			var mat : StandardMaterial3D = load("res://assets/material/selected_star.tres").duplicate()
-			var sname = "green_" + str(int(clicked_star["HIP"]))
+		if Input.is_action_just_pressed("left_click"): 
 			star_click.emit(looking_at_hip)
 		
 		
@@ -66,7 +59,7 @@ func angle_to_skycoords():
 	var ra_deg = rad_to_deg(ra_rad) - 90
 	if ra_deg < 0:
 		ra_deg += 360
-	
+
 	looking_at_hip = 0
 	for star in stars.star_data:
 		if len(star) <= 1:

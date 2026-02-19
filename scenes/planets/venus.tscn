@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://beai6byfm0amo"]
+
+[ext_resource type="PackedScene" uid="uid://di658ie8biu7b" path="res://assets/planets/venus.glb" id="1_nlp2h"]
+
+[node name="venus" unique_id=1346411416 instance=ExtResource("1_nlp2h")]
+
+[node name="Sphere_001" parent="." index="0" unique_id=39773263]
+layers = 3
