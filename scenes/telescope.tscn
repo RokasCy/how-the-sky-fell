@@ -300,7 +300,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("2_shu7l")
 
 [node name="Main" parent="." index="0" unique_id=585572559]
-transform = Transform3D(0.2733716, 0, 0, 0, -1.1949452e-08, -0.2733716, 0, 0.2733716, -1.1949452e-08, 0, 0.33932805, -1.5409584)
+transform = Transform3D(0.2733716, 0, 0, 0, -1.1949451e-08, -0.27337158, 0, 0.27337158, -1.1949451e-08, 0, 0.33932805, -1.5409584)
 
 [node name="Leg2" parent="." index="2" unique_id=1686986120]
 transform = Transform3D(-1.0163096e-07, 0.19302186, -0.3343237, -0.38604382, -7.5165495e-08, 7.3956485e-08, 2.8116991e-08, -0.3343237, -0.19302186, 0, -0.756521, -1.5873299)
@@ -329,7 +329,7 @@ script = ExtResource("4_shu7l")
 size = Vector2i(640, 480)
 
 [node name="Camera3D" type="Camera3D" parent="Control/SubViewport" index="0" unique_id=2124162615]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.8397563e-07, 0.26831868, -1.7766795)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.543402e-08, 0.27517515, -0.15152198)
 
 [node name="TextureRect" type="TextureRect" parent="Control" index="1" unique_id=855198329]
 material = SubResource("ShaderMaterial_4g4tk")

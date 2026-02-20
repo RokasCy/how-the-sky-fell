@@ -19,7 +19,6 @@ func _on_body_exited(body: Node3D) -> void:
 	interactable = false
 
 func telescope_interaction():
-	print('interacting')
 	telescope_interact.emit()
 	
 func _physics_process(delta: float) -> void:

@@ -8,6 +8,7 @@ extends CharacterBody3D
 
 @onready var camera = $Main_camera
 @onready var logic = $"../Game logic"
+@onready var player_mesh = $MeshInstance3D
 
 var _camera_input_direction := Vector2.ZERO
 
@@ -63,5 +64,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity
 	
 	move_and_slide()
-	
-	
+
+
+func _on_telescope_zoom(in_or_out: Variant) -> void:
+	player_mesh.visible = !in_or_out

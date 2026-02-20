@@ -158,6 +158,6 @@ shadow_enabled = true
 
 [node name="telescope" parent="." unique_id=832613763 instance=ExtResource("7_jrhyn")]
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -2.931929, 1.1586488, -1.3635826)
+speed = null
 
-[connection signal="zoom" from="telescope" to="Player" method="_on_telescope_zoom"]
 [connection signal="zoom" from="telescope" to="Game logic" method="_on_telescope_zoom"]
