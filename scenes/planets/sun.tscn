@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://plnrr415fsor"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_iu7fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6sy7"]
+albedo_color = Color(1, 1, 0.6156863, 1)
+emission_enabled = true
+emission = Color(0.99215686, 0.99215686, 0.69803923, 1)
+emission_energy_multiplier = 2.0
+
+[node name="Sun" type="Node3D" unique_id=1622668336]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1286065893]
+mesh = SubResource("SphereMesh_iu7fn")
+surface_material_override/0 = SubResource("StandardMaterial3D_h6sy7")
+
+[node name="Sun2" type="OmniLight3D" parent="." unique_id=554104773]
+transform = Transform3D(0.99999994, 4.656613e-09, 7.450581e-09, -9.313226e-10, 1.0000001, -2.9802322e-08, -3.7252903e-09, 0, 1, 0, 0, 0)
+light_energy = 16.0
+light_cull_mask = 4293918723
+omni_range = 4096.0
+omni_attenuation = 0.0

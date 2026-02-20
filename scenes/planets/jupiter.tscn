@@ -1,8 +1,101 @@
 [gd_scene format=3 uid="uid://cjfk1h2r6h220"]
 
 [ext_resource type="PackedScene" uid="uid://b0cen8moav17k" path="res://assets/planets/jupiter.glb" id="1_rid86"]
+[ext_resource type="Texture2D" uid="uid://b1vtfgw0ilqfq" path="res://assets/planets/jupiter moons/Callisto.webp" id="2_3vqwu"]
+[ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/planets/scripts/rotator.tscn" id="2_m1gr4"]
+[ext_resource type="Texture2D" uid="uid://5mnfyv51fku2" path="res://assets/planets/jupiter moons/Ganymede.webp" id="3_m1gr4"]
+[ext_resource type="Texture2D" uid="uid://ba47kwegcomk5" path="res://assets/planets/jupiter moons/Europa.jpg" id="4_3vqwu"]
+[ext_resource type="Texture2D" uid="uid://chcq5bjwygg0h" path="res://assets/planets/jupiter moons/Io.webp" id="5_if8tn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yjgi6"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygm1q"]
+albedo_texture = ExtResource("2_3vqwu")
+roughness = 0.5
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_onaei"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vldyr"]
+albedo_texture = ExtResource("3_m1gr4")
+roughness = 0.5
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8h2db"]
+radius = 0.14
+height = 0.28
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vsl8"]
+albedo_texture = ExtResource("4_3vqwu")
+roughness = 0.5
+emission_energy_multiplier = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_cahlf"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1t2r"]
+albedo_texture = ExtResource("5_if8tn")
+roughness = 0.5
 
 [node name="jupiter" unique_id=755711679 instance=ExtResource("1_rid86")]
 
 [node name="Sphere_002" parent="." index="0" unique_id=1883034847]
 layers = 3
+
+[node name="rotator" parent="Sphere_002" index="0" unique_id=1137402544 instance=ExtResource("2_m1gr4")]
+period = 120.0
+
+[node name="Moons" type="Node3D" parent="." index="1" unique_id=862570506]
+
+[node name="Callisto" type="Node3D" parent="Moons" index="0" unique_id=1082175535]
+transform = Transform3D(-0.97643185, 0, -0.21582611, 0, 1, 0, 0.21582611, 0, -0.97643185, 0, 0, 0)
+
+[node name="Callisto" type="MeshInstance3D" parent="Moons/Callisto" index="0" unique_id=1180965570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.165363, 0, 0)
+layers = 2
+mesh = SubResource("SphereMesh_yjgi6")
+surface_material_override/0 = SubResource("StandardMaterial3D_ygm1q")
+
+[node name="rotator" parent="Moons/Callisto" index="1" unique_id=1878349197 instance=ExtResource("2_m1gr4")]
+period = 720.0
+
+[node name="Ganymede" type="Node3D" parent="Moons" index="1" unique_id=395324441]
+transform = Transform3D(-0.22853781, 0, -0.97353506, 0, 1, 0, 0.97353506, 0, -0.22853781, 0, 0, 0)
+
+[node name="Ganymede" type="MeshInstance3D" parent="Moons/Ganymede" index="0" unique_id=853100387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.40711, 0, 0)
+layers = 2
+mesh = SubResource("SphereMesh_onaei")
+surface_material_override/0 = SubResource("StandardMaterial3D_vldyr")
+
+[node name="rotator" parent="Moons/Ganymede" index="1" unique_id=1530234441 instance=ExtResource("2_m1gr4")]
+period = 640.0
+
+[node name="Europa" type="Node3D" parent="Moons" index="2" unique_id=1646821534]
+transform = Transform3D(0.9914449, 0, -0.1305262, 0, 1, 0, 0.1305262, 0, 0.9914449, 0, 0, 0)
+
+[node name="Europa" type="MeshInstance3D" parent="Moons/Europa" index="0" unique_id=1155908370]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 8.7074795, 0, 0)
+layers = 2
+mesh = SubResource("SphereMesh_8h2db")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vsl8")
+
+[node name="rotator" parent="Moons/Europa" index="1" unique_id=354392498 instance=ExtResource("2_m1gr4")]
+period = 320.0
+
+[node name="Io" type="Node3D" parent="Moons" index="3" unique_id=725334044]
+transform = Transform3D(0.7981836, 0, 0.60241425, 0, 1, 0, -0.60241425, 0, 0.7981836, 0, 0, 0)
+
+[node name="Io" type="MeshInstance3D" parent="Moons/Io" index="0" unique_id=1570061523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2655725, 0, 0)
+layers = 2
+mesh = SubResource("SphereMesh_cahlf")
+surface_material_override/0 = SubResource("StandardMaterial3D_f1t2r")
+
+[node name="rotator" parent="Moons/Io" index="1" unique_id=1013370274 instance=ExtResource("2_m1gr4")]
+period = 160.0

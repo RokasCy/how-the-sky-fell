@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://8uws18s5ec7t"]
 
 [ext_resource type="PackedScene" uid="uid://cjfje5v5nicw4" path="res://scenes/planets/mars.tscn" id="1_1bqhe"]
-[ext_resource type="Script" uid="uid://pt56cy1du5fi" path="res://scenes/planets/force_distance.gd" id="2_dt6i7"]
+[ext_resource type="Script" uid="uid://pt56cy1du5fi" path="res://scenes/planets/scripts/force_distance.gd" id="2_dt6i7"]
 [ext_resource type="PackedScene" uid="uid://beai6byfm0amo" path="res://scenes/planets/venus.tscn" id="3_td48e"]
 [ext_resource type="PackedScene" uid="uid://c17ksq6sp823t" path="res://scenes/planets/saturn.tscn" id="4_segic"]
 [ext_resource type="PackedScene" uid="uid://cjfk1h2r6h220" path="res://scenes/planets/jupiter.tscn" id="5_141ji"]
 [ext_resource type="PackedScene" uid="uid://6njnkk63g6lf" path="res://scenes/planets/moon.tscn" id="6_a0ajq"]
+[ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/planets/scripts/rotator.tscn" id="7_jadm5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tchbl"]
 transparency = 1
@@ -29,19 +30,29 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -3.1613574,
 script = ExtResource("2_dt6i7")
 distance = 800
 
+[node name="rotator" parent="mars" unique_id=1137402544 instance=ExtResource("7_jadm5")]
+period = 120.0
+
 [node name="venus" parent="." unique_id=1346411416 instance=ExtResource("3_td48e")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -297.8684, 3.784895e-06, -182.85724)
 script = ExtResource("2_dt6i7")
-distance = 600
+distance = 800
+
+[node name="rotator" parent="venus" unique_id=376461186 instance=ExtResource("7_jadm5")]
+period = -160.0
 
 [node name="saturn" parent="." unique_id=1928700230 instance=ExtResource("4_segic")]
-transform = Transform3D(0.8756584, 0.48293093, 0, -0.4829309, 0.87565845, 0, 0, 0, 1, -318.53665, 49.045364, -72.38476)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -318.53665, 49.045364, -72.38476)
 script = ExtResource("2_dt6i7")
 distance = 1500
+
+[node name="rotator" parent="saturn" unique_id=1516571708 instance=ExtResource("7_jadm5")]
+period = 120.0
 
 [node name="jupiter" parent="." unique_id=755711679 instance=ExtResource("5_141ji")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 334.9263, 0, -367.73395)
 script = ExtResource("2_dt6i7")
+distance = 1200
 
 [node name="moon" parent="." unique_id=627701337 instance=ExtResource("6_a0ajq")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -163.9673, 3.5762787e-06, -128.42473)

@@ -5,4 +5,4 @@
 [node name="moon" unique_id=627701337 instance=ExtResource("1_njpme")]
 
 [node name="Sphere_006" parent="." index="0" unique_id=1542842269]
-layers = 3
+layers = 2
