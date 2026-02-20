@@ -3,11 +3,12 @@
 [ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="1_j5px3"]
 [ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://player/player.tscn" id="2_twpsu"]
 [ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="3_sqa0i"]
-[ext_resource type="PackedScene" uid="uid://bqfbjdapj84fo" path="res://player/telescope/telescope.tscn" id="5_jh1ax"]
+[ext_resource type="PackedScene" uid="uid://bqfbjdapj84fo" path="res://logic/telescope/telescope.tscn" id="5_jh1ax"]
 [ext_resource type="PackedScene" uid="uid://8uws18s5ec7t" path="res://scenes/planets/ecliptic.tscn" id="5_l5cgh"]
 [ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="6_dylgi"]
 [ext_resource type="Texture2D" uid="uid://cq4cboyo1pwix" path="res://assets/textures/ground.png" id="6_j287u"]
 [ext_resource type="Texture2D" uid="uid://co5b7agmyq114" path="res://assets/textures/ground_normal.png" id="7_7pvxh"]
+[ext_resource type="PackedScene" uid="uid://b1ifdanyuv32q" path="res://scenes/telescope.tscn" id="7_jrhyn"]
 [ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="8_3hfy5"]
 [ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="8_vgks2"]
 [ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenery/camp/campfire.tscn" id="9_7pvxh"]
@@ -15,7 +16,7 @@
 [ext_resource type="Script" uid="uid://dvgbgy4dwj4b8" path="res://stars/main_stars/constellation_logic.gd" id="12_l5cgh"]
 [ext_resource type="Script" uid="uid://3otbpp0ah4n6" path="res://logic/game_logic.gd" id="12_vgks2"]
 [ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="12_xsp7o"]
-[ext_resource type="PackedScene" uid="uid://cjfk1h2r6h220" path="res://scenes/planets/jupiter.tscn" id="16_jrhyn"]
+[ext_resource type="Script" uid="uid://4abtw1yg5p04" path="res://logic/telescope/main_telescope_logic.gd" id="17_log26"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j5px3"]
 noise_type = 0
@@ -76,11 +77,10 @@ transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0,
 speed = 8
 jump_speed = 8
 
+[node name="Telescope" parent="Player" unique_id=1221093567 instance=ExtResource("5_jh1ax")]
+
 [node name="Main_camera" type="Camera3D" parent="Player" unique_id=1619508799]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.41657376, 0)
-
-[node name="Telescope" parent="Player" unique_id=1221093567 instance=ExtResource("5_jh1ax")]
-fov = 50
 
 [node name="Stars" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
 longitude = 35.0
@@ -101,7 +101,6 @@ mesh = SubResource("PlaneMesh_7pvxh")
 shape = SubResource("ConcavePolygonShape3D_y3xxt")
 
 [node name="Trees" type="GridMap" parent="." unique_id=1736956556]
-visible = false
 mesh_library = ExtResource("8_vgks2")
 cell_size = Vector3(1, 2, 1)
 cell_center_y = false
@@ -157,5 +156,6 @@ light_energy = 3.0
 light_cull_mask = 4293918722
 shadow_enabled = true
 
-[node name="jupiter" parent="." unique_id=755711679 instance=ExtResource("16_jrhyn")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 12.469078, 2.112709, 3.8601217)
+[node name="telescope" parent="." unique_id=832613763 instance=ExtResource("7_jrhyn")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -2.931929, 1.1586488, -1.3635826)
+script = ExtResource("17_log26")

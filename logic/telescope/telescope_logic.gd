@@ -3,32 +3,31 @@ extends Control
 signal star_click(hip)
 
 @onready var stars : Node3D = $"../Stars"
+@onready var camera : Camera3D = $SubViewport/camera
 
-@onready var main : Camera3D = $"../Main_camera"
-@onready var telescope : Camera3D = $SubViewport/camera
 @export_range(0, 90) var fov : int = 30
 @export var zoom_speed = 10
 
 var star_coords_dict = {}
-
 var looking_at_hip = 0
 
 func _ready():
-	telescope.fov = fov
+	camera.fov = fov
+	
+	
 	
 func _physics_process(delta):
-	telescope.global_transform = main.global_transform
 	
 	if Input.is_action_just_pressed("zoom"):
 		visible = true
 	if Input.is_action_just_pressed("unzoom"):
 		visible = false
-		telescope.fov = fov
+		camera.fov = fov
 		
 	if Input.is_action_pressed("fov-"):
-		telescope.fov -= zoom_speed * delta
+		camera.fov -= zoom_speed * delta
 	if Input.is_action_pressed("fov+"):
-		telescope.fov += zoom_speed * delta
+		camera.fov += zoom_speed * delta
 	
 	#if zoomed in
 	if visible == true:
@@ -42,7 +41,7 @@ func _physics_process(delta):
 		
 func angle_to_skycoords():
 	#forward direction of telescope (-Z)
-	var forward = -telescope.global_basis.z
+	var forward = -camera.global_basis.z
 	
 	#rotation of sky in world space
 	var sky_basis = stars.global_basis

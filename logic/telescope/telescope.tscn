@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqfbjdapj84fo"]
 
 [ext_resource type="Shader" uid="uid://26gb8u78cf1d" path="res://shaders/telescope_overlay.gdshader" id="1_6gvpi"]
-[ext_resource type="Script" uid="uid://6saq2nqwnsqf" path="res://player/telescope/telescope.gd" id="1_cmv3v"]
+[ext_resource type="Script" uid="uid://6saq2nqwnsqf" path="res://logic/telescope/telescope.gd" id="1_cmv3v"]
 
 [sub_resource type="GDScript" id="GDScript_4unxv"]
 script/source = "extends SubViewport
