@@ -3,7 +3,7 @@ extends MeshInstance3D
 @onready var parent = get_parent()
 @onready var constellations_done = $"../Finished"
 @onready var constellations_wrong = $"../Wrong"
-@onready var telescope = $"../../Telescope"
+@onready var telescope = $"../../../telescope"
 @onready var logic = $"../../../Game logic/constellation"
 
 var const_lines_path = "res://stars/star_data/hip_constellation_line.csv"

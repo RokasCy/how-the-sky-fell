@@ -1,45 +1,19 @@
 extends Control
 
-signal star_click(hip)
 
-@onready var stars : Node3D = $"../Stars"
-@onready var camera : Camera3D = $SubViewport/camera
+@onready var parent = get_parent()
+@onready var stars : Node3D = $"../../Player/Stars"
+@onready var camera : Camera3D = $SubViewport/Camera3D
 
-@export_range(0, 90) var fov : int = 30
-@export var zoom_speed = 10
-
-var star_coords_dict = {}
-var looking_at_hip = 0
-
-func _ready():
-	camera.fov = fov
-	
-	
-	
 func _physics_process(delta):
-	
-	if Input.is_action_just_pressed("zoom"):
-		visible = true
-	if Input.is_action_just_pressed("unzoom"):
-		visible = false
-		camera.fov = fov
-		
-	if Input.is_action_pressed("fov-"):
-		camera.fov -= zoom_speed * delta
-	if Input.is_action_pressed("fov+"):
-		camera.fov += zoom_speed * delta
-	
-	#if zoomed in
+	#---- how telescope_logic connects to constellation line draw ----#
 	if visible == true:
-		angle_to_skycoords()
-		if looking_at_hip == 0:
-			return 
-		
-		if Input.is_action_just_pressed("left_click"): 
-			star_click.emit(looking_at_hip)
+		var hip = angle_to_hip()
+		if Input.is_action_just_pressed("left_click") and hip!=0: 
+			parent.star_click.emit(hip)
 		
 		
-func angle_to_skycoords():
+func angle_to_hip():
 	#forward direction of telescope (-Z)
 	var forward = -camera.global_basis.z
 	
@@ -59,7 +33,7 @@ func angle_to_skycoords():
 	if ra_deg < 0:
 		ra_deg += 360
 
-	looking_at_hip = 0
+	var looking_at_hip = 0
 	for star in stars.star_data:
 		if len(star) <= 1:
 			continue
@@ -70,3 +44,4 @@ func angle_to_skycoords():
 		if abs(star_ra - ra_deg) < 1 and abs(star_dec - dec_deg) < 1:
 			looking_at_hip = star["HIP"]
 			break
+	return looking_at_hip

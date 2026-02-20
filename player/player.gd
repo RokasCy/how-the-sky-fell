@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var gravity := -0.5
 
 @onready var camera = $Main_camera
-
+@onready var logic = $"../Game logic"
 
 var _camera_input_direction := Vector2.ZERO
 
@@ -33,6 +33,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if logic.telescope_zoomed:
+		return
+	
 	camera.rotation.x -= _camera_input_direction.y * delta
 	camera.rotation.y -= _camera_input_direction.x * delta
 	camera.rotation.x = clamp(camera.rotation.x, -PI / 2, PI / 2)

@@ -9,8 +9,6 @@ signal star_click(hip)
 @export_range(0, 90) var fov : int = 30
 @export var zoom_speed = 10
 
-var star_coords_dict = {}
-
 var looking_at_hip = 0
 
 func _ready():
