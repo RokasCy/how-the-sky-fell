@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PageData" format=3 uid="uid://bvb6gu2a4afcr"]
+
+[ext_resource type="Script" uid="uid://friigekmlxku" path="res://catalogue/scripts/page_data.gd" id="1_8phc0"]
+
+[resource]
+script = ExtResource("1_8phc0")
+title = "Map of the sky"
+number = "6"
+metadata/_custom_type_script = "uid://friigekmlxku"

@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dvgbgy4dwj4b8" path="res://stars/main_stars/constellation_logic.gd" id="12_l5cgh"]
 [ext_resource type="Script" uid="uid://3otbpp0ah4n6" path="res://logic/game_logic.gd" id="12_vgks2"]
 [ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="12_xsp7o"]
+[ext_resource type="PackedScene" uid="uid://bd4jynpxp1csi" path="res://catalogue/scenes/book.tscn" id="16_jrhyn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j5px3"]
 noise_type = 0
@@ -157,5 +158,8 @@ shadow_enabled = true
 [node name="telescope" parent="." unique_id=832613763 instance=ExtResource("7_jrhyn")]
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -2.931929, 1.1586488, -1.3635826)
 
+[node name="Book" parent="." unique_id=371851652 instance=ExtResource("16_jrhyn")]
+
 [connection signal="zoom" from="telescope" to="Player" method="_on_telescope_zoom"]
 [connection signal="zoom" from="telescope" to="Game logic" method="_on_telescope_zoom"]
+[connection signal="book_open" from="Book" to="Game logic" method="_on_book_open"]

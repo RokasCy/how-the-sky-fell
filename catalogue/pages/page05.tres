@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PageData" format=3 uid="uid://dibgm7djeooq5"]
+
+[ext_resource type="Script" uid="uid://friigekmlxku" path="res://catalogue/scripts/page_data.gd" id="1_tcblg"]
+
+[resource]
+script = ExtResource("1_tcblg")
+title = "Planets"
+text = "mercury, venus, earth, mars, jupiter, saturn, uranus, neptune"
+number = "5"
+metadata/_custom_type_script = "uid://friigekmlxku"

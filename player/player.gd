@@ -34,7 +34,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if logic.telescope_zoomed:
+	player_mesh.visible = logic.player_visible
+	if !logic.player_can_move:
 		return
 	
 	camera.rotation.x -= _camera_input_direction.y * delta
@@ -64,7 +65,3 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity
 	
 	move_and_slide()
-
-func _on_telescope_zoom(in_or_out: Variant) -> void:
-	player_mesh.visible = !in_or_out
-	

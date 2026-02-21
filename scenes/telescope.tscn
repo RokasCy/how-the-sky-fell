@@ -332,7 +332,7 @@ transform = Transform3D(-8.360272e-08, 0.19302216, 0.33432356, -0.38604382, -2.9
 mesh = SubResource("ArrayMesh_e1hqw")
 
 [node name="interaction" parent="." index="6" unique_id=934976142 instance=ExtResource("2_cmv3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.821908, -1.7201144)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.0875926, -4.090456)
 interaction_type = "telescope"
 
 [node name="Control" type="Control" parent="." index="7" unique_id=1398561454]

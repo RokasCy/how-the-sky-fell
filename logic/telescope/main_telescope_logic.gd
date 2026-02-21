@@ -8,6 +8,8 @@ signal star_click(hip)
 @onready var camera = $Control/SubViewport/Camera3D
 @onready var body = $Main
 @onready var player = $"../Player"
+@onready var collider1 = $StaticBody3D/CollisionShape3D
+@onready var collider2 = $StaticBody3D/CollisionShape3D2
 
 #angular speed
 @export var speed : float = 0.5
@@ -42,18 +44,18 @@ func _on_interaction_telescope() -> void:
 func _on_telescope_pickup() -> void:
 	if !zoomed_in and player.is_on_floor():
 		if !picked_up:
-			visible = false
+			visible = true
 			picked_up = true
 		else:
 			visible = true
 			picked_up = false
 			
-			#move forward by 12
-			translate(Vector3(0.0, 0.0, 12.0))
 	
+
 func _physics_process(delta: float):
 	if picked_up:
-		position = player.position
+		position = player.position 
+		translate(Vector3(0.0, 0.0, 15.0))
 		rotation.y = player.camera.rotation.y
 		
 	zoomed_in = control.visible

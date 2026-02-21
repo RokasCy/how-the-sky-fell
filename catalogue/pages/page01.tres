@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PageData" format=3 uid="uid://d3wrwirvfqg42"]
+
+[ext_resource type="Script" uid="uid://friigekmlxku" path="res://catalogue/scripts/page_data.gd" id="1_x62tb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x62tb"]
+
+[resource]
+script = ExtResource("1_x62tb")
+texture = SubResource("CompressedTexture2D_x62tb")
+number = "1"
+metadata/_custom_type_script = "uid://friigekmlxku"

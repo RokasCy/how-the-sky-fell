@@ -14,10 +14,14 @@ func _ready() -> void:
 	collision.shape.radius = zone
 
 func _on_body_entered(body: Node3D) -> void:
-	interactable = true
+	if body is CharacterBody3D:
+		interactable = true
+		print('etner')
 	
 func _on_body_exited(body: Node3D) -> void:
-	interactable = false
+	if body is CharacterBody3D:
+		interactable = true
+		print('exit')
 
 func telescope_interaction():
 	telescope_interact.emit()
@@ -30,7 +34,7 @@ var pressing_time = 0.0
 func _physics_process(delta: float) -> void:
 	if !interactable:
 		return
-	
+		
 	if interaction_type == "telescope":
 		if Input.is_action_just_pressed("interact"):
 			telescope_interaction()

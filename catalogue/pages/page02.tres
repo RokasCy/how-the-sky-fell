@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PageData" format=3 uid="uid://be2uqr7uh7wg3"]
+
+[ext_resource type="Script" uid="uid://friigekmlxku" path="res://catalogue/scripts/page_data.gd" id="1_sjy6e"]
+[ext_resource type="Texture2D" uid="uid://croo0mvp4503v" path="res://catalogue/pages/book_cover.png" id="2_bcyyt"]
+
+[resource]
+script = ExtResource("1_sjy6e")
+title = "Almogest"
+text = "a catalog of all things celestial"
+texture = ExtResource("2_bcyyt")
+number = "2"
+metadata/_custom_type_script = "uid://friigekmlxku"
