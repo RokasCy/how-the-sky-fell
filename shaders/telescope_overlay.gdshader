@@ -19,8 +19,13 @@ void fragment() {
 	
 	//Black border
 	if (dist > 0.5) {
-        COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+        COLOR = vec4(0.005, 0.005, 0.02, 1.0);
     }
+	//edge
+	if (dist > 0.498 && dist < 0.502){
+		COLOR = vec4(0.8, 0.8, 0.8, 0.5);
+	}
+	
 	//Crosshair
 	if (dist < 0.01 && dist > 0.008){
 		COLOR = vec4(1.0, 1.0, 1.0, 1.0);

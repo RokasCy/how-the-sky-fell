@@ -65,6 +65,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-
 func _on_telescope_zoom(in_or_out: Variant) -> void:
 	player_mesh.visible = !in_or_out
+	

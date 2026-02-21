@@ -89,7 +89,7 @@ flux_factor = 27
 transform = Transform3D(321.37186, 381.46014, -34.759495, 362.8108, -288.5927, 187.30328, 122.834816, -145.61026, -462.287, -1.2365112, 0.5897827, 3.0636787e-05)
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=595141351]
-transform = Transform3D(0.9999999, -0.0002654435, 0.00034373114, 0.00026483487, 0.9999984, 0.0017804363, -0.0003442003, -0.0017803457, 0.9999984, 0.07046509, 0.11270857, -0.109233856)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07046509, 0.11270857, -0.109233856)
 mesh = SubResource("PlaneMesh_7pvxh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=1614621215]

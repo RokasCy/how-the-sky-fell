@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="1_j5px3"]
 [ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://player/player.tscn" id="2_twpsu"]
 [ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="3_sqa0i"]
+[ext_resource type="PackedScene" uid="uid://bqfbjdapj84fo" path="res://logic/telescope/telescope.tscn" id="5_jh1ax"]
 [ext_resource type="PackedScene" uid="uid://8uws18s5ec7t" path="res://scenes/planets/ecliptic.tscn" id="5_l5cgh"]
 [ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="6_dylgi"]
 [ext_resource type="Texture2D" uid="uid://cq4cboyo1pwix" path="res://assets/textures/ground.png" id="6_j287u"]
@@ -75,12 +76,13 @@ transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0,
 speed = 8
 jump_speed = 8
 
+[node name="Telescope" parent="Player" unique_id=1221093567 instance=ExtResource("5_jh1ax")]
+
 [node name="Main_camera" type="Camera3D" parent="Player" unique_id=1619508799]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.41657376, 0)
 
 [node name="Stars" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
-longitude = 35.0
-rotation_rate = 0.1
+longitude = -20.0
 flux_factor = 27
 
 [node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_l5cgh")]
@@ -89,7 +91,7 @@ flux_factor = 27
 transform = Transform3D(321.37186, 381.46014, -34.759495, 362.8108, -288.5927, 187.30328, 122.834816, -145.61026, -462.287, -1.2365112, 0.5897827, 3.0636787e-05)
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=595141351]
-transform = Transform3D(0.9999999, -0.0002654435, 0.00034373114, 0.00026483487, 0.9999984, 0.0017804363, -0.0003442003, -0.0017803457, 0.9999984, 0.07046509, 0.11270857, -0.109233856)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07046509, 0.11270857, -0.109233856)
 mesh = SubResource("PlaneMesh_7pvxh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=1614621215]
@@ -149,7 +151,7 @@ script = ExtResource("12_vgks2")
 script = ExtResource("12_l5cgh")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=360062856]
-transform = Transform3D(0.7090846, 0.47830164, -0.5180999, -0.66432256, 0.20684046, -0.7182569, -0.23637927, 0.85349005, 0.46441403, 0, 61.741932, 0)
+transform = Transform3D(-0.93607545, 0.08091354, -0.34236813, -0.14506869, 0.79781675, 0.58518714, 0.32049677, 0.59744596, -0.7350786, 0, 61.741932, 0)
 light_energy = 3.0
 light_cull_mask = 4293918722
 shadow_enabled = true

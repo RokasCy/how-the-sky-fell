@@ -6,6 +6,13 @@
 [ext_resource type="Shader" uid="uid://26gb8u78cf1d" path="res://shaders/telescope_overlay.gdshader" id="3_4unxv"]
 [ext_resource type="Script" uid="uid://dv7p50a7cksbf" path="res://logic/telescope/telescope_logic.gd" id="4_shu7l"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_shu7l"]
+size = Vector3(0.82, 1.825, 13.44)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e1hqw"]
+height = 9.5
+radius = 2.5
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4unxv"]
 resource_name = "Silver"
 albedo_color = Color(0.4367015, 0.4367015, 0.4367015, 1)
@@ -299,30 +306,38 @@ viewport_path = NodePath("Control/SubViewport")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("2_shu7l")
 
-[node name="Main" parent="." index="0" unique_id=585572559]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0" unique_id=1746451104]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2014403152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6031768, -1.5270784)
+shape = SubResource("BoxShape3D_shu7l")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1113591305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.201233, -1.8051829)
+shape = SubResource("CylinderShape3D_e1hqw")
+
+[node name="Main" parent="." index="1" unique_id=585572559]
 transform = Transform3D(0.2733716, 0, 0, 0, -1.1949451e-08, -0.27337158, 0, 0.27337158, -1.1949451e-08, 0, 0.33932805, -1.5409584)
 
-[node name="Leg2" parent="." index="2" unique_id=1686986120]
+[node name="Leg2" parent="." index="3" unique_id=1686986120]
 transform = Transform3D(-1.0163096e-07, 0.19302186, -0.3343237, -0.38604382, -7.5165495e-08, 7.3956485e-08, 2.8116991e-08, -0.3343237, -0.19302186, 0, -0.756521, -1.5873299)
 mesh = SubResource("ArrayMesh_cmv3v")
 
-[node name="Leg3" parent="." index="3" unique_id=850976379]
+[node name="Leg3" parent="." index="4" unique_id=850976379]
 transform = Transform3D(-1.5493455e-07, -0.38604376, 5.8290986e-08, -0.38604382, 1.5493451e-07, -6.289452e-08, -6.2894514e-08, 5.8291015e-08, 0.38604376, 0, -0.756521, -1.5873299)
 mesh = SubResource("ArrayMesh_4g4tk")
 
-[node name="Leg1" parent="." index="4" unique_id=1716298644]
+[node name="Leg1" parent="." index="5" unique_id=1716298644]
 transform = Transform3D(-8.360272e-08, 0.19302216, 0.33432356, -0.38604382, -2.9145493e-08, -7.970895e-08, 1.4613808e-08, 0.33432356, -0.19302216, 0, -0.756521, -1.5873299)
 mesh = SubResource("ArrayMesh_e1hqw")
 
-[node name="interaction" parent="." index="5" unique_id=934976142 instance=ExtResource("2_cmv3v")]
+[node name="interaction" parent="." index="6" unique_id=934976142 instance=ExtResource("2_cmv3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.821908, -1.7201144)
 interaction_type = "telescope"
 
-[node name="Control" type="Control" parent="." index="6" unique_id=1398561454]
+[node name="Control" type="Control" parent="." index="7" unique_id=1398561454]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("4_shu7l")
 
 [node name="SubViewport" type="SubViewport" parent="Control" index="0" unique_id=754469456]
@@ -330,6 +345,7 @@ size = Vector2i(640, 480)
 
 [node name="Camera3D" type="Camera3D" parent="Control/SubViewport" index="0" unique_id=2124162615]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.543402e-08, 0.27517515, -0.15152198)
+fov = 50.0
 
 [node name="TextureRect" type="TextureRect" parent="Control" index="1" unique_id=855198329]
 material = SubResource("ShaderMaterial_4g4tk")
@@ -338,4 +354,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("ViewportTexture_cmv3v")
 
+[node name="Label" type="Label" parent="Control" index="2" unique_id=1350270887]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 5.0
+offset_right = 181.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 11
+text = "ra/dec:2h5'36\"/15°53'2\""
+
 [connection signal="telescope_interact" from="interaction" to="." method="_on_interaction_telescope"]
+[connection signal="telescope_pickup" from="interaction" to="." method="_on_telescope_pickup"]
