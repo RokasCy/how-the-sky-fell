@@ -6,6 +6,8 @@ extends MeshInstance3D
 @onready var telescope = $"../../../telescope"
 @onready var logic = $"../../../Game logic/constellation"
 
+@export var time_out := 10
+
 var const_lines_path = "res://stars/star_data/hip_constellation_line.csv"
 
 # hip : consetllation
@@ -38,6 +40,9 @@ func _ready():
 		stars_selected[star["HIP"]] = false
 	
 	telescope.connect("star_click", line_update)
+	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	#generate_constellations()
+	mesh.surface_end()
 	
 var lines_drawn = []
 var constellations_finished = []
@@ -46,7 +51,7 @@ var current_constellation_selected : String = ""
 var current_timer = null
 
 func time_limit():	
-	current_timer = get_tree().create_timer(6.0)
+	current_timer = get_tree().create_timer(time_out)
 	var my_timer = current_timer
 	
 	await my_timer.timeout
@@ -215,7 +220,6 @@ func generate_constellations():
 		var star2 = hip_dict.get(c[2], null)
 		
 		if star1 != null and star2 != null:
-			#print(c[0])
 			draw_line(star1, star2)
 			pass
 

@@ -7,5 +7,4 @@
 [resource]
 script = ExtResource("1_x62tb")
 texture = SubResource("CompressedTexture2D_x62tb")
-number = "1"
 metadata/_custom_type_script = "uid://friigekmlxku"

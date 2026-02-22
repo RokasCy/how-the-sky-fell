@@ -17,6 +17,8 @@ var star_data = load_csv(star_path)
 @export var scale_factor := 11
 @export var flux_factor := 8
 
+@onready var constellations_finished = $Constellations.constellations_finished
+
 func _ready() -> void:
 	#setting location
 	self.rotation.x = deg_to_rad(90 - longitude)
@@ -62,7 +64,7 @@ func star_to_position(star):
 	return Vector3(x, y, z)
 
 func create_star(id, starposition, mag, b_v, mat=null):
-	if mag > 10:
+	if mag > 20:
 		return 
 	var star := MeshInstance3D.new()
 	var mesh = QuadMesh.new()

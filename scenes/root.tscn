@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dvgbgy4dwj4b8" path="res://stars/main_stars/constellation_logic.gd" id="12_l5cgh"]
 [ext_resource type="Script" uid="uid://3otbpp0ah4n6" path="res://logic/game_logic.gd" id="12_vgks2"]
 [ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="12_xsp7o"]
+[ext_resource type="Script" uid="uid://bt0xff588j3sv" path="res://catalogue/scripts/book_logic.gd" id="15_log26"]
 [ext_resource type="PackedScene" uid="uid://bd4jynpxp1csi" path="res://catalogue/scenes/book.tscn" id="16_jrhyn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j5px3"]
@@ -81,7 +82,6 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.41657376
 
 [node name="Stars" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
 longitude = 35.0
-rotation_rate = 0.1
 flux_factor = 27
 
 [node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_l5cgh")]
@@ -148,6 +148,10 @@ script = ExtResource("12_vgks2")
 
 [node name="constellation" type="Node" parent="Game logic" unique_id=1710898200]
 script = ExtResource("12_l5cgh")
+
+[node name="book" type="Node" parent="Game logic" unique_id=504773234 node_paths=PackedStringArray("stars")]
+script = ExtResource("15_log26")
+stars = NodePath("../../Player/Stars")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=360062856]
 transform = Transform3D(0.7090846, 0.47830164, -0.5180999, -0.66432256, 0.20684046, -0.7182569, -0.23637927, 0.85349005, 0.46441403, 0, 61.741932, 0)

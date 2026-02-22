@@ -1,10 +1,12 @@
 [gd_resource type="Resource" script_class="PageData" format=3 uid="uid://cuimw65n2vl6i"]
 
 [ext_resource type="Script" uid="uid://friigekmlxku" path="res://catalogue/scripts/page_data.gd" id="1_asymc"]
+[ext_resource type="Texture2D" uid="uid://bg5d7mr6nnpfd" path="res://catalogue/pages/region B.png" id="1_eo7s0"]
 
 [resource]
 script = ExtResource("1_asymc")
 title = "Area B"
 text = "the winter sky"
+image = ExtResource("1_eo7s0")
 number = "4"
 metadata/_custom_type_script = "uid://friigekmlxku"

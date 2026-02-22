@@ -96,30 +96,39 @@ stretch_mode = 4
 
 [node name="Title" type="Label" parent="Left_page" unique_id=1306770184]
 layout_mode = 0
-offset_left = 67.0
-offset_top = 31.0
-offset_right = 195.0
-offset_bottom = 80.0
-theme_override_font_sizes/font_size = 35
+offset_left = 45.0
+offset_top = 21.0
+offset_right = 173.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 25
 text = "Title"
+horizontal_alignment = 1
 
 [node name="PageText" type="Label" parent="Left_page" unique_id=932326283]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 83.0
-offset_right = 111.0
-offset_bottom = 132.0
+offset_left = 29.0
+offset_top = 257.0
+offset_right = 104.0
+offset_bottom = 306.0
 theme_override_font_sizes/font_size = 16
 text = "main text
 "
 
-[node name="number" type="Label" parent="Left_page" unique_id=1620643249]
+[node name="Number" type="Label" parent="Left_page" unique_id=1620643249]
 layout_mode = 0
-offset_left = 148.0
-offset_top = 426.0
-offset_right = 188.0
-offset_bottom = 449.0
+offset_left = 106.0
+offset_top = 337.0
+offset_right = 146.0
+offset_bottom = 360.0
 text = "0"
+
+[node name="Image" type="TextureRect" parent="Left_page" unique_id=1262891626]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 58.0
+offset_right = 229.0
+offset_bottom = 258.0
+expand_mode = 1
 
 [node name="Right_page" type="TextureRect" parent="." unique_id=1993131172]
 z_index = 1
@@ -138,32 +147,41 @@ texture = ExtResource("9_jmrr2")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Title" type="Label" parent="Right_page" unique_id=1112790558]
+[node name="Title" type="Label" parent="Right_page" unique_id=860426784]
 layout_mode = 0
-offset_left = 59.0
-offset_top = 30.0
-offset_right = 187.0
-offset_bottom = 79.0
-theme_override_font_sizes/font_size = 35
+offset_left = 45.0
+offset_top = 21.0
+offset_right = 173.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 25
 text = "Title"
+horizontal_alignment = 1
 
-[node name="PageText" type="Label" parent="Right_page" unique_id=1621156113]
+[node name="Number" type="Label" parent="Right_page" unique_id=1988999554]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 83.0
-offset_right = 100.0
-offset_bottom = 132.0
+offset_left = 114.0
+offset_top = 338.0
+offset_right = 154.0
+offset_bottom = 361.0
+text = "0"
+
+[node name="PageText" type="Label" parent="Right_page" unique_id=1184455171]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 257.0
+offset_right = 104.0
+offset_bottom = 306.0
 theme_override_font_sizes/font_size = 16
 text = "main text
 "
 
-[node name="number" type="Label" parent="Right_page" unique_id=1988999554]
+[node name="Image" type="TextureRect" parent="Right_page" unique_id=2032035358]
 layout_mode = 0
-offset_left = 158.0
-offset_top = 436.0
-offset_right = 198.0
-offset_bottom = 459.0
-text = "0"
+offset_left = 29.0
+offset_top = 58.0
+offset_right = 229.0
+offset_bottom = 258.0
+expand_mode = 1
 
 [node name="Cover" type="TextureRect" parent="." unique_id=1097986589]
 layout_mode = 1

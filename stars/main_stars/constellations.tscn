@@ -22,6 +22,7 @@ scale_factor = 8
 material_override = ExtResource("3_dnaa7")
 mesh = SubResource("ImmediateMesh_k8hjp")
 script = ExtResource("2_k8hjp")
+time_out = 60
 
 [node name="Finished" type="MeshInstance3D" parent="." unique_id=1233572757]
 material_override = ExtResource("2_1pfql")
