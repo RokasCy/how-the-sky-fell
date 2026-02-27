@@ -2,6 +2,8 @@ extends Node
 
 @export var Night : int = 0
 
+@export_category("Nodes")
+@export var telescope: Node3D
 @onready var book = $"../Book"
 
 var player_can_move = true
@@ -9,6 +11,11 @@ var player_visible = true
 
 var book_opened : bool = false
 var telescope_zoomed : bool = false
+var zoomed_fov : int 
+
+func _physics_process(delta: float) -> void:
+	zoomed_fov = telescope.zoomed_fov
+
 func _on_telescope_zoom(in_or_out: Variant) -> void:
 	telescope_zoomed = in_or_out
 	update_perms()

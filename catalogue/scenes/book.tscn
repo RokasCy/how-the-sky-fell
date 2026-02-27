@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b81cf8e14yc8b" path="res://catalogue/scripts/book.gd" id="1_g2s7e"]
 [ext_resource type="Script" uid="uid://friigekmlxku" path="res://catalogue/scripts/page_data.gd" id="2_xrrq5"]
-[ext_resource type="Resource" uid="uid://d3wrwirvfqg42" path="res://catalogue/pages/page01.tres" id="3_jmrr2"]
-[ext_resource type="Resource" uid="uid://be2uqr7uh7wg3" path="res://catalogue/pages/page02.tres" id="4_1djkh"]
-[ext_resource type="Resource" uid="uid://b6rp8sx0blgd0" path="res://catalogue/pages/page03.tres" id="5_m5jsr"]
-[ext_resource type="Resource" uid="uid://cuimw65n2vl6i" path="res://catalogue/pages/page04.tres" id="6_2aut6"]
-[ext_resource type="Resource" uid="uid://dibgm7djeooq5" path="res://catalogue/pages/page05.tres" id="7_nk0ha"]
-[ext_resource type="Resource" uid="uid://bvb6gu2a4afcr" path="res://catalogue/pages/page06.tres" id="8_ww4r8"]
+[ext_resource type="Resource" uid="uid://d3wrwirvfqg42" path="res://catalogue/pages/page_data/page01.tres" id="3_jmrr2"]
+[ext_resource type="Resource" uid="uid://be2uqr7uh7wg3" path="res://catalogue/pages/page_data/page02.tres" id="4_1djkh"]
+[ext_resource type="Resource" uid="uid://b6rp8sx0blgd0" path="res://catalogue/pages/page_data/page03.tres" id="5_m5jsr"]
+[ext_resource type="Resource" uid="uid://cuimw65n2vl6i" path="res://catalogue/pages/page_data/page04.tres" id="6_2aut6"]
+[ext_resource type="Resource" uid="uid://dibgm7djeooq5" path="res://catalogue/pages/page_data/page05.tres" id="7_nk0ha"]
+[ext_resource type="Resource" uid="uid://bvb6gu2a4afcr" path="res://catalogue/pages/page_data/page06.tres" id="8_ww4r8"]
 [ext_resource type="Texture2D" uid="uid://5t30mwuexn5f" path="res://catalogue/pages/book_pattern_col1_4k.png" id="9_1djkh"]
 [ext_resource type="Texture2D" uid="uid://bjunugj1ks3i0" path="res://catalogue/pages/paper_texture01.png" id="9_jmrr2"]
 [ext_resource type="Script" uid="uid://wipegfmwd6xh" path="res://catalogue/scripts/book_interaction.gd" id="11_m5jsr"]
@@ -106,11 +106,11 @@ horizontal_alignment = 1
 
 [node name="PageText" type="Label" parent="Left_page" unique_id=932326283]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 257.0
-offset_right = 104.0
-offset_bottom = 306.0
-theme_override_font_sizes/font_size = 16
+offset_left = 23.0
+offset_top = 78.0
+offset_right = 98.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 12
 text = "main text
 "
 

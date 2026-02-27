@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cdsgpkgikin2e" path="res://stars/main_stars/constellations_lines.gd" id="2_k8hjp"]
 [ext_resource type="Material" uid="uid://d2rhqtaqogxya" path="res://assets/material/drawn_const_line.tres" id="3_dnaa7"]
 [ext_resource type="Material" uid="uid://bvmagcxp2b84o" path="res://assets/material/wrong_const_line.tres" id="5_mnp46"]
+[ext_resource type="Script" uid="uid://boc5slmb6ie2q" path="res://stars/celestials/celestials.gd" id="6_1q5gc"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_k8hjp"]
 
@@ -31,3 +32,6 @@ mesh = SubResource("ImmediateMesh_dnaa7")
 [node name="Wrong" type="MeshInstance3D" parent="." unique_id=1739420306]
 material_override = ExtResource("5_mnp46")
 mesh = SubResource("ImmediateMesh_j0rq6")
+
+[node name="Celestials" type="Node" parent="." unique_id=692107437]
+script = ExtResource("6_1q5gc")

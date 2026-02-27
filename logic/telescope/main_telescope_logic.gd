@@ -15,6 +15,7 @@ signal star_click(hip)
 @export var speed : float = 0.5
 var zoom_speed = speed
 var zoom_type = 1
+var zoomed_fov : int
 
 var zoomed_in = false
 var picked_up = false
@@ -83,6 +84,7 @@ func _physics_process(delta: float):
 	body.rotation.y = camera.rotation.y + PI
 	
 	update_UI()
+	zoomed_fov = camera.fov
 	
 func change_zoom(key):
 	if key == 1 and zoom_type != 1:
@@ -114,6 +116,7 @@ func tween_fov(tween, fov, dur):
 	tween.tween_property(camera, "fov", fov, dur) \
 	.set_trans(Tween.TRANS_QUAD) \
 	.set_ease(Tween.EASE_OUT)
+	zoomed_fov = camera.fov
 
 var update_delay = 5
 var update_count = 0

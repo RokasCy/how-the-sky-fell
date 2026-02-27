@@ -86,4 +86,7 @@ func previous_page():
 
 func _on_book_open(open_or_close: Variant) -> void:
 	if open_or_close:
+		visible = true
 		show_spread()
+	else:
+		visible =false

@@ -1,15 +1,14 @@
 [gd_resource type="Resource" script_class="PageData" format=3 uid="uid://b6rp8sx0blgd0"]
 
-[ext_resource type="Texture2D" uid="uid://bmprtigli6v0l" path="res://catalogue/pages/region A.png" id="1_cjxtf"]
 [ext_resource type="Script" uid="uid://friigekmlxku" path="res://catalogue/scripts/page_data.gd" id="1_fytat"]
 
 [resource]
 script = ExtResource("1_fytat")
-title = "The summer triangle"
-text = "i) Cygnus
-ii)Aquila
-iii)Lyra
-iv)Hercules"
-image = ExtResource("1_cjxtf")
+title = "Preface"
+text = "The following pages are a catalogue 
+of the cestial bodies needing to
+ be completed. Map the skies beauty
+ using the tools at your disposal 
+and chart the planets movement."
 number = "1"
 metadata/_custom_type_script = "uid://friigekmlxku"
