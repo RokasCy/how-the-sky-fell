@@ -10,7 +10,7 @@ var star_data = load_csv(star_path)
 
 @export_group("Sky")
 @export_range(-90.0, 90.0) var longitude := 90.0
-@export_range(0.0, 1.0) var rotation_rate := 0.0
+@export_range(0.0, 5.0) var rotation_rate := 0.0
 
 @export_group("Star properties")
 @export var distance := 100
@@ -26,8 +26,8 @@ func _ready() -> void:
 
 #----debug utility----#
 func _physics_process(delta: float) -> void:
-	
 	#rotate around local basis.y axis
+	#set players initial rotation to (0, 0, 0) or else this shit breaks
 	rotate(global_transform.basis.y, -deg_to_rad(rotation_rate * delta))
 	
 func remove_stars():

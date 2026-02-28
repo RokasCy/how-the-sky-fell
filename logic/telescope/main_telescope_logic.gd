@@ -57,7 +57,10 @@ func _physics_process(delta: float):
 	if picked_up:
 		position = player.position 
 		translate(Vector3(0.0, 0.0, 15.0))
-		rotation.y = player.camera.rotation.y
+		rotation.y = player.camera.rotation.y 
+		
+		#camera.rotation.y = player.camera.rotation.y + PI
+		#camera.position = position + Vector3(0.0, 0.275, -0.152)
 		
 	zoomed_in = control.visible
 	if !zoomed_in:

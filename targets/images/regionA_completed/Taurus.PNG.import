@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh4c2jykyaxmg"
-path="res://.godot/imported/Gemini.PNG-56a0ea0ca47f23efe28d1531c80a29d5.ctex"
+uid="uid://cfqr4oddic1fj"
+path="res://.godot/imported/Taurus.PNG-d62d4bb90ff419e9d5993a2b9bc7b4a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/regionA/regionA_completed/Gemini.PNG"
-dest_files=["res://.godot/imported/Gemini.PNG-56a0ea0ca47f23efe28d1531c80a29d5.ctex"]
+source_file="res://targets/images/regionA_completed/Taurus.PNG"
+dest_files=["res://.godot/imported/Taurus.PNG-d62d4bb90ff419e9d5993a2b9bc7b4a6.ctex"]
 
 [params]
 

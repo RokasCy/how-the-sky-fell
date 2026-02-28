@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfqr4oddic1fj"
-path="res://.godot/imported/Taurus.PNG-72b1431b580b0fb16947018f10f78951.ctex"
+uid="uid://die0bsok7r3mk"
+path="res://.godot/imported/Aur.PNG-aede2b9d19f095d0ec438fbec6a68a98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/regionA/regionA_completed/Taurus.PNG"
-dest_files=["res://.godot/imported/Taurus.PNG-72b1431b580b0fb16947018f10f78951.ctex"]
+source_file="res://targets/images/regionA_completed/Aur.PNG"
+dest_files=["res://.godot/imported/Aur.PNG-aede2b9d19f095d0ec438fbec6a68a98.ctex"]
 
 [params]
 

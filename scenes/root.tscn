@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ci5hir3ycucwr"]
 
+[ext_resource type="Script" uid="uid://dy63vlm034cib" path="res://logic/loading.gd" id="1_gt4lb"]
 [ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="1_log26"]
 [ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://player/player.tscn" id="2_twpsu"]
 [ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="3_sqa0i"]
@@ -16,12 +17,13 @@
 [ext_resource type="Script" uid="uid://3otbpp0ah4n6" path="res://logic/game_logic.gd" id="12_vgks2"]
 [ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="12_xsp7o"]
 [ext_resource type="PackedScene" uid="uid://70106wa0yhxi" path="res://targets/scenes/maps.tscn" id="17_log26"]
+[ext_resource type="PackedScene" uid="uid://5eqkco56hllm" path="res://scenes/ui.tscn" id="18_gt4lb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j5px3"]
 noise_type = 0
 frequency = 0.5
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_twpsu"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jrhyn"]
 noise = SubResource("FastNoiseLite_j5px3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twpsu"]
@@ -30,14 +32,14 @@ shader_parameter/topSkyDay = Color(0.30980393, 0.7058824, 0.972549, 1)
 shader_parameter/horizonSkyDay = Color(0.25784063, 0.336663, 0.5077665, 1)
 shader_parameter/topSkyNight = Color(0.0066264374, 0.012579033, 0.046730794, 1)
 shader_parameter/horizonSkyNight = Color(0, 0, 0, 1)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_twpsu")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jrhyn")
 
-[sub_resource type="Sky" id="Sky_lrqlo"]
+[sub_resource type="Sky" id="Sky_log26"]
 sky_material = SubResource("ShaderMaterial_twpsu")
 
 [sub_resource type="Environment" id="Environment_sqa0i"]
 background_mode = 2
-sky = SubResource("Sky_lrqlo")
+sky = SubResource("Sky_log26")
 ambient_light_color = Color(0.15570363, 0.26431853, 0.42944184, 1)
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.3
@@ -50,7 +52,16 @@ fog_density = 0.0005
 volumetric_fog_density = 0.0005
 volumetric_fog_ambient_inject = 0.12
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3hfy5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya6yc"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.9607843, 0.29411766, 0.75686276, 0.1882353)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mflgo"]
+material = SubResource("StandardMaterial3D_ya6yc")
+bottom_radius = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gt4lb"]
 albedo_texture = ExtResource("6_j287u")
 metallic_specular = 0.0
 normal_enabled = true
@@ -60,33 +71,78 @@ uv1_scale = Vector3(25, 25, 25)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7pvxh"]
-material = SubResource("StandardMaterial3D_3hfy5")
+material = SubResource("StandardMaterial3D_gt4lb")
 size = Vector2(100, 100)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y3xxt"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
 
+[sub_resource type="Animation" id="Animation_mflgo"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ya6yc"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mflgo"]
+_data = {
+&"RESET": SubResource("Animation_mflgo"),
+&"fade_in": SubResource("Animation_ya6yc")
+}
+
 [node name="Root" type="Node3D" unique_id=180768219]
+script = ExtResource("1_gt4lb")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=616575656]
 environment = SubResource("Environment_sqa0i")
 
 [node name="Player" parent="." unique_id=1326059467 instance=ExtResource("2_twpsu")]
-transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 0, 1.027, -10)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.90610546, 1.027, 5.895117)
 speed = 8
 jump_speed = 8
 
 [node name="Main_camera" type="Camera3D" parent="Player" unique_id=1619508799]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.41657376, 0)
 
-[node name="Stars" parent="Player" unique_id=1768846438 instance=ExtResource("3_sqa0i")]
-longitude = 35.0
+[node name="Stars" parent="Player" unique_id=311487277 instance=ExtResource("3_sqa0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+rotation_rate = 4.0
 flux_factor = 27
 
 [node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_l5cgh")]
 
 [node name="milkyway" parent="Player/Stars" unique_id=1541727212 instance=ExtResource("6_dylgi")]
 transform = Transform3D(321.37186, 381.46014, -34.759495, 362.8108, -288.5927, 187.30328, 122.834816, -145.61026, -462.287, -1.2365112, 0.5897827, 3.0636787e-05)
+
+[node name="north" type="MeshInstance3D" parent="Player/Stars" unique_id=897438033]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -1000, 0)
+mesh = SubResource("CylinderMesh_mflgo")
+
+[node name="south" type="MeshInstance3D" parent="Player/Stars" unique_id=874506785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
+mesh = SubResource("CylinderMesh_mflgo")
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=595141351]
 transform = Transform3D(0.9999999, -0.0002654435, 0.00034373114, 0.00026483487, 0.9999984, 0.0017804363, -0.0003442003, -0.0017803457, 0.9999984, 0.07046509, 0.11270857, -0.109233856)
@@ -149,7 +205,7 @@ telescope = NodePath("../telescope")
 script = ExtResource("12_l5cgh")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=360062856]
-transform = Transform3D(0.49414298, 0.382995, -0.78047335, -0.5225088, 0.84833837, 0.08548087, 0.694844, 0.36556458, 0.61931837, 0, 61.741932, 0)
+transform = Transform3D(-0.80220306, 0.571828, 0.17170772, -0.4589687, -0.40668303, -0.78990996, -0.38186228, -0.71247625, 0.5886932, 0, 61.741932, 0)
 light_energy = 3.0
 light_cull_mask = 4293918722
 shadow_enabled = true
@@ -157,10 +213,18 @@ shadow_enabled = true
 [node name="telescope" parent="." unique_id=832613763 instance=ExtResource("7_jrhyn")]
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -2.931929, 1.1586488, -1.3635826)
 
-[node name="Maps" parent="." unique_id=766604441 node_paths=PackedStringArray("stars", "telescope") instance=ExtResource("17_log26")]
+[node name="Maps" parent="." unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic") instance=ExtResource("17_log26")]
 mouse_filter = 1
 stars = NodePath("../Player/Stars")
 telescope = NodePath("../telescope")
+con_logic = NodePath("../Game logic/constellation")
+
+[node name="UI" parent="." unique_id=1254676740 instance=ExtResource("18_gt4lb")]
+modulate = Color(0, 0, 0, 1)
+mouse_filter = 1
+
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=1079454472]
+libraries/ = SubResource("AnimationLibrary_mflgo")
 
 [connection signal="star_click" from="telescope" to="Maps" method="_on_telescope_star_click"]
 [connection signal="zoom" from="telescope" to="Player" method="_on_telescope_zoom"]

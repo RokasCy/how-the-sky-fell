@@ -2,39 +2,60 @@ extends Control
 
 @export var stars : Node3D
 @export var telescope : Node3D
+@export var con_logic: Node
+
+#--constellation textures--#
+
+# name : [unfinished, finished] textures
+var textures : Dictionary = {
+	'Ori': ["uid://d0vcvnwiobyk6", "uid://dmnmqcbpdr6qm"],
+	'Tau': ["uid://ctomfb0egscyn", "uid://cfqr4oddic1fj"],
+	'Aur': ["uid://behsstyl417vy", "uid://die0bsok7r3mk"],
+	'Gem': ["uid://do448vpp5if6d", "uid://dh4c2jykyaxmg"]
+}
 
 var name_to_node : Dictionary
-
-var con_to_unlocked : Dictionary = {
-	'Ori': false,
-	'Tau': false,
-	'Aur': false,
-	'Gem': false,
-}
+var con_to_unlocked : Dictionary
 
 func _ready():
 	visible = false
-	name_to_node = {
-	'Ori': $Paper/con1,
-	'Tau': $Paper/con2,
-	'Aur': $Paper/con3,
-	'Gem': $Paper/con4
-}
-
-var current_finished : Array
+	var targets = con_logic.night_targets[con_logic.main.Night]
 	
-func _physics_process(delta: float) -> void:
+	name_to_node = {
+		targets[0]: $Paper/con1,
+		targets[1]: $Paper/con2,
+		targets[2]: $Paper/con3,
+		targets[3]: $Paper/con4
+	}
+	
+	con_to_unlocked = {
+		targets[0]: false,
+		targets[1]: false,
+		targets[2]: false,
+		targets[3]: false
+	}
+	
+	for i in range(len(targets)):
+		var name = targets[i]
+		name_to_node[name].texture = load(textures[name][0])
+		name_to_node[name].modulate = Color(0.3, 0.3, 0.3, 0.8)
+		
+
+func _physics_process(_delta: float) -> void:
 	for c in stars.constellations_finished:
 		con_to_unlocked[c] = true
 	unlock()
 		
-func color_change(node):
-	node.modulate = Color(0.6, 0.4, 0.6)
+func update_completion(node, name):
+	node.texture = load(textures[name][1])
+	node.modulate = Color(0.0, 0.0, 0.0)
+	
+	node.get_node("name").text = name
 
 func unlock():
 	for k in con_to_unlocked:
 		if con_to_unlocked[k]:
-			color_change(name_to_node[k])
+			update_completion(name_to_node[k], k)
 
 
 #--toggling map view--#

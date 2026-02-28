@@ -16,6 +16,7 @@
 [node name="Stars" type="Node3D" unique_id=1768846438]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_yb2uq")
+longitude = 60.0
 distance = 1000
 scale_factor = 8
 

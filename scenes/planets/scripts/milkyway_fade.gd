@@ -4,7 +4,7 @@ extends Node3D
 @onready var mat = load("res://assets/material/sky.tres").duplicate()
 
 func _physics_process(delta: float) -> void:
-	if telescope.camera == null:
+	if telescope == null:
 		return
 		
 	var fov_val = (telescope.camera.fov / 50 - 0.05)**4

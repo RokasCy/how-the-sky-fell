@@ -38,6 +38,15 @@ rotation = -1.5707964
 texture = ExtResource("3_j0eaw")
 expand_mode = 1
 
+[node name="name" type="Label" parent="Paper/con1" unique_id=1361078012]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 226.0
+offset_top = 325.0
+offset_right = 266.0
+offset_bottom = 348.0
+theme_override_font_sizes/font_size = 15
+
 [node name="con2" type="TextureRect" parent="Paper" unique_id=2053608253]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
@@ -48,6 +57,15 @@ offset_bottom = 1003.0
 rotation = -1.5707964
 texture = ExtResource("4_7nic5")
 expand_mode = 1
+
+[node name="name" type="Label" parent="Paper/con2" unique_id=162901362]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 249.0
+offset_top = 219.0
+offset_right = 289.0
+offset_bottom = 242.0
+theme_override_font_sizes/font_size = 15
 
 [node name="con3" type="TextureRect" parent="Paper" unique_id=1984266324]
 modulate = Color(0, 0, 0, 1)
@@ -60,6 +78,15 @@ rotation = -1.5707964
 texture = ExtResource("5_yq4gd")
 expand_mode = 1
 
+[node name="name" type="Label" parent="Paper/con3" unique_id=1031080070]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 251.0
+offset_top = 95.0
+offset_right = 291.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 15
+
 [node name="con4" type="TextureRect" parent="Paper" unique_id=1675752720]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
@@ -70,3 +97,12 @@ offset_bottom = 1003.0
 rotation = -1.5707964
 texture = ExtResource("6_2jr0f")
 expand_mode = 1
+
+[node name="name" type="Label" parent="Paper/con4" unique_id=509607840]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 187.0
+offset_right = 55.0
+offset_bottom = 210.0
+theme_override_font_sizes/font_size = 15

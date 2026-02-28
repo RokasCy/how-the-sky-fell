@@ -79,13 +79,19 @@ func line_update(hip):
 	add_green_star(hip)
 	
 	time_limit()
-	
+	var exception : bool = false
 	if constellation_type[hip] != current_constellation_selected and current_constellation_selected != "":
-		mesh.clear_surfaces()
-		remove_green_stars()
-		
-	current_constellation_selected = constellation_type[hip]
-	
+		#--expcepetions--#
+		if hip == 25428 &&( current_constellation_selected in ['Aur', 'Tau']):
+			exception = true
+		else:
+			mesh.clear_surfaces()
+			remove_green_stars()
+			exception = true
+			current_constellation_selected = ""
+	if !exception:
+		current_constellation_selected = constellation_type[hip]
+
 	for c in connections:
 		if stars_selected[c[1]] and stars_selected[c[2]]:
 			if c in lines_drawn:

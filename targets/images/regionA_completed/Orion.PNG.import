@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmnmqcbpdr6qm"
-path="res://.godot/imported/Orion.PNG-cb0b853dfebe6727800529a3bbe2c68e.ctex"
+path="res://.godot/imported/Orion.PNG-325b4aca1b05ab6ed17d0ede8fdfea38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/regionA/regionA_completed/Orion.PNG"
-dest_files=["res://.godot/imported/Orion.PNG-cb0b853dfebe6727800529a3bbe2c68e.ctex"]
+source_file="res://targets/images/regionA_completed/Orion.PNG"
+dest_files=["res://.godot/imported/Orion.PNG-325b4aca1b05ab6ed17d0ede8fdfea38.ctex"]
 
 [params]
 
