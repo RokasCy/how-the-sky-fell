@@ -8,17 +8,17 @@ var name_to_node : Dictionary
 var con_to_unlocked : Dictionary = {
 	'Ori': false,
 	'Tau': false,
-	'Lep': false,
 	'Aur': false,
+	'Gem': false,
 }
 
 func _ready():
 	visible = false
 	name_to_node = {
-	'Ori': $Constellations/con1,
-	'Tau': $Constellations/con2,
-	'Lep': $Constellations/con3,
-	'Aur': $Constellations/con4
+	'Ori': $Paper/con1,
+	'Tau': $Paper/con2,
+	'Aur': $Paper/con3,
+	'Gem': $Paper/con4
 }
 
 var current_finished : Array
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	unlock()
 		
 func color_change(node):
-	node.add_theme_color_override("font_color", Color(0.0, 0.0, 0.0))
+	node.modulate = Color(0.6, 0.4, 0.6)
 
 func unlock():
 	for k in con_to_unlocked:

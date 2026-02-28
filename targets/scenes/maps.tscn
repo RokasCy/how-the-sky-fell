@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://7gjixcjptj52" path="res://targets/scripts/maps.gd" id="1_1xqgt"]
 [ext_resource type="Texture2D" uid="uid://dlofgh118jbw6" path="res://targets/images/paper_texture01.png" id="1_ghv6j"]
+[ext_resource type="Texture2D" uid="uid://d0vcvnwiobyk6" path="res://targets/images/regionA/Orion.PNG" id="3_j0eaw"]
+[ext_resource type="Texture2D" uid="uid://ctomfb0egscyn" path="res://targets/images/regionA/Taurus.PNG" id="4_7nic5"]
+[ext_resource type="Texture2D" uid="uid://behsstyl417vy" path="res://targets/images/regionA/Auriga.PNG" id="5_yq4gd"]
+[ext_resource type="Texture2D" uid="uid://do448vpp5if6d" path="res://targets/images/regionA/Gemini.PNG" id="6_2jr0f"]
 
 [node name="Maps" type="Control" unique_id=766604441]
 layout_mode = 3
@@ -12,55 +16,57 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1xqgt")
 
-[node name="Constellations" type="TextureRect" parent="." unique_id=2110430604]
+[node name="Paper" type="TextureRect" parent="." unique_id=2110430604]
 layout_mode = 0
-offset_left = 493.0
-offset_top = 62.0
-offset_right = 784.4566
-offset_bottom = 499.09723
+offset_left = 637.0
+offset_top = 27.0
+offset_right = 1059.8096
+offset_bottom = 660.3096
 rotation = 1.5707964
 texture = ExtResource("1_ghv6j")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="con1" type="Label" parent="Constellations" unique_id=560653340]
+[node name="con1" type="TextureRect" parent="Paper" unique_id=913973598]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 28.000017
-offset_top = 390.0
-offset_right = 70.000015
-offset_bottom = 413.0
+offset_left = 14.000028
+offset_top = 603.0
+offset_right = 414.00003
+offset_bottom = 1003.0
 rotation = -1.5707964
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "orion"
+texture = ExtResource("3_j0eaw")
+expand_mode = 1
 
-[node name="con2" type="Label" parent="Constellations" unique_id=1544177387]
+[node name="con2" type="TextureRect" parent="Paper" unique_id=2053608253]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 56.000015
-offset_top = 392.0
-offset_right = 107.000015
-offset_bottom = 415.0
+offset_left = 14.000028
+offset_top = 603.0
+offset_right = 414.00003
+offset_bottom = 1003.0
 rotation = -1.5707964
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "taurus"
+texture = ExtResource("4_7nic5")
+expand_mode = 1
 
-[node name="con3" type="Label" parent="Constellations" unique_id=1045174375]
+[node name="con3" type="TextureRect" parent="Paper" unique_id=1984266324]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 86.000015
-offset_top = 389.0
-offset_right = 128.00002
-offset_bottom = 438.0
+offset_left = 14.000028
+offset_top = 603.0
+offset_right = 414.00003
+offset_bottom = 1003.0
 rotation = -1.5707964
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "lepus
-"
+texture = ExtResource("5_yq4gd")
+expand_mode = 1
 
-[node name="con4" type="Label" parent="Constellations" unique_id=1364037385]
+[node name="con4" type="TextureRect" parent="Paper" unique_id=1675752720]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 112.000015
-offset_top = 389.0
-offset_right = 161.00002
-offset_bottom = 438.0
+offset_left = 14.000028
+offset_top = 603.0
+offset_right = 414.00003
+offset_bottom = 1003.0
 rotation = -1.5707964
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "auriga
-"
+texture = ExtResource("6_2jr0f")
+expand_mode = 1
