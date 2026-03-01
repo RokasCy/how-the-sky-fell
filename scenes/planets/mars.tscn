@@ -2,8 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://8xyrjvxc2l23" path="res://assets/planets/mars.glb" id="1_4u6dv"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_4u6dv"]
+radius = 12.0
+
 [node name="mars" unique_id=1083466470 instance=ExtResource("1_4u6dv")]
 
 [node name="Sphere" parent="." index="0" unique_id=1822871766]
 transform = Transform3D(-0.2933055, 0, -1.978376, 0, 2, 0, 1.978376, 0, -0.2933055, 0, 0, 0)
 layers = 2
+
+[node name="mars_area" type="Area3D" parent="." index="1" unique_id=260257110]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mars_area" index="0" unique_id=2089295842]
+shape = SubResource("SphereShape3D_4u6dv")

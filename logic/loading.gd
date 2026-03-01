@@ -4,4 +4,4 @@ extends Node3D
 
 func _ready():
 	animator.play("fade_in")	
-	pass
+	pass 

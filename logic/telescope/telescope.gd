@@ -6,6 +6,8 @@ signal star_click(hip)
 
 @onready var main : Camera3D = $"../Main_camera"
 @onready var telescope : Camera3D = $SubViewport/camera
+
+@export var raycast : RayCast3D
 @export_range(0, 90) var fov : int = 30
 @export var zoom_speed = 10
 
@@ -14,7 +16,7 @@ var looking_at_hip = 0
 func _ready():
 	telescope.fov = fov
 	
-	
+
 	
 func _physics_process(delta):
 	telescope.global_transform = main.global_transform

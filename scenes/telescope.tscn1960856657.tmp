@@ -303,26 +303,6 @@ shader_parameter/window_size = Vector2(640, 480)
 [sub_resource type="ViewportTexture" id="ViewportTexture_cmv3v"]
 viewport_path = NodePath("Control/SubViewport")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1hqw"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0, 0, 0, 0.2509804)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_raf56"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.22402999, 0.7696274, 0.857676, 0.8)
-corner_detail = 6
-
 [node name="telescope" unique_id=832613763 instance=ExtResource("1_6gvpi")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("2_shu7l")
@@ -356,11 +336,9 @@ mesh = SubResource("ArrayMesh_e1hqw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.0875926, -4.090456)
 interaction_type = "telescope"
 
-[node name="PlanetCharter" type="Node" parent="." index="7" unique_id=1973207904 node_paths=PackedStringArray("ui", "raycast", "progressbar")]
+[node name="PlanetCharter" type="Node" parent="." index="7" unique_id=1973207904 node_paths=PackedStringArray("raycast")]
 script = ExtResource("4_e1hqw")
-ui = NodePath("../Control")
 raycast = NodePath("../Control/SubViewport/Camera3D/PlanetRaycast")
-progressbar = NodePath("../Control/ProgressBar")
 
 [node name="Control" type="Control" parent="." index="8" unique_id=1398561454]
 layout_mode = 3
@@ -394,32 +372,6 @@ offset_right = 181.0
 offset_bottom = 28.0
 theme_override_font_sizes/font_size = 11
 text = "ra/dec:2h5'36\"/15°53'2\""
-
-[node name="ProgressBar" type="ProgressBar" parent="Control" index="3" unique_id=2093463448]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 231.0
-offset_top = 38.0
-offset_right = 409.0
-offset_bottom = 65.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_e1hqw")
-theme_override_styles/fill = SubResource("StyleBoxFlat_raf56")
-step = 1.0
-
-[node name="Label" type="Label" parent="Control/ProgressBar" index="0" unique_id=439285754]
-layout_mode = 0
-offset_left = 40.0
-offset_top = -19.0
-offset_right = 137.0
-offset_bottom = 4.0
-theme_override_font_sizes/font_size = 13
-text = "press c to chart"
 
 [connection signal="telescope_interact" from="interaction" to="." method="_on_interaction_telescope"]
 [connection signal="telescope_pickup" from="interaction" to="." method="_on_telescope_pickup"]

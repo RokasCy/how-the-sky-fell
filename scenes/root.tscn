@@ -126,8 +126,14 @@ jump_speed = 8
 [node name="Main_camera" type="Camera3D" parent="Player" unique_id=1619508799]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.41657376, 0)
 
+[node name="PlanetRayCast" type="RayCast3D" parent="Player/Main_camera" unique_id=2009626141]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, -0.010899067, 0)
+target_position = Vector3(0, 0, -2000)
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="Stars" parent="Player" unique_id=311487277 instance=ExtResource("3_sqa0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 longitude = 40.0
 rotation_rate = 0.1
 flux_factor = 27

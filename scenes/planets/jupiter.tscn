@@ -42,6 +42,9 @@ height = 0.4
 albedo_texture = ExtResource("5_if8tn")
 roughness = 0.5
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_m1gr4"]
+radius = 16.0
+
 [node name="jupiter" unique_id=755711679 instance=ExtResource("1_rid86")]
 
 [node name="Sphere_002" parent="." index="0" unique_id=1883034847]
@@ -99,3 +102,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_f1t2r")
 
 [node name="rotator" parent="Moons/Io" index="1" unique_id=1013370274 instance=ExtResource("2_m1gr4")]
 period = 160.0
+
+[node name="jupiter_area" type="Area3D" parent="." index="2" unique_id=920394175]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jupiter_area" index="0" unique_id=1055807785]
+shape = SubResource("SphereShape3D_m1gr4")

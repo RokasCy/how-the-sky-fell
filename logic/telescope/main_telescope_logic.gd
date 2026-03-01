@@ -51,9 +51,9 @@ func _on_telescope_pickup() -> void:
 			visible = true
 			picked_up = false
 			
-	
 
-func _physics_process(delta: float):
+
+func _physics_process(delta: float):	
 	if picked_up:
 		position = player.position 
 		translate(Vector3(0.0, 0.0, 15.0))

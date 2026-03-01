@@ -45,6 +45,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dvlhj")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_mlpop"]
+radius = 16.0
+
 [node name="saturn" unique_id=1928700230 instance=ExtResource("1_mlpop")]
 
 [node name="Sphere_003" parent="." index="0" unique_id=1628470344]
@@ -53,3 +56,8 @@ layers = 3
 [node name="Circle_001" parent="." index="2" unique_id=432622349]
 layers = 3
 mesh = SubResource("ArrayMesh_cyfv8")
+
+[node name="saturn_area" type="Area3D" parent="." index="3" unique_id=1777538244]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="saturn_area" index="0" unique_id=306081029]
+shape = SubResource("SphereShape3D_mlpop")
