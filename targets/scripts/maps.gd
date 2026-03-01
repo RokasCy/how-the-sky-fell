@@ -1,8 +1,13 @@
 extends Control
 
+signal map_interact(open)
+
 @export var stars : Node3D
 @export var telescope : Node3D
 @export var con_logic: Node
+
+@onready var paper1 = $Paper1
+@onready var paper2 = $Paper2
 
 #--constellation textures--#
 
@@ -22,10 +27,10 @@ func _ready():
 	var targets = con_logic.night_targets[con_logic.main.Night]
 	
 	name_to_node = {
-		targets[0]: $Paper/con1,
-		targets[1]: $Paper/con2,
-		targets[2]: $Paper/con3,
-		targets[3]: $Paper/con4
+		targets[0]: $Paper1/Constellations/con1,
+		targets[1]: $Paper1/Constellations/con2,
+		targets[2]: $Paper1/Constellations/con3,
+		targets[3]: $Paper1/Constellations/con4
 	}
 	
 	con_to_unlocked = {
@@ -59,10 +64,20 @@ func unlock():
 
 
 #--toggling map view--#
-var pressed = false
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("open_book") and !pressed and !telescope.zoomed_in:
-		visible = !visible
-		pressed = true
+var pressed1 = false
+var pressed2 = false
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("open_book") and !pressed1:
+		map_interact.emit(!visible)
+		pressed1 = true
 	else:
-		pressed = false
+		pressed1 = false
+	
+	if !visible:
+		return
+	if Input.is_action_just_pressed("1"):
+		paper1.visible = true
+		paper2.visible = false
+	if Input.is_action_just_pressed("2"):
+		paper1.visible = false
+		paper2.visible = true

@@ -24,5 +24,5 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xlq6p")

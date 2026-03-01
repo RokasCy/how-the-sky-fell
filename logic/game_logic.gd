@@ -4,13 +4,15 @@ extends Node
 
 @export_category("Nodes")
 @export var telescope: Node3D
-@onready var book = $"../Book"
+@export var book : Control
+@export var maps : Control
 
 var player_can_move = true
 var player_visible = true
 
 var book_opened : bool = false
 var telescope_zoomed : bool = false
+var map_opened : bool = false
 var zoomed_fov : int 
 
 func _physics_process(delta: float) -> void:
@@ -26,9 +28,23 @@ func _on_book_open(open_or_close: Variant) -> void:
 	book.visible = !book.visible
 	book_opened = open_or_close
 	update_perms()
+
+
+func _on_map_interact(open: Variant) -> void:
+	if telescope_zoomed:
+		return
+	map_opened = open
+	maps.visible = open
+	if map_opened:
+		pass
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	else:
+		pass
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	update_perms()
 	
 func update_perms():
-	if book_opened or telescope_zoomed:
+	if book_opened or telescope_zoomed or map_opened:
 		player_can_move = false
 	else:
 		player_can_move = true
