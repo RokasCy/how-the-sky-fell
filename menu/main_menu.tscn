@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="8_b06p2"]
 [ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="9_lb3k0"]
 [ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="10_8qj3r"]
-[ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/planets/scripts/rotator.tscn" id="11_k5y3h"]
+[ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/scripts/rotator.tscn" id="11_k5y3h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 content_margin_left = 4.0

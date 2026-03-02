@@ -34,35 +34,38 @@ func angle_to_hip():
 	var ra_deg = rad_to_deg(ra_rad) - 90
 	if ra_deg < 0:
 		ra_deg += 360
-	
+
 	angle_coord = degree_to_full_cord(ra_deg, dec_deg)
-	
 	var looking_at_hip = 0
 	for star in stars.star_data:
 		if len(star) <= 1:
 			continue
-		var star_ra = (star["RA_hour"] + star["RA_min"] / 60 + star["RA_sec"] / 3600) * 15
-		var star_dec = star["DEC_deg"] + star["DEC_min"] / 60 + star["DEC_sec"] / 3600 
-		
+		var star_ra = (star["RA_hour"] + star["RA_min"] / 60.0 + star["RA_sec"] / 3600.0) * 15
+		var star_dec = abs(star["DEC_deg"]) + abs(star["DEC_min"] / 60.0) + abs(star["DEC_sec"] / 3600.0)
+		if star["DEC_deg"] < 0:
+			star_dec = -star_dec
 		#looking at star
 		if abs(star_ra - ra_deg) < 1 and abs(star_dec - dec_deg) < 1:
 			looking_at_hip = star["HIP"]
+
 			break
 	return looking_at_hip
 
 func degree_to_full_cord(ra, dec):
-	var dec_remain = int(round(dec * 3600))
-	var dec_deg = int(dec_remain / 3600)
-	dec_remain %= 3600
-	var dec_min = int(dec_remain / 60)
-	dec_remain %= 60
-	var dec_sec = dec_remain
+	#godot: 15 / 6 integer division by default
+	# 15 / 6.0 float division
+	var sign = sign(dec)
+	var dec_abs = abs(dec)
 	
-	var ra_remain = int(round(ra * 3600))
-	var ra_hour = int((ra_remain / 3600) / 15) 
-	ra_remain %= 3600
-	var ra_min = int(ra_remain / 60)
-	ra_remain %= 60
-	var ra_sec = ra_remain
+	var dec_deg = int(dec_abs)
+	var dec_min = int((dec_abs - dec_deg) * 60)
+	var dec_sec = int((dec_abs - dec_deg) * 3600 - dec_min * 60)
+	
+	dec_deg *= int(sign)
+
+	var ra_hours_total = ra / 15.0
+	var ra_hour = int(ra_hours_total)
+	var ra_min = int((ra_hours_total - ra_hour) * 60)
+	var ra_sec = int((ra_hours_total - ra_hour) * 3600 - ra_min * 60)
 	
 	return [[ra_hour, ra_min, ra_sec], [dec_deg, dec_min, dec_sec]]

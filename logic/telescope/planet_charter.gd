@@ -1,27 +1,14 @@
 extends Node
 
+@onready var parent = get_parent()
 @export var ui : Control
 @export var raycast : RayCast3D
 @export var progressbar : ProgressBar
 
 var planet_chart_value  : Dictionary = {
-	'venus_area' : 0, 'mars_area': 0, 'jupiter_area': 0, 'saturn_area': 0
+	'venus' : 0, 'mars': 0, 'jupiter': 0, 'saturn': 0
 }
 var speed : int = 20.0
-
-var unlocked : Dictionary = {
-	'venus': false, 'mars': false, 'jupiter': false, 'saturn': false
-}
-
-func unlock(pname):
-	if pname == 'venus_area':
-		unlocked['venus'] = true
-	elif pname == 'mars_area':
-		unlocked['mars'] = true
-	elif pname == 'jupiter_area':
-		unlocked['jupiter'] = true
-	elif pname == 'saturn_area':
-		unlocked['saturn'] = true
 
 func _physics_process(delta: float):
 	if !ui.visible:
@@ -31,12 +18,17 @@ func _physics_process(delta: float):
 		var pname = raycast.get_collider().name
 		if !planet_chart_value.has(pname):
 			return
+		
+		if planet_chart_value[pname] >= 100:
+			progressbar.visible = false
+			return
+			
 		progressbar.visible = true
 		progressbar.value = planet_chart_value[pname]
 		if Input.is_action_pressed("chart"):
 			planet_chart_value[pname] += delta * speed
 			if planet_chart_value[pname] >= 100:
-				print('end')
+				parent.chart.emit(pname)
 	else:
 		progressbar.visible = false
 

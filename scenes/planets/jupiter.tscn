@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b0cen8moav17k" path="res://assets/planets/jupiter.glb" id="1_rid86"]
 [ext_resource type="Texture2D" uid="uid://b1vtfgw0ilqfq" path="res://assets/planets/jupiter moons/Callisto.webp" id="2_3vqwu"]
-[ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/planets/scripts/rotator.tscn" id="2_m1gr4"]
+[ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/scripts/rotator.tscn" id="2_m1gr4"]
 [ext_resource type="Texture2D" uid="uid://5mnfyv51fku2" path="res://assets/planets/jupiter moons/Ganymede.webp" id="3_m1gr4"]
 [ext_resource type="Texture2D" uid="uid://ba47kwegcomk5" path="res://assets/planets/jupiter moons/Europa.jpg" id="4_3vqwu"]
 [ext_resource type="Texture2D" uid="uid://chcq5bjwygg0h" path="res://assets/planets/jupiter moons/Io.webp" id="5_if8tn"]
@@ -48,7 +48,7 @@ radius = 16.0
 [node name="jupiter" unique_id=755711679 instance=ExtResource("1_rid86")]
 
 [node name="Sphere_002" parent="." index="0" unique_id=1883034847]
-layers = 3
+layers = 2
 
 [node name="rotator" parent="Sphere_002" index="0" unique_id=1137402544 instance=ExtResource("2_m1gr4")]
 period = 120.0
@@ -103,7 +103,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_f1t2r")
 [node name="rotator" parent="Moons/Io" index="1" unique_id=1013370274 instance=ExtResource("2_m1gr4")]
 period = 160.0
 
-[node name="jupiter_area" type="Area3D" parent="." index="2" unique_id=920394175]
+[node name="jupiter" type="Area3D" parent="." index="2" unique_id=920394175]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="jupiter_area" index="0" unique_id=1055807785]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jupiter" index="0" unique_id=1055807785]
 shape = SubResource("SphereShape3D_m1gr4")

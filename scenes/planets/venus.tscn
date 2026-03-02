@@ -8,9 +8,9 @@ radius = 12.0
 [node name="venus" unique_id=1346411416 instance=ExtResource("1_nlp2h")]
 
 [node name="Sphere_001" parent="." index="0" unique_id=39773263]
-layers = 3
+layers = 2
 
-[node name="venus_area" type="Area3D" parent="." index="1" unique_id=523954999]
+[node name="venus" type="Area3D" parent="." index="1" unique_id=523954999]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="venus_area" index="0" unique_id=1013280719]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="venus" index="0" unique_id=1013280719]
 shape = SubResource("SphereShape3D_nlp2h")

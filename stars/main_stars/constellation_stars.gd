@@ -89,6 +89,7 @@ func create_star(id, starposition, mag, b_v, mat=null):
 	star.position = starposition
 	
 	star.name = str(id)
+	star.layers = 1 << 1
 	self.add_child(star)
 	
 func star_scale(mag):

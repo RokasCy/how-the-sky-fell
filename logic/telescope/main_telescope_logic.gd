@@ -2,6 +2,7 @@ extends Node3D
 
 signal zoom(in_or_out)
 signal star_click(hip)
+signal chart(planet)
 
 @onready var control = $Control
 @onready var coord_label = $Control/Label

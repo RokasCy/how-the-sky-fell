@@ -8,6 +8,7 @@ signal map_interact(open)
 
 @onready var paper1 = $Paper1
 @onready var paper2 = $Paper2
+@onready var graph = $Paper2/Clip/Graph
 
 #--constellation textures--#
 
@@ -81,3 +82,26 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("2"):
 		paper1.visible = false
 		paper2.visible = true
+
+var unlocked : Dictionary = {
+	'venus': false, 'mars': false, 'jupiter': false, 'saturn': false
+}
+
+var planet_color : Dictionary = {
+	'venus': Color("dba500"), 'mars': Color("eb394c"), 'jupiter': Color("ed912a"), 'saturn': Color("edc633")
+}
+
+@onready var planet_node : Dictionary = {
+	'venus': graph.get_node("venus"), 
+	'mars':  graph.get_node("mars"), 
+	'jupiter':  graph.get_node("jupiter"), 
+	'saturn':  graph.get_node("saturn")
+}
+
+func _on_telescope_chart(planet: Variant) -> void:
+	if unlocked.has(planet):
+		unlocked[planet] = true
+		var node = planet_node[planet]
+		node.modulate = planet_color[planet]
+	
+	

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dmxwidfmlntum"]
+
+[ext_resource type="Script" uid="uid://bnet4jbfgpy0u" path="res://scenes/scripts/sun_light.gd" id="1_6ecod"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0ck4"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_6ecod"]
+material = SubResource("StandardMaterial3D_k0ck4")
+radius = 4.0
+height = 8.0
+
+[node name="Sun" type="Node3D" unique_id=988560279]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1731675281]
+layers = 2
+mesh = SubResource("SphereMesh_6ecod")
+
+[node name="SunLight" type="DirectionalLight3D" parent="." unique_id=26458090]
+light_cull_mask = 4293918721
+shadow_enabled = true
+shadow_caster_mask = 4293918721
+script = ExtResource("1_6ecod")

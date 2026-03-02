@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://depnt4l4ne40t"]
 
-[ext_resource type="Script" uid="uid://diajsm6p8tgo8" path="res://scenes/planets/scripts/milkyway_fade.gd" id="1_knk6r"]
+[ext_resource type="Script" uid="uid://diajsm6p8tgo8" path="res://scenes/scripts/milkyway_fade.gd" id="1_knk6r"]
 [ext_resource type="Material" uid="uid://dxoqh2rhxyoas" path="res://assets/material/sky.tres" id="2_knk6r"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_30fnj"]

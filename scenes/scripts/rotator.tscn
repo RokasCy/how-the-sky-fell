@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://u88qpni3qv6q"]
 
-[ext_resource type="Script" uid="uid://cic5d8nmdeidi" path="res://scenes/planets/scripts/rotate_planet.gd" id="1_d2a2a"]
+[ext_resource type="Script" uid="uid://cic5d8nmdeidi" path="res://scenes/scripts/rotate_planet.gd" id="1_d2a2a"]
 
 [node name="rotator" type="Node3D" unique_id=1137402544]
 script = ExtResource("1_d2a2a")

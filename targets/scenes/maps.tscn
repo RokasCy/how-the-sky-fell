@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://behsstyl417vy" path="res://targets/images/regionA/Auriga.PNG" id="5_yq4gd"]
 [ext_resource type="Texture2D" uid="uid://do448vpp5if6d" path="res://targets/images/regionA/Gemini.PNG" id="6_2jr0f"]
 [ext_resource type="Texture2D" uid="uid://b1unndh1q7b8j" path="res://targets/images/coord_grid.png" id="7_7nic5"]
+[ext_resource type="Texture2D" uid="uid://d25j4ffhh8ota" path="res://targets/images/planet.png" id="8_yq4gd"]
 
 [node name="Maps" type="Control" unique_id=766604441]
 layout_mode = 3
@@ -207,34 +208,24 @@ rotation = -1.5707964
 theme_override_font_sizes/font_size = 15
 text = "2"
 
-[node name="TextureRect" type="TextureRect" parent="Paper2" unique_id=273384407]
-layout_mode = 0
-offset_left = 75.00002
-offset_top = 511.0
-offset_right = 549.6097
-offset_bottom = 777.0
-rotation = -1.5707964
-texture = ExtResource("7_7nic5")
-expand_mode = 1
-
 [node name="explanation" type="Label" parent="Paper2" unique_id=997373257]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 340.0
-offset_top = 557.0
-offset_right = 434.0
-offset_bottom = 580.0
+offset_left = 349.00003
+offset_top = 562.0
+offset_right = 456.00003
+offset_bottom = 585.0
 rotation = -1.5707964
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 13
 text = "1 ra hour = 15\""
 
 [node name="explanation2" type="Label" parent="Paper2" unique_id=2020584758]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 190.00003
-offset_top = 562.0
-offset_right = 284.0
-offset_bottom = 622.0
+offset_left = 217.00003
+offset_top = 560.0
+offset_right = 311.0
+offset_bottom = 620.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 13
 text = "right  
@@ -244,10 +235,10 @@ ascension
 [node name="explanation3" type="Label" parent="Paper2" unique_id=1657403087]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 52.000015
-offset_top = 321.0
-offset_right = 156.00002
-offset_bottom = 344.0
+offset_left = 35.00001
+offset_top = 214.0
+offset_right = 139.00002
+offset_bottom = 237.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 13
 text = "declination (dec)"
@@ -255,10 +246,86 @@ text = "declination (dec)"
 [node name="explanation4" type="Label" parent="Paper2" unique_id=627749073]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 349.00003
-offset_top = 385.99997
-offset_right = 587.0
-offset_bottom = 408.99997
+offset_left = 376.00003
+offset_top = 413.99997
+offset_right = 614.0
+offset_bottom = 436.99997
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 12
 text = "use the coordinates from your telescope"
+
+[node name="Clip" type="Control" parent="Paper2" unique_id=1503927987]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.45451
+offset_top = -258.09088
+offset_right = 167.45453
+offset_bottom = 293.09088
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Graph" type="TextureRect" parent="Paper2/Clip" unique_id=273384407]
+clip_contents = true
+layout_mode = 0
+offset_left = 6.1835403
+offset_top = 470.7046
+offset_right = 706.18353
+offset_bottom = 888.7046
+rotation = -1.5707964
+texture = ExtResource("7_7nic5")
+expand_mode = 1
+
+[node name="venus" type="TextureRect" parent="Paper2/Clip/Graph" unique_id=423962031]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+texture_filter = 1
+layout_mode = 0
+anchor_left = 0.14428571
+anchor_top = 0.39952153
+anchor_right = 0.15857142
+anchor_bottom = 0.423445
+texture = ExtResource("8_yq4gd")
+expand_mode = 1
+
+[node name="mars" type="TextureRect" parent="Paper2/Clip/Graph" unique_id=837848170]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3042857
+anchor_top = 0.35645932
+anchor_right = 0.31857142
+anchor_bottom = 0.38038278
+texture = ExtResource("8_yq4gd")
+expand_mode = 1
+
+[node name="jupiter" type="TextureRect" parent="Paper2/Clip/Graph" unique_id=641071834]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37285715
+anchor_top = 0.40669855
+anchor_right = 0.38714287
+anchor_bottom = 0.430622
+offset_right = 2.0
+offset_bottom = 2.0
+texture = ExtResource("8_yq4gd")
+expand_mode = 1
+
+[node name="saturn" type="TextureRect" parent="Paper2/Clip/Graph" unique_id=1177505869]
+modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.20142858
+anchor_top = 0.33732057
+anchor_right = 0.21571429
+anchor_bottom = 0.36124402
+texture = ExtResource("8_yq4gd")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

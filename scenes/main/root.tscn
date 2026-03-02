@@ -4,20 +4,19 @@
 [ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="1_log26"]
 [ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://player/player.tscn" id="2_twpsu"]
 [ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="3_sqa0i"]
-[ext_resource type="PackedScene" uid="uid://8uws18s5ec7t" path="res://scenes/planets/ecliptic.tscn" id="5_l5cgh"]
+[ext_resource type="PackedScene" uid="uid://did82x0xhe7le" path="res://scenes/celestials/ecliptic.tscn" id="5_l5cgh"]
 [ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="6_dylgi"]
-[ext_resource type="Texture2D" uid="uid://cq4cboyo1pwix" path="res://assets/textures/ground.png" id="6_j287u"]
-[ext_resource type="Texture2D" uid="uid://co5b7agmyq114" path="res://assets/textures/ground_normal.png" id="7_7pvxh"]
-[ext_resource type="PackedScene" uid="uid://b1ifdanyuv32q" path="res://scenes/telescope.tscn" id="7_jrhyn"]
+[ext_resource type="PackedScene" uid="uid://b1ifdanyuv32q" path="res://scenes/main/telescope.tscn" id="7_jrhyn"]
 [ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="8_3hfy5"]
 [ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="8_vgks2"]
 [ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="9_7pvxh"]
 [ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="11_y3xxt"]
 [ext_resource type="Script" uid="uid://dvgbgy4dwj4b8" path="res://stars/main_stars/constellation_logic.gd" id="12_l5cgh"]
+[ext_resource type="Material" uid="uid://ds663dk1uukj5" path="res://assets/material/ground.tres" id="12_vdg0n"]
 [ext_resource type="Script" uid="uid://3otbpp0ah4n6" path="res://logic/game_logic.gd" id="12_vgks2"]
 [ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="12_xsp7o"]
 [ext_resource type="PackedScene" uid="uid://70106wa0yhxi" path="res://targets/scenes/maps.tscn" id="17_log26"]
-[ext_resource type="PackedScene" uid="uid://5eqkco56hllm" path="res://scenes/ui.tscn" id="18_gt4lb"]
+[ext_resource type="PackedScene" uid="uid://5eqkco56hllm" path="res://scenes/main/ui.tscn" id="18_gt4lb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j5px3"]
 noise_type = 0
@@ -61,22 +60,6 @@ albedo_color = Color(0.9607843, 0.29411766, 0.75686276, 0.1882353)
 material = SubResource("StandardMaterial3D_ya6yc")
 bottom_radius = 10.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gt4lb"]
-albedo_texture = ExtResource("6_j287u")
-metallic_specular = 0.0
-normal_enabled = true
-normal_scale = 0.25
-normal_texture = ExtResource("7_7pvxh")
-uv1_scale = Vector3(25, 25, 25)
-texture_filter = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_7pvxh"]
-material = SubResource("StandardMaterial3D_gt4lb")
-size = Vector2(100, 100)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y3xxt"]
-data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
-
 [sub_resource type="Animation" id="Animation_mflgo"]
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -112,6 +95,13 @@ _data = {
 &"fade_in": SubResource("Animation_ya6yc")
 }
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_7pvxh"]
+material = ExtResource("12_vdg0n")
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y3xxt"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
 [node name="Root" type="Node3D" unique_id=180768219]
 script = ExtResource("1_gt4lb")
 
@@ -132,10 +122,11 @@ target_position = Vector3(0, 0, -2000)
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Main_camera" unique_id=808082390]
+
 [node name="Stars" parent="Player" unique_id=311487277 instance=ExtResource("3_sqa0i")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 longitude = 40.0
-rotation_rate = 0.1
 flux_factor = 27
 
 [node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_l5cgh")]
@@ -151,60 +142,6 @@ mesh = SubResource("CylinderMesh_mflgo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
 mesh = SubResource("CylinderMesh_mflgo")
 
-[node name="Ground" type="MeshInstance3D" parent="." unique_id=595141351]
-transform = Transform3D(0.9999999, -0.0002654435, 0.00034373114, 0.00026483487, 0.9999984, 0.0017804363, -0.0003442003, -0.0017803457, 0.9999984, 0.07046509, 0.11270857, -0.109233856)
-mesh = SubResource("PlaneMesh_7pvxh")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=1614621215]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=2090919978]
-shape = SubResource("ConcavePolygonShape3D_y3xxt")
-
-[node name="Trees" type="GridMap" parent="." unique_id=1736956556]
-visible = false
-mesh_library = ExtResource("8_vgks2")
-cell_size = Vector3(1, 2, 1)
-cell_center_y = false
-data = {
-"cells": PackedInt32Array(65498, 65501, 0, 65502, 65513, 0, 65498, 65529, 0, 65502, 13, 0, 65500, 31, 0, 65520, 35, 0, 65514, 25, 0, 1, 28, 0, 65534, 37, 0, 65534, 38, 0, 20, 34, 0, 21, 34, 0, 29, 16, 0, 41, 25, 0, 36, 0, 0, 26, 65514, 0, 34, 65499, 0, 65533, 65498, 0, 65518, 65504, 0, 65512, 65497, 0, 65504, 65505, 0, 65495, 65518, 0, 5, 65495, 0, 16, 65498, 0, 16, 65499, 0, 15, 65508, 0, 5, 65502, 0, 65522, 65495, 0, 65531, 65491, 0, 34, 65503, 0, 35, 65503, 0, 39, 65513, 0, 43, 65522, 0, 24, 65502, 0, 32, 65519, 0, 24, 65518, 0, 19, 65510, 0, 26, 65508, 0, 27, 65508, 0, 27, 65509, 0, 34, 65513, 0, 37, 65522, 0, 34, 65532, 0, 29, 9, 0, 38, 15, 0, 30, 31, 0, 30, 30, 0, 33, 22, 0, 37, 27, 0, 36, 36, 0, 25, 39, 0, 10, 40, 0, 4, 33, 0, 14, 33, 0, 65529, 41, 0, 65524, 38, 0, 65524, 37, 0, 65518, 30, 0, 65507, 33, 0, 65494, 29, 0, 65492, 14, 0, 65496, 3, 0, 65503, 8, 0, 65499, 6, 0, 65497, 18, 0, 65501, 26, 0, 65507, 29, 0, 65512, 40, 0, 65502, 65527, 0, 65503, 65520, 0, 65510, 65504, 0, 65511, 65513, 0, 65520, 17, 0, 65531, 65512, 0, 65509, 65526, 0, 21, 19, 0, 8, 65521, 0, 1, 65519, 0, 65531, 65518, 0, 65525, 65521, 0, 65520, 65527, 0, 65517, 65533, 0, 65520, 4, 0, 65522, 8, 0, 9, 10, 0, 1, 14, 0, 65528, 12, 0, 65529, 12, 0, 11, 65525, 0, 14, 65530, 0, 14, 0, 0, 13, 5, 0, 48, 65533, 0)
-}
-metadata/_editor_floor_ = Vector3(0, 0, 0)
-
-[node name="Foliage" type="GridMap" parent="." unique_id=962317751]
-mesh_library = ExtResource("8_3hfy5")
-cell_size = Vector3(0.5, 2, 0.5)
-cell_center_y = false
-data = {
-"cells": PackedInt32Array(65516, 65533, 0, 65524, 65519, 0, 14, 65525, 0, 65529, 11, 0, 14, 4, 0, 15, 5, 0, 13, 24, 0, 65516, 9, 0, 65521, 65509, 0, 65505, 65505, 0, 65490, 14, 0, 65514, 31, 0, 18, 50, 0, 25, 34, 0, 45, 27, 0, 44, 14, 0, 32, 33, 0, 32, 34, 0, 22, 55, 0, 65516, 65494, 0, 14, 65485, 0, 22, 65471, 0, 65522, 65478, 0, 65485, 19, 0, 65477, 0, 0, 65488, 65524, 0, 65506, 65494, 0, 65507, 65494, 0, 65501, 65488, 0, 46, 65527, 0, 54, 65516, 0, 85, 65534, 0, 85, 65535, 0, 81, 17, 0, 45, 9, 0, 41, 39, 0, 43, 60, 0, 17, 53, 0, 65522, 64, 0, 65487, 73, 0, 65461, 75, 0, 65446, 66, 0, 65448, 45, 0, 65441, 19, 0, 65441, 18, 0, 65441, 17, 0, 65451, 65527, 0, 65452, 65527, 0, 65452, 65526, 0, 65453, 65525, 0, 65453, 65524, 0, 65453, 65523, 0, 65451, 65483, 0, 65451, 65482, 0, 65497, 65472, 0, 65498, 65472, 0, 65520, 65489, 0, 65489, 65496, 0, 24, 65474, 0, 42, 65454, 0, 77, 65478, 0, 15, 65524, 0, 65506, 65527, 0, 23, 53, 0, 23, 52, 0, 65483, 31, 0, 65474, 65495, 0, 65453, 65470, 0, 71, 65470, 0, 88, 65497, 0, 94, 65527, 0, 82, 62, 0, 51, 54, 0)
-}
-
-[node name="campfire" parent="." unique_id=2129771687 instance=ExtResource("9_7pvxh")]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="campfire" unique_id=499639444]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17825395, 1.0845184, 0.054926455)
-light_color = Color(1, 0.8, 0.050980393, 1)
-light_energy = 0.8
-light_size = 0.045
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 100.0
-omni_attenuation = 0.105
-
-[node name="Logs" type="Node" parent="campfire" unique_id=1954709010]
-
-[node name="log" parent="campfire/Logs" unique_id=288332634 instance=ExtResource("12_xsp7o")]
-transform = Transform3D(0.99541956, 0, -0.09560253, 0, 1, 0, 0.09560253, 0, 0.99541956, 3.5745707, 0.027969122, 0.1941948)
-
-[node name="log2" parent="campfire/Logs" unique_id=615883064 instance=ExtResource("12_xsp7o")]
-transform = Transform3D(0.09348274, 0, -0.99562097, 0, 1, 0, 0.99562097, 0, 0.09348274, -0.20573854, 0.027969122, -3.4749389)
-
-[node name="log3" parent="campfire/Logs" unique_id=2080054370 instance=ExtResource("12_xsp7o")]
-transform = Transform3D(-0.6628553, 0, -0.7487475, 0, 1, 0, 0.7487475, 0, -0.6628553, -2.091414, 0.027969122, 2.2468586)
-
-[node name="car" parent="." unique_id=758288718 instance=ExtResource("11_y3xxt")]
-transform = Transform3D(-0.57678336, 0, 0.25341833, 0, 0.63, 0, -0.25341833, 0, -0.57678336, -14.781224, 0.8435905, -15.666941)
-
 [node name="Game logic" type="Node" parent="." unique_id=1399732596 node_paths=PackedStringArray("telescope", "maps")]
 script = ExtResource("12_vgks2")
 telescope = NodePath("../telescope")
@@ -213,14 +150,14 @@ maps = NodePath("../Maps")
 [node name="constellation" type="Node" parent="Game logic" unique_id=1710898200]
 script = ExtResource("12_l5cgh")
 
-[node name="Sun" type="DirectionalLight3D" parent="." unique_id=360062856]
+[node name="PlanetSun" type="DirectionalLight3D" parent="." unique_id=360062856]
 transform = Transform3D(-0.80220306, 0.571828, 0.17170772, -0.4589687, -0.40668303, -0.78990996, -0.38186228, -0.71247625, 0.5886932, 0, 61.741932, 0)
 light_energy = 3.0
 light_cull_mask = 4293918722
 shadow_enabled = true
 
 [node name="telescope" parent="." unique_id=832613763 instance=ExtResource("7_jrhyn")]
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -2.931929, 1.1586488, -1.3635826)
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 1.8217955, 1.1586488, 1.820723)
 
 [node name="Maps" parent="." unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic") instance=ExtResource("17_log26")]
 stars = NodePath("../Player/Stars")
@@ -234,6 +171,64 @@ mouse_filter = 1
 [node name="Animations" type="AnimationPlayer" parent="." unique_id=1079454472]
 libraries/ = SubResource("AnimationLibrary_mflgo")
 
+[node name="Environment" type="Node" parent="." unique_id=411482503]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment" unique_id=595141351]
+transform = Transform3D(0.9999999, -0.0002654435, 0.00034373114, 0.00026483487, 0.9999984, 0.0017804363, -0.0003442003, -0.0017803457, 0.9999984, 0.07, 0, -0.109)
+cast_shadow = 2
+mesh = SubResource("PlaneMesh_7pvxh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground" unique_id=1614621215]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D" unique_id=2090919978]
+shape = SubResource("ConcavePolygonShape3D_y3xxt")
+
+[node name="Trees" type="GridMap" parent="Environment" unique_id=1736956556]
+mesh_library = ExtResource("8_vgks2")
+cell_size = Vector3(1, 2, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65498, 65501, 0, 65502, 65513, 0, 65498, 65529, 0, 65502, 13, 0, 65500, 31, 0, 65520, 35, 0, 65514, 25, 0, 1, 28, 0, 65534, 37, 0, 65534, 38, 0, 20, 34, 0, 21, 34, 0, 29, 16, 0, 41, 25, 0, 36, 0, 0, 26, 65514, 0, 34, 65499, 0, 65533, 65498, 0, 65518, 65504, 0, 65512, 65497, 0, 65504, 65505, 0, 65495, 65518, 0, 5, 65495, 0, 16, 65498, 0, 16, 65499, 0, 15, 65508, 0, 5, 65502, 0, 65522, 65495, 0, 65531, 65491, 0, 34, 65503, 0, 35, 65503, 0, 39, 65513, 0, 43, 65522, 0, 24, 65502, 0, 32, 65519, 0, 24, 65518, 0, 19, 65510, 0, 26, 65508, 0, 27, 65508, 0, 27, 65509, 0, 34, 65513, 0, 37, 65522, 0, 34, 65532, 0, 29, 9, 0, 38, 15, 0, 30, 31, 0, 30, 30, 0, 33, 22, 0, 37, 27, 0, 36, 36, 0, 25, 39, 0, 10, 40, 0, 4, 33, 0, 14, 33, 0, 65529, 41, 0, 65524, 38, 0, 65524, 37, 0, 65518, 30, 0, 65507, 33, 0, 65494, 29, 0, 65492, 14, 0, 65496, 3, 0, 65503, 8, 0, 65499, 6, 0, 65497, 18, 0, 65501, 26, 0, 65507, 29, 0, 65512, 40, 0, 65502, 65527, 0, 65503, 65520, 0, 65510, 65504, 0, 65511, 65513, 0, 65520, 17, 0, 65531, 65512, 0, 65509, 65526, 0, 21, 19, 0, 8, 65521, 0, 1, 65519, 0, 65531, 65518, 0, 65525, 65521, 0, 65520, 65527, 0, 65517, 65533, 0, 65520, 4, 0, 65522, 8, 0, 9, 10, 0, 1, 14, 0, 65528, 12, 0, 65529, 12, 0, 11, 65525, 0, 14, 65530, 0, 14, 0, 0, 13, 5, 0, 48, 65533, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Foliage" type="GridMap" parent="Environment" unique_id=962317751]
+mesh_library = ExtResource("8_3hfy5")
+cell_size = Vector3(0.5, 2, 0.5)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65516, 65533, 0, 65524, 65519, 0, 14, 65525, 0, 65529, 11, 0, 14, 4, 0, 15, 5, 0, 13, 24, 0, 65516, 9, 0, 65521, 65509, 0, 65505, 65505, 0, 65490, 14, 0, 65514, 31, 0, 18, 50, 0, 25, 34, 0, 45, 27, 0, 44, 14, 0, 32, 33, 0, 32, 34, 0, 22, 55, 0, 65516, 65494, 0, 14, 65485, 0, 22, 65471, 0, 65522, 65478, 0, 65485, 19, 0, 65477, 0, 0, 65488, 65524, 0, 65506, 65494, 0, 65507, 65494, 0, 65501, 65488, 0, 46, 65527, 0, 54, 65516, 0, 85, 65534, 0, 85, 65535, 0, 81, 17, 0, 45, 9, 0, 41, 39, 0, 43, 60, 0, 17, 53, 0, 65522, 64, 0, 65487, 73, 0, 65461, 75, 0, 65446, 66, 0, 65448, 45, 0, 65441, 19, 0, 65441, 18, 0, 65441, 17, 0, 65451, 65527, 0, 65452, 65527, 0, 65452, 65526, 0, 65453, 65525, 0, 65453, 65524, 0, 65453, 65523, 0, 65451, 65483, 0, 65451, 65482, 0, 65497, 65472, 0, 65498, 65472, 0, 65520, 65489, 0, 65489, 65496, 0, 24, 65474, 0, 42, 65454, 0, 77, 65478, 0, 15, 65524, 0, 65506, 65527, 0, 23, 53, 0, 23, 52, 0, 65483, 31, 0, 65474, 65495, 0, 65453, 65470, 0, 71, 65470, 0, 88, 65497, 0, 94, 65527, 0, 82, 62, 0, 51, 54, 0)
+}
+
+[node name="campfire" parent="Environment" unique_id=2129771687 instance=ExtResource("9_7pvxh")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/campfire" unique_id=499639444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17825395, 1.0845184, 0.054926455)
+light_color = Color(1, 0.8, 0.050980393, 1)
+light_energy = 0.8
+light_size = 0.045
+light_cull_mask = 4294966273
+shadow_enabled = true
+shadow_caster_mask = 4294966273
+omni_range = 100.0
+omni_attenuation = 0.105
+
+[node name="Logs" type="Node" parent="Environment/campfire" unique_id=1954709010]
+
+[node name="log" parent="Environment/campfire/Logs" unique_id=288332634 instance=ExtResource("12_xsp7o")]
+transform = Transform3D(0.99541956, 0, -0.09560253, 0, 1, 0, 0.09560253, 0, 0.99541956, 3.5745707, 0.027969122, 0.1941948)
+
+[node name="log2" parent="Environment/campfire/Logs" unique_id=615883064 instance=ExtResource("12_xsp7o")]
+transform = Transform3D(0.09348274, 0, -0.99562097, 0, 1, 0, 0.99562097, 0, 0.09348274, -0.20573854, 0.027969122, -3.4749389)
+
+[node name="log3" parent="Environment/campfire/Logs" unique_id=2080054370 instance=ExtResource("12_xsp7o")]
+transform = Transform3D(-0.6628553, 0, -0.7487475, 0, 1, 0, 0.7487475, 0, -0.6628553, -2.091414, 0.027969122, 2.2468586)
+
+[node name="car" parent="Environment" unique_id=758288718 instance=ExtResource("11_y3xxt")]
+transform = Transform3D(-0.57678336, 0, 0.25341833, 0, 0.63, 0, -0.25341833, 0, -0.57678336, -14.781224, 0.8435905, -15.666941)
+
+[connection signal="chart" from="telescope" to="Maps" method="_on_telescope_chart"]
 [connection signal="star_click" from="telescope" to="Maps" method="_on_telescope_star_click"]
 [connection signal="zoom" from="telescope" to="Player" method="_on_telescope_zoom"]
 [connection signal="zoom" from="telescope" to="Game logic" method="_on_telescope_zoom"]

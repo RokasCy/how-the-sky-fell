@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ds663dk1uukj5"]
+
+[ext_resource type="Texture2D" uid="uid://cq4cboyo1pwix" path="res://assets/textures/ground.png" id="1_rvlgf"]
+[ext_resource type="Texture2D" uid="uid://co5b7agmyq114" path="res://assets/textures/ground_normal.png" id="2_lpxqa"]
+
+[resource]
+cull_mode = 2
+albedo_texture = ExtResource("1_rvlgf")
+metallic_specular = 0.0
+normal_enabled = true
+normal_scale = 0.25
+normal_texture = ExtResource("2_lpxqa")
+uv1_scale = Vector3(25, 25, 25)
+texture_filter = 0
