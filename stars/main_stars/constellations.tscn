@@ -36,3 +36,5 @@ mesh = SubResource("ImmediateMesh_j0rq6")
 
 [node name="Celestials" type="Node" parent="." unique_id=692107437]
 script = ExtResource("6_1q5gc")
+
+[connection signal="clear_constellations" from="." to="Constellations" method="_on_clear_constellations"]

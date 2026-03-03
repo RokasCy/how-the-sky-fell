@@ -7,10 +7,13 @@ signal map_interact(open)
 @export var con_logic: Node
 
 @onready var paper1 = $Paper1
+@onready var discovery_text = $Paper1/RichTextLabel
 @onready var paper2 = $Paper2
 @onready var graph = $Paper2/Clip/Graph
 
+
 @export var animations : AnimationPlayer
+
 
 #--constellation textures--#
 
@@ -25,10 +28,13 @@ var textures : Dictionary = {
 var name_to_node : Dictionary
 var con_to_unlocked : Dictionary
 
+var orig_rotation_rate : float
+
+@onready var targets = con_logic.night_targets[con_logic.main.Night]
 func _ready():
 	visible = false
 	animations.play("targets_found")
-	var targets = con_logic.night_targets[con_logic.main.Night]
+	
 	
 	name_to_node = {
 		targets[0]: $Paper1/Constellations/con1,
@@ -49,14 +55,32 @@ func _ready():
 		name_to_node[name].texture = load(textures[name][0])
 		name_to_node[name].modulate = Color(0.3, 0.3, 0.3, 0.8)
 		
-
+	orig_rotation_rate = stars.rotation_rate
+	
+		
+var morning_trans : bool = false
 func _physics_process(_delta: float) -> void:
 	for c in stars.constellations_finished:
 		if con_to_unlocked[c] == false:
-			update_completion(name_to_node[c], c)
 			con_to_unlocked[c] = true
+			update_completion(name_to_node[c], c)
 		
 	check_target_completion()
+	if stars.sun_height > 0.2 and !morning_trans:
+		morning_trans = true
+		
+		stars.rotation_rate = orig_rotation_rate
+		if switched:
+			await animations.animation_finished
+			
+		animations.play("night_transition")
+
+var con_to_desc = {
+	'Ori': "Orion the Hunter",
+	'Tau': "Taurus the Bull",
+	'Aur': "Auriga the Hexagon",
+	'Gem': "Gemini the Twins"
+}
 	
 func update_completion(node, name):
 	node.texture = load(textures[name][1])
@@ -64,7 +88,12 @@ func update_completion(node, name):
 	
 	node.get_node("name").text = name
 	animations.play("constellation_discovered")
-
+	
+	discovery_text.text = ('Target A: ' + (con_to_desc[targets[0]] if con_to_unlocked[targets[0]] else 'unidentified' )) + '\n'
+	discovery_text.text += ('Target B: ' + (con_to_desc[targets[1]] if con_to_unlocked[targets[1]] else 'unidentified' )) + '\n'
+	discovery_text.text += ('Target C: ' + (con_to_desc[targets[2]] if con_to_unlocked[targets[2]] else 'unidentified' )) + '\n'
+	discovery_text.text += ('Target D: ' + (con_to_desc[targets[3]] if con_to_unlocked[targets[3]] else 'unidentified' )) + '\n'
+	
 var switched = false
 func check_target_completion():
 	var all_found = true
@@ -77,21 +106,18 @@ func check_target_completion():
 		if !planet_to_unlocked[k]:
 			all_found = false
 			break
-	
-	all_found = true
+		
+	#make morning
 	if all_found and !switched:
 		switched = true
-		#make lal of them one animation
-		await animations.animation_finished
+		
 		animations.play("all_targets_found")
-		await animations.animation_finished
-		animations.play_backwards("fade_in")
-		await animations.animation_finished
-		animations.play("fade_in")
-	
 		
 
+func morning():
+	stars.rotation_rate = 40.0
 
+	
 #--toggling map view--#
 var pressed1 = false
 var pressed2 = false

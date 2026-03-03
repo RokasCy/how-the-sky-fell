@@ -247,4 +247,3 @@ func load_connections(path : String) -> Array:
 			constellation_type[float(values[2])] = values[0]
 			results.append(connection)
 	return results
-		

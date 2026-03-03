@@ -175,3 +175,4 @@ func load_csv(path: String) -> Array:
 		print("Failed to open CSV file: ", path)
 		
 	return result
+	
