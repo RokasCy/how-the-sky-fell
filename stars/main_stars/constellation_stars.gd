@@ -10,7 +10,7 @@ var star_data = load_csv(star_path)
 
 @export_group("Sky")
 @export_range(-90.0, 90.0) var longitude := 90.0
-@export_range(0.0, 5.0) var rotation_rate := 0.0
+@export_range(0.0, 20.0) var rotation_rate := 0.0
 
 @export_group("Star properties")
 @export var distance := 100
@@ -18,6 +18,9 @@ var star_data = load_csv(star_path)
 @export var flux_factor := 8
 
 @onready var constellations_finished = $Constellations.constellations_finished
+
+#variable changed by sun_light.gd 
+var sun_height : float
 
 func _ready() -> void:
 	#setting location
@@ -29,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	#rotate around local basis.y axis
 	#set players initial rotation to (0, 0, 0) or else this shit breaks
 	rotate(global_transform.basis.y, -deg_to_rad(rotation_rate * delta))
-	
+
 func remove_stars():
 	for child in self.get_children():
 		child.queue_free()	
@@ -84,7 +87,7 @@ func create_star(id, starposition, mag, b_v, mat=null):
 		mesh.material = material
 	else:
 		mesh.material = mat
-		
+	
 	star.mesh = mesh
 	star.position = starposition
 	

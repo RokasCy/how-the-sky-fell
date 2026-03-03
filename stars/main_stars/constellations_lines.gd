@@ -67,7 +67,9 @@ func time_limit():
 	current_constellation_selected = ""
 
 func line_update(hip):
-	if constellation_type[hip] in constellations_finished:
+	#hip 25428 is auriga 
+	
+	if constellation_type[hip] in constellations_finished and hip != 25428:
 		return
 	if constellation_type[hip] not in logic.current_targets:
 		if green_star_list == []:

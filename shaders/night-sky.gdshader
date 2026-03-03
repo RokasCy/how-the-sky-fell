@@ -1,18 +1,25 @@
 shader_type sky;
 
+uniform float SunHeight;
+
+uniform vec3 topSkyEarly : source_color;
+uniform vec3 horizonSkyEarly : source_color;
+
 uniform vec3 topSkyDay : source_color;
 uniform vec3 horizonSkyDay : source_color;
 
 uniform vec3 topSkyNight : source_color;
 uniform vec3 horizonSkyNight : source_color;
 
-uniform sampler2D noise_texture : filter_nearest, repeat_enable;
-const float star_threshold = 0.97;
-
 void sky() {
 	float colorGradient = clamp(EYEDIR.y, 0.0, 1);
-	vec3 skyColorNight = mix(horizonSkyNight, topSkyNight, colorGradient);
-	vec3 color = skyColorNight;
+	vec3 ColorNight = mix(horizonSkyNight, topSkyNight, colorGradient);
+	vec3 ColorDay = mix(horizonSkyDay, topSkyDay, colorGradient);
+	vec3 ColorEarly = mix(horizonSkyEarly, topSkyEarly, colorGradient);
+	vec3 EarlyNight = mix(ColorNight, ColorEarly, SunHeight);
 	
-	COLOR = color;
+	vec3 final = EarlyNight;
+	
+	COLOR = final;
+
 }

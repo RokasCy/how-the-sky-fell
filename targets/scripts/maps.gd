@@ -10,6 +10,8 @@ signal map_interact(open)
 @onready var paper2 = $Paper2
 @onready var graph = $Paper2/Clip/Graph
 
+@export var animations : AnimationPlayer
+
 #--constellation textures--#
 
 # name : [unfinished, finished] textures
@@ -25,6 +27,7 @@ var con_to_unlocked : Dictionary
 
 func _ready():
 	visible = false
+	animations.play("targets_found")
 	var targets = con_logic.night_targets[con_logic.main.Night]
 	
 	name_to_node = {
@@ -49,19 +52,44 @@ func _ready():
 
 func _physics_process(_delta: float) -> void:
 	for c in stars.constellations_finished:
-		con_to_unlocked[c] = true
-	unlock()
+		if con_to_unlocked[c] == false:
+			update_completion(name_to_node[c], c)
+			con_to_unlocked[c] = true
 		
+	check_target_completion()
+	
 func update_completion(node, name):
 	node.texture = load(textures[name][1])
 	node.modulate = Color(0.0, 0.0, 0.0)
 	
 	node.get_node("name").text = name
+	animations.play("constellation_discovered")
 
-func unlock():
+var switched = false
+func check_target_completion():
+	var all_found = true
 	for k in con_to_unlocked:
-		if con_to_unlocked[k]:
-			update_completion(name_to_node[k], k)
+		if !con_to_unlocked[k]:
+			all_found = false
+			break
+			
+	for k in planet_to_unlocked:
+		if !planet_to_unlocked[k]:
+			all_found = false
+			break
+	
+	all_found = true
+	if all_found and !switched:
+		switched = true
+		#make lal of them one animation
+		await animations.animation_finished
+		animations.play("all_targets_found")
+		await animations.animation_finished
+		animations.play_backwards("fade_in")
+		await animations.animation_finished
+		animations.play("fade_in")
+	
+		
 
 
 #--toggling map view--#
@@ -82,8 +110,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("2"):
 		paper1.visible = false
 		paper2.visible = true
+		
 
-var unlocked : Dictionary = {
+#--planet charting--#
+
+var planet_to_unlocked : Dictionary = {
 	'venus': false, 'mars': false, 'jupiter': false, 'saturn': false
 }
 
@@ -99,9 +130,14 @@ var planet_color : Dictionary = {
 }
 
 func _on_telescope_chart(planet: Variant) -> void:
-	if unlocked.has(planet):
-		unlocked[planet] = true
+	if planet_to_unlocked.has(planet):
+		planet_to_unlocked[planet] = true
 		var node = planet_node[planet]
+		
 		node.modulate = planet_color[planet]
+	
+		animations.play("planet_charted")
+		
+		
 	
 	
