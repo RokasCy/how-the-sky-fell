@@ -22,8 +22,26 @@ var textures : Dictionary = {
 	'Ori': ["uid://d0vcvnwiobyk6", "uid://dmnmqcbpdr6qm"],
 	'Tau': ["uid://ctomfb0egscyn", "uid://cfqr4oddic1fj"],
 	'Aur': ["uid://behsstyl417vy", "uid://die0bsok7r3mk"],
-	'Gem': ["uid://do448vpp5if6d", "uid://dh4c2jykyaxmg"]
+	'Gem': ["uid://do448vpp5if6d", "uid://dh4c2jykyaxmg"],
+	'Hya': ["uid://djyeudgw4ja87", "uid://n6lnkamkiumn"],
+	'Cnc': ["uid://b1xv626065ogd", "uid://bht7tgho08ctc"],
+	'Leo': ["uid://ccw11biydsx7i", "uid://bbisibemuax80"],
+	'Vir': ["uid://besithcy4yy6x", "uid://lsak5c1av21o"]
 }
+
+var const_to_namepos : Dictionary = {
+	"Ori": Vector2(226, 325),
+	"Tau": Vector2(249, 219),
+	"Aur": Vector2(255, 95),
+	"Gem": Vector2(20, 186),
+	
+	"Hya": Vector2(144, 283),
+	"Cnc": Vector2(316, 88),
+	"Leo": Vector2(208, 127),
+	"Vir": Vector2(48, 153),
+	
+}
+
 
 var name_to_node : Dictionary
 var con_to_unlocked : Dictionary
@@ -55,6 +73,8 @@ func _ready():
 		name_to_node[name].texture = load(textures[name][0])
 		name_to_node[name].modulate = Color(0.3, 0.3, 0.3, 0.8)
 		
+		name_to_node[name].get_node("name").position = const_to_namepos[name]
+		
 	orig_rotation_rate = stars.rotation_rate
 	
 		
@@ -75,12 +95,6 @@ func _physics_process(_delta: float) -> void:
 			
 		animations.play("night_transition")
 
-var con_to_desc = {
-	'Ori': "Orion the Hunter",
-	'Tau': "Taurus the Bull",
-	'Aur': "Auriga the Hexagon",
-	'Gem': "Gemini the Twins"
-}
 	
 func update_completion(node, name):
 	node.texture = load(textures[name][1])
@@ -88,12 +102,7 @@ func update_completion(node, name):
 	
 	node.get_node("name").text = name
 	animations.play("constellation_discovered")
-	
-	discovery_text.text = ('Target A: ' + (con_to_desc[targets[0]] if con_to_unlocked[targets[0]] else 'unidentified' )) + '\n'
-	discovery_text.text += ('Target B: ' + (con_to_desc[targets[1]] if con_to_unlocked[targets[1]] else 'unidentified' )) + '\n'
-	discovery_text.text += ('Target C: ' + (con_to_desc[targets[2]] if con_to_unlocked[targets[2]] else 'unidentified' )) + '\n'
-	discovery_text.text += ('Target D: ' + (con_to_desc[targets[3]] if con_to_unlocked[targets[3]] else 'unidentified' )) + '\n'
-	
+
 var switched = false
 func check_target_completion():
 	var all_found = true

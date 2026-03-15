@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1unndh1q7b8j"
-path="res://.godot/imported/coord_grid.png-e8a5eb5b9fbe1c203224544063ec98c9.ctex"
+uid="uid://n6lnkamkiumn"
+path="res://.godot/imported/Hydra.PNG-a2624435a2721d89a306e8ea127663d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/coord_grid.png"
-dest_files=["res://.godot/imported/coord_grid.png-e8a5eb5b9fbe1c203224544063ec98c9.ctex"]
+source_file="res://targets/images/regionB_completed/completed/Hydra.PNG"
+dest_files=["res://.godot/imported/Hydra.PNG-a2624435a2721d89a306e8ea127663d8.ctex"]
 
 [params]
 

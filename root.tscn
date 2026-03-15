@@ -1,25 +1,24 @@
-[gd_scene format=3 uid="uid://ci5hir3ycucwr"]
+[gd_scene format=3 uid="uid://s4aux3l7lidg"]
 
-[ext_resource type="Script" uid="uid://dy63vlm034cib" path="res://logic/loading.gd" id="1_534gw"]
-[ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="2_66hh6"]
-[ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://player/player.tscn" id="3_j7mxj"]
-[ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="4_s7cc2"]
-[ext_resource type="PackedScene" uid="uid://did82x0xhe7le" path="res://scenes/celestials/ecliptic.tscn" id="5_4x75f"]
-[ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="6_4im6m"]
-[ext_resource type="Script" uid="uid://3otbpp0ah4n6" path="res://logic/game_logic.gd" id="7_2n4co"]
-[ext_resource type="Script" uid="uid://dvgbgy4dwj4b8" path="res://stars/main_stars/constellation_logic.gd" id="8_5cho8"]
-[ext_resource type="PackedScene" uid="uid://b1ifdanyuv32q" path="res://scenes/main/telescope.tscn" id="9_2ea41"]
-[ext_resource type="PackedScene" uid="uid://70106wa0yhxi" path="res://targets/scenes/maps.tscn" id="10_2lq1y"]
-[ext_resource type="Material" uid="uid://ds663dk1uukj5" path="res://assets/material/ground.tres" id="11_2ioay"]
-[ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="12_n15bo"]
-[ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="13_8m583"]
-[ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="14_0nxy4"]
-[ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="15_xj6in"]
-[ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="16_j2hem"]
-[ext_resource type="Script" uid="uid://dtrjmnw3h6614" path="res://scenes/main/animation_scripts.gd" id="17_vdg0n"]
+[ext_resource type="Script" uid="uid://dy63vlm034cib" path="res://logic/loading.gd" id="1_sq7yr"]
+[ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="2_r3r3k"]
+[ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://player/player.tscn" id="3_blcw0"]
+[ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="4_50g4q"]
+[ext_resource type="PackedScene" uid="uid://did82x0xhe7le" path="res://scenes/celestials/ecliptic.tscn" id="5_3dlgs"]
+[ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="6_vte5o"]
+[ext_resource type="Script" uid="uid://3otbpp0ah4n6" path="res://logic/game_logic.gd" id="7_po8fv"]
+[ext_resource type="Script" uid="uid://dvgbgy4dwj4b8" path="res://stars/main_stars/constellation_logic.gd" id="8_ub8w1"]
+[ext_resource type="PackedScene" uid="uid://b1ifdanyuv32q" path="res://scenes/main/telescope.tscn" id="9_ynlg5"]
+[ext_resource type="PackedScene" uid="uid://70106wa0yhxi" path="res://targets/scenes/maps.tscn" id="10_ab83r"]
+[ext_resource type="Material" uid="uid://ds663dk1uukj5" path="res://assets/material/ground.tres" id="11_1xb4a"]
+[ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="12_0dnjj"]
+[ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="13_uwexw"]
+[ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="14_8pgb7"]
+[ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="15_tilu5"]
+[ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="16_24xe2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twpsu"]
-shader = ExtResource("2_66hh6")
+shader = ExtResource("2_r3r3k")
 shader_parameter/SunHeight = 0.0
 shader_parameter/topSkyEarly = Color(0.9764706, 0.7294118, 0.43529412, 1)
 shader_parameter/horizonSkyEarly = Color(0.96862745, 0.30588236, 0.36078432, 1)
@@ -68,7 +67,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7pvxh"]
-material = ExtResource("11_2ioay")
+material = ExtResource("11_1xb4a")
 size = Vector2(100, 100)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y3xxt"]
@@ -271,7 +270,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6dy7b"]
 resource_name = "night_transition"
-length = 12.033334
+length = 9.133333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -332,20 +331,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Animations/AnimationScripts")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(11.966666),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"change_scene_day"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_vdg0n"]
 resource_name = "planet_charted"
@@ -374,12 +359,12 @@ _data = {
 }
 
 [node name="Root" type="Node3D" unique_id=180768219]
-script = ExtResource("1_534gw")
+script = ExtResource("1_sq7yr")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=616575656]
 environment = SubResource("Environment_sqa0i")
 
-[node name="Player" parent="." unique_id=1326059467 instance=ExtResource("3_j7mxj")]
+[node name="Player" parent="." unique_id=1326059467 instance=ExtResource("3_blcw0")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.90610546, 1.027, 5.895117)
 speed = 8
 jump_speed = 8
@@ -395,15 +380,15 @@ collide_with_bodies = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Main_camera" unique_id=808082390]
 
-[node name="Stars" parent="Player" unique_id=311487277 instance=ExtResource("4_s7cc2")]
+[node name="Stars" parent="Player" unique_id=311487277 instance=ExtResource("4_50g4q")]
 transform = Transform3D(-0.95692515, 0, -0.29033488, 0, 1, 0, 0.29033488, 0, -0.95692515, 0, 0, 0)
 longitude = 40.0
-rotation_rate = 0.1
+rotation_rate = 0.5
 flux_factor = 27
 
-[node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_4x75f")]
+[node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_3dlgs")]
 
-[node name="milkyway" parent="Player/Stars" unique_id=1541727212 instance=ExtResource("6_4im6m")]
+[node name="milkyway" parent="Player/Stars" unique_id=1541727212 instance=ExtResource("6_vte5o")]
 transform = Transform3D(321.37186, 381.46014, -34.759495, 362.8108, -288.5927, 187.30328, 122.834816, -145.61026, -462.287, -1.2365112, 0.5897827, 3.0636787e-05)
 
 [node name="north" type="MeshInstance3D" parent="Player/Stars" unique_id=897438033]
@@ -415,13 +400,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
 mesh = SubResource("CylinderMesh_mflgo")
 
 [node name="Game logic" type="Node" parent="." unique_id=1399732596 node_paths=PackedStringArray("telescope", "maps")]
-script = ExtResource("7_2n4co")
+script = ExtResource("7_po8fv")
 Night = 1
 telescope = NodePath("../telescope")
 maps = NodePath("../Controls/Maps")
 
 [node name="constellation" type="Node" parent="Game logic" unique_id=1710898200]
-script = ExtResource("8_5cho8")
+script = ExtResource("8_ub8w1")
 
 [node name="PlanetSun" type="DirectionalLight3D" parent="." unique_id=360062856]
 transform = Transform3D(-0.80220306, 0.571828, 0.17170772, -0.4589687, -0.40668303, -0.78990996, -0.38186228, -0.71247625, 0.5886932, 0, 61.741932, 0)
@@ -429,17 +414,16 @@ light_energy = 3.0
 light_cull_mask = 4293918722
 shadow_enabled = true
 
-[node name="telescope" parent="." unique_id=832613763 instance=ExtResource("9_2ea41")]
+[node name="telescope" parent="." unique_id=832613763 instance=ExtResource("9_ynlg5")]
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 1.8217955, 1.1586488, 1.820723)
 
 [node name="Controls" type="Node" parent="." unique_id=1573289678]
 
-[node name="Maps" parent="Controls" unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic", "animations") instance=ExtResource("10_2lq1y")]
+[node name="Maps" parent="Controls" unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic", "animations") instance=ExtResource("10_ab83r")]
 stars = NodePath("../../Player/Stars")
 telescope = NodePath("../../telescope")
 con_logic = NodePath("../../Game logic/constellation")
 animations = NodePath("../../Animations")
-metadata/_edit_use_anchors_ = true
 
 [node name="UI" type="Control" parent="Controls" unique_id=2004545429]
 layout_mode = 3
@@ -447,7 +431,6 @@ anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
 mouse_filter = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="Controls/UI" unique_id=1543459]
 modulate = Color(0, 0, 0, 1)
@@ -456,7 +439,6 @@ offset_right = 640.0
 offset_bottom = 480.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kbwk5")
-metadata/_edit_use_anchors_ = true
 
 [node name="Charting" type="Node" parent="Controls/UI" unique_id=2101379257]
 
@@ -522,7 +504,7 @@ anchor_bottom = 0.5
 offset_left = 239.0
 offset_top = 212.5
 offset_right = 296.0
-offset_bottom = 267.50134
+offset_bottom = 267.50122
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
@@ -562,7 +544,7 @@ mesh = SubResource("PlaneMesh_7pvxh")
 shape = SubResource("ConcavePolygonShape3D_y3xxt")
 
 [node name="Trees" type="GridMap" parent="Environment" unique_id=1736956556]
-mesh_library = ExtResource("12_n15bo")
+mesh_library = ExtResource("12_0dnjj")
 cell_size = Vector3(1, 2, 1)
 cell_center_y = false
 data = {
@@ -571,7 +553,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Foliage" type="GridMap" parent="Environment" unique_id=962317751]
-mesh_library = ExtResource("13_8m583")
+mesh_library = ExtResource("13_uwexw")
 cell_size = Vector3(0.5, 2, 0.5)
 cell_center_y = false
 data = {
@@ -580,16 +562,16 @@ data = {
 
 [node name="Logs" type="Node" parent="Environment" unique_id=1954709010]
 
-[node name="log" parent="Environment/Logs" unique_id=288332634 instance=ExtResource("14_0nxy4")]
+[node name="log" parent="Environment/Logs" unique_id=288332634 instance=ExtResource("14_8pgb7")]
 transform = Transform3D(0.99541956, 0, -0.09560253, 0, 1, 0, 0.09560253, 0, 0.99541956, 3.5745707, 0.027969122, 0.1941948)
 
-[node name="log2" parent="Environment/Logs" unique_id=615883064 instance=ExtResource("14_0nxy4")]
+[node name="log2" parent="Environment/Logs" unique_id=615883064 instance=ExtResource("14_8pgb7")]
 transform = Transform3D(0.09348274, 0, -0.99562097, 0, 1, 0, 0.99562097, 0, 0.09348274, -0.20573854, 0.027969122, -3.4749389)
 
-[node name="log3" parent="Environment/Logs" unique_id=2080054370 instance=ExtResource("14_0nxy4")]
+[node name="log3" parent="Environment/Logs" unique_id=2080054370 instance=ExtResource("14_8pgb7")]
 transform = Transform3D(-0.6628553, 0, -0.7487475, 0, 1, 0, 0.7487475, 0, -0.6628553, -2.091414, 0.027969122, 2.2468586)
 
-[node name="campfire" parent="Environment" unique_id=2129771687 instance=ExtResource("15_xj6in")]
+[node name="campfire" parent="Environment" unique_id=2129771687 instance=ExtResource("15_tilu5")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Environment/campfire" unique_id=499639444]
@@ -603,15 +585,11 @@ shadow_caster_mask = 4294966273
 omni_range = 100.0
 omni_attenuation = 0.105
 
-[node name="car" parent="Environment" unique_id=758288718 instance=ExtResource("16_j2hem")]
+[node name="car" parent="Environment" unique_id=758288718 instance=ExtResource("16_24xe2")]
 transform = Transform3D(-0.57678336, 0, 0.25341833, 0, 0.63, 0, -0.25341833, 0, -0.57678336, -14.781224, 0.8435905, -15.666941)
 
 [node name="Animations" type="AnimationPlayer" parent="." unique_id=1079454472]
 libraries/ = SubResource("AnimationLibrary_mflgo")
-
-[node name="AnimationScripts" type="Node" parent="Animations" unique_id=1630312960 node_paths=PackedStringArray("game_logic")]
-script = ExtResource("17_vdg0n")
-game_logic = NodePath("../../Game logic")
 
 [connection signal="chart" from="telescope" to="Controls/Maps" method="_on_telescope_chart"]
 [connection signal="star_click" from="telescope" to="Controls/Maps" method="_on_telescope_star_click"]

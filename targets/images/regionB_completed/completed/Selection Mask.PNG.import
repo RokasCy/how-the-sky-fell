@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvat8ocwkbk56"
-path="res://.godot/imported/coord_grid2.png-951275a55a43dbdb9730e47ef9390ae5.ctex"
+uid="uid://cvsv1c04gvrv3"
+path="res://.godot/imported/Selection Mask.PNG-cdad58721ccc28753d6de6542f495f0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/coord_grid2.png"
-dest_files=["res://.godot/imported/coord_grid2.png-951275a55a43dbdb9730e47ef9390ae5.ctex"]
+source_file="res://targets/images/regionB_completed/completed/Selection Mask.PNG"
+dest_files=["res://.godot/imported/Selection Mask.PNG-cdad58721ccc28753d6de6542f495f0b.ctex"]
 
 [params]
 

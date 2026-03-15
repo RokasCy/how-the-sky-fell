@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlofgh118jbw6"
-path="res://.godot/imported/paper_texture01.png-ec4552ba09c4f35db0848951e9f8c6cf.ctex"
+uid="uid://besithcy4yy6x"
+path="res://.godot/imported/Virgo.PNG-ebfe798e8e8407ccefc111ace9b22597.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/paper_texture01.png"
-dest_files=["res://.godot/imported/paper_texture01.png-ec4552ba09c4f35db0848951e9f8c6cf.ctex"]
+source_file="res://targets/images/regionB/Virgo.PNG"
+dest_files=["res://.godot/imported/Virgo.PNG-ebfe798e8e8407ccefc111ace9b22597.ctex"]
 
 [params]
 

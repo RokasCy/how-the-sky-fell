@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh2n76ibpur0g"
-path="res://.godot/imported/paper_texture02.png-4028632e9d96d41b1616cba5bff1a21a.ctex"
+uid="uid://b1xv626065ogd"
+path="res://.godot/imported/Cancer.PNG-d010a860ce0b5f68c08d5b842c5f7721.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/paper_texture02.png"
-dest_files=["res://.godot/imported/paper_texture02.png-4028632e9d96d41b1616cba5bff1a21a.ctex"]
+source_file="res://targets/images/regionB/Cancer.PNG"
+dest_files=["res://.godot/imported/Cancer.PNG-d010a860ce0b5f68c08d5b842c5f7721.ctex"]
 
 [params]
 
