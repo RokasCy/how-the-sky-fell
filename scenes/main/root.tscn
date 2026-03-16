@@ -398,7 +398,7 @@ collide_with_bodies = false
 [node name="Stars" parent="Player" unique_id=311487277 instance=ExtResource("4_s7cc2")]
 transform = Transform3D(-0.95692515, 0, -0.29033488, 0, 1, 0, 0.29033488, 0, -0.95692515, 0, 0, 0)
 longitude = 40.0
-rotation_rate = 0.1
+rotation_rate = 1.0
 flux_factor = 27
 
 [node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_4x75f")]

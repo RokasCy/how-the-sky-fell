@@ -49,15 +49,18 @@ func _on_telescope_pickup() -> void:
 			visible = true
 			picked_up = false
 			camera.position = position + offset
-			camera.rotation.y = player.camera.rotation.y
+			#camera.rotation.y = player.camera.rotation.y
+			
+			#body.rotation.x = camera.rotation.x + PI/2
+			#body.rotation.y = camera.rotation.y
 			
 
 
 func _physics_process(delta: float):	
 	if picked_up:	
-		position = player.position 
-		translate(Vector3(0.0, 0.0, 15.0))
-		rotation.y = player.camera.rotation.y + PI
+		var camera_basis = Vector3(player.camera.global_basis.z.x, 0, player.camera.global_basis.z.z)
+		position = player.position + camera_basis * -2.0		
+		#rotation.y = player.camera.rotation.y + PI
 		
 		
 	zoomed_in = control.visible
@@ -66,23 +69,27 @@ func _physics_process(delta: float):
 	#--rotation--#
 	if Input.is_action_pressed("forward"):
 		camera.rotation.x += zoom_speed*delta
+		body.rotation.x -= zoom_speed*delta
 	elif Input.is_action_pressed("backward"):
 		camera.rotation.x -= zoom_speed*delta
+		body.rotation.x += zoom_speed*delta
 	elif Input.is_action_pressed("left"):
 		camera.rotation.y += zoom_speed*delta
+		body.rotation.y += zoom_speed*delta
 	elif Input.is_action_pressed("right"):
 		camera.rotation.y -= zoom_speed*delta
+		body.rotation.y -= zoom_speed*delta
 	
 	#-- zoom --#
-	
 	if Input.is_key_pressed(KEY_M):
 		for key in [KEY_1, KEY_2, KEY_3, KEY_4]:
 			if Input.is_key_pressed(key):
 				change_zoom(key - KEY_0)
 	
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -20, 85)
-	body.global_rotation.x = PI/2 - camera.global_rotation.x
-	body.global_rotation.y = camera.global_rotation.y + PI
+	body.rotation_degrees.x = clamp(body.rotation_degrees.x, 5, 110)
+	#body.rotation.x = PI/2 - camera.rotation.x
+	#body.rotation.y = camera.rotation.y + PI
 	
 	
 	update_UI()

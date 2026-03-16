@@ -26,7 +26,8 @@ func _on_body_entered(body: Node3D) -> void:
 		
 func _on_body_exited(body: Node3D) -> void:
 	if body is CharacterBody3D:
-		interactable = false
+		if !picked_up:
+			interactable = false
 		text_node_main.visible = false
 
 func telescope_interaction():
