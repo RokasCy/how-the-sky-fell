@@ -5,7 +5,7 @@ signal star_click(hip)
 signal chart(planet)
 
 @onready var control = $Control
-@onready var coord_label = $Control/Label
+@onready var coord_label = $Control/Cords
 @onready var camera = $Control/SubViewport/Camera3D
 @onready var body = $Main
 @onready var player = $"../Player"
@@ -23,14 +23,11 @@ var picked_up = false
 
 var tween : Tween
 
-var invis_mat : StandardMaterial3D
+var offset = Vector3(0.0, 0.275, -0.2)
 func _ready() -> void:
 	control.visible = false
-	
-	var offset = Vector3(0.0, 0.275, -0.2)
 	camera.position = position + offset
-	
-	invis_mat = load("res://assets/material/invisible.tres").duplicate()
+	print(speed)
 	
 func _on_interaction_telescope() -> void:
 	control.visible = !control.visible
@@ -51,17 +48,17 @@ func _on_telescope_pickup() -> void:
 		else:
 			visible = true
 			picked_up = false
+			camera.position = position + offset
+			camera.rotation.y = player.camera.rotation.y
 			
 
 
 func _physics_process(delta: float):	
-	if picked_up:
+	if picked_up:	
 		position = player.position 
 		translate(Vector3(0.0, 0.0, 15.0))
-		rotation.y = player.camera.rotation.y 
+		rotation.y = player.camera.rotation.y + PI
 		
-		#camera.rotation.y = player.camera.rotation.y + PI
-		#camera.position = position + Vector3(0.0, 0.275, -0.152)
 		
 	zoomed_in = control.visible
 	if !zoomed_in:
@@ -84,8 +81,9 @@ func _physics_process(delta: float):
 				change_zoom(key - KEY_0)
 	
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -20, 85)
-	body.rotation.x = PI/2 - camera.rotation.x
-	body.rotation.y = camera.rotation.y + PI
+	body.global_rotation.x = PI/2 - camera.global_rotation.x
+	body.global_rotation.y = camera.global_rotation.y + PI
+	
 	
 	update_UI()
 	zoomed_fov = camera.fov
