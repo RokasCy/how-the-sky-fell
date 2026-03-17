@@ -373,6 +373,43 @@ _data = {
 &"planet_charted": SubResource("Animation_vdg0n")
 }
 
+[sub_resource type="Animation" id="Animation_3vptp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls/UI/Objective:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ogsmj"]
+resource_name = "objective"
+length = 21.066668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls/UI/Objective:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666667, 2, 11.966666, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0oop"]
+_data = {
+&"RESET": SubResource("Animation_3vptp"),
+&"objective": SubResource("Animation_ogsmj")
+}
+
 [node name="Root" type="Node3D" unique_id=180768219]
 script = ExtResource("1_534gw")
 
@@ -431,6 +468,7 @@ shadow_enabled = true
 
 [node name="telescope" parent="." unique_id=832613763 instance=ExtResource("9_2ea41")]
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 1.8217955, 1.1586488, 1.820723)
+speed = 0.5
 
 [node name="Controls" type="Node" parent="." unique_id=1573289678]
 
@@ -510,6 +548,15 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 25
 text = "All Targets Found"
 
+[node name="Objective" type="Label" parent="Controls/UI" unique_id=1254255668]
+z_index = -1
+layout_mode = 0
+offset_left = 6.0
+offset_top = 10.0
+offset_right = 228.0
+offset_bottom = 33.0
+text = "Objective: Identify all night-sky targets"
+
 [node name="Node2D" type="Node2D" parent="Controls" unique_id=441894485]
 visible = false
 
@@ -562,6 +609,7 @@ mesh = SubResource("PlaneMesh_7pvxh")
 shape = SubResource("ConcavePolygonShape3D_y3xxt")
 
 [node name="Trees" type="GridMap" parent="Environment" unique_id=1736956556]
+visible = false
 mesh_library = ExtResource("12_n15bo")
 cell_size = Vector3(1, 2, 1)
 cell_center_y = false
@@ -612,6 +660,9 @@ libraries/ = SubResource("AnimationLibrary_mflgo")
 [node name="AnimationScripts" type="Node" parent="Animations" unique_id=1630312960 node_paths=PackedStringArray("game_logic")]
 script = ExtResource("17_vdg0n")
 game_logic = NodePath("../../Game logic")
+
+[node name="UI_Animations" type="AnimationPlayer" parent="." unique_id=1976297843]
+libraries/ = SubResource("AnimationLibrary_y0oop")
 
 [connection signal="chart" from="telescope" to="Controls/Maps" method="_on_telescope_chart"]
 [connection signal="star_click" from="telescope" to="Controls/Maps" method="_on_telescope_star_click"]

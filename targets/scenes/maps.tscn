@@ -48,36 +48,16 @@ rotation = -1.5707964
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "targets:"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Paper1" unique_id=1331057799]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -96.27098
-offset_top = 191.0
-offset_right = 141.729
-offset_bottom = 426.729
-grow_horizontal = 2
-rotation = -1.5707964
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/line_separation = 31
-theme_override_font_sizes/normal_font_size = 14
-text = "Target A: unidentified
-Target B: unidentified
-Target C: unidentified
-Target D: unidentified"
-
 [node name="Constellations" type="Node2D" parent="Paper1" unique_id=888761936]
-position = Vector2(-1.999973, 628)
+position = Vector2(-3.999974, 608)
 rotation = -1.5707964
 
 [node name="con1" type="TextureRect" parent="Paper1/Constellations" unique_id=913973598]
 modulate = Color(0, 0, 0, 1)
-offset_left = 48.0
-offset_top = 14.0
-offset_right = 428.0
-offset_bottom = 394.0
+offset_left = 44.0
+offset_top = 36.0
+offset_right = 374.0
+offset_bottom = 366.0
 mouse_filter = 2
 texture = ExtResource("3_yq4gd")
 expand_mode = 1
@@ -94,10 +74,10 @@ text = "a"
 
 [node name="con2" type="TextureRect" parent="Paper1/Constellations" unique_id=2053608253]
 modulate = Color(0, 0, 0, 1)
-offset_left = 48.0
-offset_top = 14.0
-offset_right = 428.0
-offset_bottom = 394.0
+offset_left = 44.0
+offset_top = 36.0
+offset_right = 374.0
+offset_bottom = 366.0
 mouse_filter = 2
 texture = ExtResource("4_2jr0f")
 expand_mode = 1
@@ -114,10 +94,10 @@ text = "b"
 
 [node name="con3" type="TextureRect" parent="Paper1/Constellations" unique_id=1984266324]
 modulate = Color(0, 0, 0, 1)
-offset_left = 48.0
-offset_top = 14.0
-offset_right = 428.0
-offset_bottom = 394.0
+offset_left = 44.0
+offset_top = 36.0
+offset_right = 374.0
+offset_bottom = 366.0
 mouse_filter = 2
 texture = ExtResource("5_8d7cb")
 expand_mode = 1
@@ -134,10 +114,10 @@ text = "c"
 
 [node name="con4" type="TextureRect" parent="Paper1/Constellations" unique_id=1675752720]
 modulate = Color(0, 0, 0, 1)
-offset_left = 48.0
-offset_top = 14.0
-offset_right = 428.0
-offset_bottom = 394.0
+offset_left = 44.0
+offset_top = 36.0
+offset_right = 374.0
+offset_bottom = 366.0
 mouse_filter = 2
 texture = ExtResource("6_adfil")
 expand_mode = 1
@@ -167,6 +147,17 @@ offset_bottom = 80.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 15
 text = "1"
+
+[node name="additional" type="Label" parent="Paper1" unique_id=1633300366]
+layout_mode = 0
+offset_left = 345.00003
+offset_top = 351.0
+offset_right = 669.0
+offset_bottom = 374.0
+rotation = -1.5707964
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "identify the constellations in the night sky"
 
 [node name="Paper2" type="TextureRect" parent="." unique_id=425496788]
 visible = false

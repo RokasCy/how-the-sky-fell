@@ -41,7 +41,7 @@ func _ready():
 	
 	telescope.connect("star_click", line_update)
 	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	#generate_constellations()
+	generate_constellations()
 	mesh.surface_end()
 	
 var lines_drawn = []
@@ -147,6 +147,7 @@ func finish_constellation(con):
 	current_constellation_selected = ""
 
 var green_star_list = []
+var red_star_list = []
 
 func add_green_star(hip):
 	var clicked_star = parent.hip_dict[hip]
@@ -168,11 +169,16 @@ func add_red_star(hip):
 	
 	var mat : StandardMaterial3D = load("res://assets/material/wrong_star.tres").duplicate()
 	var sname = "red_" + str(int(clicked_star["HIP"]))
+	
+	if get_node("../red_" + str(int(hip))) != null:
+		return
 	parent.create_star(sname, starpos, mag, 0, mat)
 	
 	#removing star
 	await get_tree().create_timer(2.0).timeout
-	get_node("../red_" + str(int(hip))).queue_free()
+	var red_star = get_node("../red_" + str(int(hip)))
+	if red_star != null:
+		red_star.queue_free()
 
 
 func red_flash_lines(hip):

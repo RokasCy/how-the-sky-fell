@@ -323,6 +323,115 @@ content_margin_bottom = 2.0
 bg_color = Color(0.22402999, 0.7696274, 0.857676, 0.8)
 corner_detail = 6
 
+[sub_resource type="Animation" id="Animation_ccl66"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/press j:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/press j:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/wasd:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/wasd:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xj0f0"]
+resource_name = "fade_in_tips"
+length = 12.366667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/press j:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5.8999996, 7.866667, 10.733334, 12.000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Control/press j:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.5333347, 20.233334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/wasd:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.60000014, 2.5000002, 5.3333335, 6.6333337),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/wasd:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.099999994, 6.933334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p55sb"]
+_data = {
+&"RESET": SubResource("Animation_ccl66"),
+&"fade_in_tips": SubResource("Animation_xj0f0")
+}
+
 [node name="telescope" unique_id=832613763 instance=ExtResource("1_6gvpi")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("2_shu7l")
@@ -374,6 +483,7 @@ offset_bottom = 480.0
 mouse_filter = 2
 
 [node name="pickup" type="Label" parent="UI tips" index="0" unique_id=701627589]
+z_index = -1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -392,6 +502,7 @@ Hold Q to Pick Up"
 horizontal_alignment = 1
 
 [node name="putdown" type="Label" parent="UI tips" index="1" unique_id=1622331096]
+z_index = -1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -466,6 +577,47 @@ offset_right = 137.0
 offset_bottom = 4.0
 theme_override_font_sizes/font_size = 13
 text = "press c to chart"
+
+[node name="press j" type="Label" parent="Control" index="4" unique_id=1754798975]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 432.0
+offset_top = 450.0
+offset_right = 639.0
+offset_bottom = 493.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_spacing = 1
+theme_override_font_sizes/font_size = 14
+text = "Press J on a star to select it"
+horizontal_alignment = 1
+
+[node name="wasd" type="Label" parent="Control" index="5" unique_id=1515224003]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 450.0
+offset_right = 205.0
+offset_bottom = 493.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_spacing = 1
+theme_override_font_sizes/font_size = 14
+text = "Rotate Telescope with WASD"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10" unique_id=1577195307]
+libraries/ = SubResource("AnimationLibrary_p55sb")
 
 [connection signal="telescope_interact" from="interaction" to="." method="_on_interaction_telescope"]
 [connection signal="telescope_pickup" from="interaction" to="." method="_on_telescope_pickup"]

@@ -5,7 +5,11 @@ signal star_click(hip)
 signal chart(planet)
 
 @onready var control = $Control
+@onready var animations = $AnimationPlayer
+
 @onready var coord_label = $Control/Cords
+@onready var keyboard_tip = $"Control/press j"
+
 @onready var camera = $Control/SubViewport/Camera3D
 @onready var body = $Main
 @onready var player = $"../Player"
@@ -23,6 +27,8 @@ var picked_up = false
 
 var tween : Tween
 
+var tips_shown = 0
+
 var offset = Vector3(0.0, 0.275, -0.2)
 func _ready() -> void:
 	control.visible = false
@@ -32,6 +38,12 @@ func _ready() -> void:
 func _on_interaction_telescope() -> void:
 	control.visible = !control.visible
 	zoom.emit(control.visible)
+	
+	zoomed_in = control.visible
+	print(tips_shown)
+	if zoomed_in and tips_shown < 4:
+		if !animations.is_playing():
+			animations.play("fade_in_tips")
 	
 	#make shadows visible
 	if control.visible:
@@ -63,7 +75,7 @@ func _physics_process(delta: float):
 		#rotation.y = player.camera.rotation.y + PI
 		
 		
-	zoomed_in = control.visible
+	#zoomed_in = control.visible
 	if !zoomed_in:
 		return
 	#--rotation--#

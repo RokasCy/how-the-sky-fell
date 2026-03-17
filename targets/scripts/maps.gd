@@ -117,7 +117,6 @@ func check_target_completion():
 			break
 		
 	#make morning
-	all_found = true
 	if all_found and !switched:
 		switched = true
 		
