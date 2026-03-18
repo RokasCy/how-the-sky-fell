@@ -40,12 +40,16 @@ func _ready():
 		stars_selected[star["HIP"]] = false
 	
 	telescope.connect("star_click", line_update)
+	Gamestate.constellations_unlocked = Gamestate.constellations_unlocked
+	for c in Gamestate.constellations_unlocked:
+		finish_constellation(c)
+	
 	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	generate_constellations()
+	#generate_constellations()
 	mesh.surface_end()
 	
 var lines_drawn = []
-var constellations_finished = []
+#var Gamestate.constellations_unlocked = []
 var current_constellation_selected : String = ""
 
 var current_timer = null
@@ -69,7 +73,7 @@ func time_limit():
 func line_update(hip):
 	#hip 25428 is auriga 
 	
-	if constellation_type[hip] in constellations_finished and hip != 25428:
+	if constellation_type[hip] in Gamestate.constellations_unlocked and hip != 25428:
 		return
 	if constellation_type[hip] not in logic.current_targets:
 		add_red_star(hip)
@@ -114,7 +118,7 @@ func line_update(hip):
 
 func finished_constellation_check():
 	for key in constellation_lines_drawn:
-		if key in constellations_finished:
+		if key in Gamestate.constellations_unlocked:
 			continue
 		
 		constellation_lines_drawn[key].sort()
@@ -122,28 +126,25 @@ func finished_constellation_check():
 		
 		#--all lines are drawn--#
 		if constellation_lines_drawn[key] == constellation_lines[key]:
+			Gamestate.constellations_unlocked.append(key)
 			finish_constellation(key)
 			remove_green_stars(true)
 			
 
 
 func finish_constellation(con):
-	constellations_finished.append(con)
-	for c in constellation_lines_drawn:
-		var lines = constellation_lines_drawn[c]
+	print(Gamestate.constellations_unlocked)
+	var lines = constellation_lines[con]
+	
+	var m : ImmediateMesh = constellations_done.mesh
 		
-		var m : ImmediateMesh = constellations_done.mesh
-		if c not in constellations_finished:
-			continue
-			
-		
-		m.surface_begin(Mesh.PRIMITIVE_LINES)
-		for couple in lines:
-			var a = parent.star_to_position(hip_dict[couple[0]])
-			var b = parent.star_to_position(hip_dict[couple[1]])
-			m.surface_add_vertex(a)
-			m.surface_add_vertex(b)
-		m.surface_end()
+	m.surface_begin(Mesh.PRIMITIVE_LINES)
+	for couple in lines:
+		var a = parent.star_to_position(hip_dict[couple[0]])
+		var b = parent.star_to_position(hip_dict[couple[1]])
+		m.surface_add_vertex(a)
+		m.surface_add_vertex(b)
+	m.surface_end()
 	current_constellation_selected = ""
 
 var green_star_list = []

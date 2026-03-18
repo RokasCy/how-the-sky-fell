@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://7gjixcjptj52" path="res://targets/scripts/maps.gd" id="1_1xqgt"]
 [ext_resource type="Texture2D" uid="uid://dlofgh118jbw6" path="res://targets/images/other/paper_texture01.png" id="1_ghv6j"]
-[ext_resource type="Texture2D" uid="uid://b1xv626065ogd" path="res://targets/images/regionB/Cancer.PNG" id="3_yq4gd"]
-[ext_resource type="Texture2D" uid="uid://djyeudgw4ja87" path="res://targets/images/regionB/Hydra.PNG" id="4_2jr0f"]
-[ext_resource type="Texture2D" uid="uid://ccw11biydsx7i" path="res://targets/images/regionB/Leo.PNG" id="5_8d7cb"]
-[ext_resource type="Texture2D" uid="uid://besithcy4yy6x" path="res://targets/images/regionB/Virgo.PNG" id="6_adfil"]
+[ext_resource type="Texture2D" uid="uid://bjc47lgcui1ak" path="res://targets/images/regionC/Bootes.PNG" id="3_yq4gd"]
+[ext_resource type="Texture2D" uid="uid://d2658c1jfthke" path="res://targets/images/regionC/Draco.PNG" id="4_2jr0f"]
+[ext_resource type="Texture2D" uid="uid://cbf30psifxpg6" path="res://targets/images/regionC/Ursa major.PNG" id="5_8d7cb"]
+[ext_resource type="Texture2D" uid="uid://chsvhxdhpd2mc" path="res://targets/images/regionC/Ursa minor Merged.PNG" id="6_adfil"]
 [ext_resource type="Texture2D" uid="uid://b1unndh1q7b8j" path="res://targets/images/other/coord_grid.png" id="7_7nic5"]
 [ext_resource type="Texture2D" uid="uid://d25j4ffhh8ota" path="res://targets/images/other/planet.png" id="8_yq4gd"]
 
@@ -65,10 +65,10 @@ expand_mode = 1
 [node name="name" type="Label" parent="Paper1/Constellations/con1" unique_id=1361078012]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 316.0
-offset_top = 88.0
-offset_right = 356.0
-offset_bottom = 111.0
+offset_left = 252.0
+offset_top = 247.0
+offset_right = 292.0
+offset_bottom = 270.0
 theme_override_font_sizes/font_size = 15
 text = "a"
 
@@ -85,10 +85,10 @@ expand_mode = 1
 [node name="name" type="Label" parent="Paper1/Constellations/con2" unique_id=162901362]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 144.0
-offset_top = 283.0
-offset_right = 184.0
-offset_bottom = 306.0
+offset_left = 86.0
+offset_top = 268.0
+offset_right = 126.0
+offset_bottom = 291.0
 theme_override_font_sizes/font_size = 15
 text = "b"
 
@@ -105,10 +105,10 @@ expand_mode = 1
 [node name="name" type="Label" parent="Paper1/Constellations/con3" unique_id=1031080070]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 208.0
-offset_top = 127.0
-offset_right = 248.0
-offset_bottom = 150.0
+offset_left = 209.0
+offset_top = 160.0
+offset_right = 249.0
+offset_bottom = 183.0
 theme_override_font_sizes/font_size = 15
 text = "c"
 
@@ -125,10 +125,10 @@ expand_mode = 1
 [node name="name" type="Label" parent="Paper1/Constellations/con4" unique_id=509607840]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 48.0
-offset_top = 153.0
-offset_right = 88.0
-offset_bottom = 176.0
+offset_left = 84.0
+offset_top = 159.0
+offset_right = 124.0
+offset_bottom = 182.0
 theme_override_font_sizes/font_size = 15
 text = "d"
 

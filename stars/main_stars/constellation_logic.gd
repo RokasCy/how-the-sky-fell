@@ -2,7 +2,11 @@ extends Node
 
 @onready var main = get_parent()
 
-var night_targets = [["Ori", "Tau", "Aur", "Gem"], ["Cnc", "Leo", "Hya", "Vir"]]
+var night_targets = [
+	["Ori", "Tau", "Aur", "Gem"], 
+	["Cnc", "Leo", "Hya", "Vir"], 
+	["Boo", "Dra", "UMa", "UMi"]
+]
 var current_targets = []
 
 func _ready():

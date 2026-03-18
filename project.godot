@@ -14,6 +14,10 @@ config/name="how the sky fell"
 run/main_scene="uid://ci5hir3ycucwr"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+Gamestate="*uid://ccacbo0dlyrd6"
+
 [display]
 
 window/size/viewport_width=640

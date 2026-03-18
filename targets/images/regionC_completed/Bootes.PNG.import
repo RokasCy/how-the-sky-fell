@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2658c1jfthke"
-path="res://.godot/imported/Draco.PNG-2afe28ede4277c0c34dd2666715a9f78.ctex"
+uid="uid://baqkxhbralljy"
+path="res://.godot/imported/Bootes.PNG-bfb6191fa3ec9bdf9cc8890b7b245ae1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/regionC/horizon_not_complete/Draco.PNG"
-dest_files=["res://.godot/imported/Draco.PNG-2afe28ede4277c0c34dd2666715a9f78.ctex"]
+source_file="res://targets/images/regionC_completed/Bootes.PNG"
+dest_files=["res://.godot/imported/Bootes.PNG-bfb6191fa3ec9bdf9cc8890b7b245ae1.ctex"]
 
 [params]
 

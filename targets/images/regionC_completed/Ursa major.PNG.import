@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjc47lgcui1ak"
-path="res://.godot/imported/Bootes.PNG-b34d901755eec7e18da6640e5d03139c.ctex"
+uid="uid://tljl1ulmpkmr"
+path="res://.godot/imported/Ursa major.PNG-58797438f98217ea05a96c179367cda1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://targets/images/regionC/horizon_not_complete/Bootes.PNG"
-dest_files=["res://.godot/imported/Bootes.PNG-b34d901755eec7e18da6640e5d03139c.ctex"]
+source_file="res://targets/images/regionC_completed/Ursa major.PNG"
+dest_files=["res://.godot/imported/Ursa major.PNG-58797438f98217ea05a96c179367cda1.ctex"]
 
 [params]
 

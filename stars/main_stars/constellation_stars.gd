@@ -17,7 +17,7 @@ var star_data = load_csv(star_path)
 @export var scale_factor := 11
 @export var flux_factor := 8
 
-@onready var constellations_finished = $Constellations.constellations_finished
+#@onready var constellations_finished = $Constellations.constellations_finished
 
 #variable changed by sun_light.gd 
 var sun_height : float

@@ -453,7 +453,7 @@ mesh = SubResource("CylinderMesh_mflgo")
 
 [node name="Game logic" type="Node" parent="." unique_id=1399732596 node_paths=PackedStringArray("telescope", "maps")]
 script = ExtResource("7_2n4co")
-Night = 1
+Night = 2
 telescope = NodePath("../telescope")
 maps = NodePath("../Controls/Maps")
 
@@ -600,7 +600,7 @@ text = "03.18"
 
 [node name="Ground" type="MeshInstance3D" parent="Environment" unique_id=595141351]
 transform = Transform3D(0.9999999, -0.0002654435, 0.00034373114, 0.00026483487, 0.9999984, 0.0017804363, -0.0003442003, -0.0017803457, 0.9999984, 0.07, 0, -0.109)
-cast_shadow = 2
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_7pvxh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground" unique_id=1614621215]

@@ -3,8 +3,9 @@ extends Node
 @export var game_logic: Node
 
 var day_to_scene = {
-	0 : "uid://ci5hir3ycucwr", 
-	1 : "uid://cc67t5yshhke6"
+	0 : "res://scenes/main/root.tscn",
+	1 : "res://scenes/main/day2.tscn",
+	2 : "res://scenes/main/day3.tscn"
 }
 
 func change_scene_day():

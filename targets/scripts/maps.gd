@@ -23,23 +23,33 @@ var textures : Dictionary = {
 	'Tau': ["uid://ctomfb0egscyn", "uid://cfqr4oddic1fj"],
 	'Aur': ["uid://behsstyl417vy", "uid://die0bsok7r3mk"],
 	'Gem': ["uid://do448vpp5if6d", "uid://dh4c2jykyaxmg"],
+	
 	'Hya': ["uid://djyeudgw4ja87", "uid://n6lnkamkiumn"],
 	'Cnc': ["uid://b1xv626065ogd", "uid://bht7tgho08ctc"],
 	'Leo': ["uid://ccw11biydsx7i", "uid://bbisibemuax80"],
-	'Vir': ["uid://besithcy4yy6x", "uid://lsak5c1av21o"]
+	'Vir': ["uid://besithcy4yy6x", "uid://lsak5c1av21o"],
+	
+	"Boo": ["uid://bjc47lgcui1ak", "uid://baqkxhbralljy"],
+	"Dra": ["uid://d2658c1jfthke", "uid://drvhvfwxf4cg3"],
+	"UMa": ["uid://cbf30psifxpg6", "uid://tljl1ulmpkmr"],
+	"UMi": ["uid://chsvhxdhpd2mc", "uid://cij4s760a0xao"]
 }
 
 var const_to_namepos : Dictionary = {
-	"Ori": Vector2(226, 325),
-	"Tau": Vector2(249, 219),
-	"Aur": Vector2(255, 95),
-	"Gem": Vector2(20, 186),
+	"Ori": Vector2(200, 280),
+	"Tau": Vector2(280, 160),
+	"Aur": Vector2(210, 50),
+	"Gem": Vector2(20, 170),
 	
-	"Hya": Vector2(144, 283),
-	"Cnc": Vector2(316, 88),
-	"Leo": Vector2(208, 127),
-	"Vir": Vector2(48, 153),
+	"Hya": Vector2(136, 250),
+	"Cnc": Vector2(325, 70),
+	"Leo": Vector2(200, 115),
+	"Vir": Vector2(30, 120),
 	
+	"Boo": Vector2(252, 247),
+	"Dra": Vector2(86, 268),
+	"UMa": Vector2(209, 160),
+	"UMi": Vector2(84, 159)
 }
 
 
@@ -80,8 +90,10 @@ func _ready():
 		
 var morning_trans : bool = false
 func _physics_process(_delta: float) -> void:
-	for c in stars.constellations_finished:
-		if con_to_unlocked[c] == false:
+	
+	for c in Gamestate.constellations_unlocked:
+		print()
+		if con_to_unlocked.has(c) and con_to_unlocked[c] == false:
 			con_to_unlocked[c] = true
 			update_completion(name_to_node[c], c)
 		
@@ -101,7 +113,8 @@ func update_completion(node, name):
 	node.modulate = Color(0.0, 0.0, 0.0)
 	
 	node.get_node("name").text = name
-	animations.play("constellation_discovered")
+	if !animations.is_playing():
+		animations.play("constellation_discovered")
 
 var switched = false
 func check_target_completion():
