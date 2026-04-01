@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://c17ksq6sp823t"]
 
 [ext_resource type="PackedScene" uid="uid://8c1qiwyxndij" path="res://assets/planets/saturn.glb" id="1_mlpop"]
+[ext_resource type="Script" uid="uid://cntgx0qn6rhf0" path="res://scenes/planets/circle_001.gd" id="2_fpsqh"]
+[ext_resource type="AudioStream" uid="uid://daciorbxv6s81" path="res://assets/audio/message2.mp3" id="3_dvlhj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mlpop"]
 load_path = "res://.godot/imported/saturn_saturn_rings.png-d1a7f4a47516a3bcbbcf903b8013cd7c.s3tc.ctex"
@@ -56,8 +58,13 @@ layers = 2
 [node name="Circle_001" parent="." index="2" unique_id=432622349]
 layers = 2
 mesh = SubResource("ArrayMesh_cyfv8")
+script = ExtResource("2_fpsqh")
 
 [node name="saturn" type="Area3D" parent="." index="3" unique_id=1777538244]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="saturn" index="0" unique_id=306081029]
 shape = SubResource("SphereShape3D_mlpop")
+
+[node name="anomaly1" type="AudioStreamPlayer3D" parent="." index="4" unique_id=1259805295]
+stream = ExtResource("3_dvlhj")
+volume_db = 40.0

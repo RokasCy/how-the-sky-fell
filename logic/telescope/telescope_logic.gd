@@ -5,13 +5,22 @@ extends Control
 @onready var stars : Node3D = $"../../Player/Stars"
 @onready var camera : Camera3D = $SubViewport/Camera3D
 
-var angle_coord : Array
+@onready var star_chime = $"../star_chime"
 
+var played1 = false
+var angle_coord : Array
 func _physics_process(delta):
+	if 1 in Gamestate.anomalies and !played1:
+		$TextureRect.material.set_shader_parameter("red", true)
+		await get_tree().create_timer(13.0).timeout
+		$TextureRect.material.set_shader_parameter("red", false)
+		played1 = true
+
 	#---- how telescope_logic connects to constellation line draw ----#
 	if visible == true:
 		var hip = angle_to_hip()
 		if Input.is_action_just_pressed("telescope_click") and hip!=0: 
+			star_chime.play()
 			parent.star_click.emit(hip)
 		
 		

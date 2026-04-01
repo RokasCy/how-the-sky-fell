@@ -11,6 +11,8 @@ signal map_interact(open)
 @onready var paper2 = $Paper2
 @onready var graph = $Paper2/Clip/Graph
 
+@onready var planet_chime = $planet_chime
+
 
 @export var animations : AnimationPlayer
 
@@ -183,7 +185,7 @@ func _on_telescope_chart(planet: Variant) -> void:
 		var node = planet_node[planet]
 		
 		node.modulate = planet_color[planet]
-	
+		planet_chime.play()
 		animations.play("planet_charted")
 		
 		

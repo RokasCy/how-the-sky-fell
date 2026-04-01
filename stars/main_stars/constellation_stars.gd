@@ -5,6 +5,7 @@ var star_path = "res://stars/star_data/hip_constellation_line_star.csv"
 @onready var constellation_type = $Constellations.constellation_type
 @onready var hip_dict = $Constellations.hip_dict
 
+
 var headers = ["HIP","RA_hour","RA_min","RA_sec","DEC_deg","DEC_min","DEC_sec","Magnitude", "B-V"]
 var star_data = load_csv(star_path)
 

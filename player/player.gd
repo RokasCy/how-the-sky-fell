@@ -9,6 +9,9 @@ extends CharacterBody3D
 @onready var camera = $Main_camera
 @onready var logic = $"../Game logic"
 @onready var player_mesh = $MeshInstance3D
+@onready var jumpsfx = $jump
+@onready var walksfx = $walk
+
 
 var _camera_input_direction := Vector2.ZERO
 
@@ -36,6 +39,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	player_mesh.visible = logic.player_visible
 	if !logic.player_can_move:
+		if walksfx.playing:
+			walksfx.stop()
 		return
 	
 	camera.rotation.x -= _camera_input_direction.y * delta
@@ -56,9 +61,18 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_direction.x * speed
 	velocity.z = move_direction.z * speed
 	
+	if velocity.length() > 0 and is_on_floor():
+		if !walksfx.playing:
+			walksfx.play()
+	else:
+		if walksfx.playing:
+			walksfx.stop()
+		
+	
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity.y = jump_speed
+			jumpsfx.play()
 		else:
 			velocity.y = 0
 	else:

@@ -33,6 +33,7 @@ func _on_body_exited(body: Node3D) -> void:
 func telescope_interaction():
 	if picked_up:
 		return
+	
 	telescope_interact.emit()
 
 func telescope_picking_up():

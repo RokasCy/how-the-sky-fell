@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform vec2 window_size;
+uniform bool red=false;
 
 void fragment() {
     vec2 center = vec2(0.5);
@@ -19,10 +20,16 @@ void fragment() {
 	
 	//Black border
 	if (dist > 0.5) {
-        COLOR = vec4(0.005, 0.005, 0.02, 1.0);
+		if(red){
+			COLOR = vec4(0.3, 0.01, 0.01, 1.0);
+		}
+		else {
+			COLOR = vec4(0.005, 0.005, 0.02, 1.0);
+		}
     }
 	//edge
 	if (dist > 0.498 && dist < 0.502){
+		
 		COLOR = vec4(0.8, 0.8, 0.8, 0.5);
 	}
 	

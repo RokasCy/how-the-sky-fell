@@ -25,6 +25,14 @@ func _physics_process(delta: float):
 			
 		progressbar.visible = true
 		progressbar.value = planet_chart_value[pname]
+		
+		if pname == 'saturn' and planet_chart_value[pname] >= 60.0:
+			if 1 not in Gamestate.anomalies:
+				Gamestate.anomalies.append(1)
+				
+			progressbar.visible = false
+			return
+		
 		if Input.is_action_pressed("chart"):
 			planet_chart_value[pname] += delta * speed
 			if planet_chart_value[pname] >= 100:

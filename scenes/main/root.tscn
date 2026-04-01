@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="15_xj6in"]
 [ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="16_j2hem"]
 [ext_resource type="Script" uid="uid://dtrjmnw3h6614" path="res://scenes/main/animation_scripts.gd" id="17_vdg0n"]
+[ext_resource type="AudioStream" uid="uid://b7v4tdn3adobr" path="res://assets/audio/forest_ambience.mp3" id="18_8ktqk"]
+[ext_resource type="PackedScene" uid="uid://cpdgah5ako5b0" path="res://scenes/scenery/camp/picnic_table.tscn" id="19_6dy7b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twpsu"]
 shader = ExtResource("2_66hh6")
@@ -418,7 +420,7 @@ environment = SubResource("Environment_sqa0i")
 
 [node name="Player" parent="." unique_id=1326059467 instance=ExtResource("3_j7mxj")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.90610546, 1.027, 5.895117)
-speed = 8
+speed = 6
 jump_speed = 8
 
 [node name="Main_camera" type="Camera3D" parent="Player" unique_id=1619508799]
@@ -435,7 +437,7 @@ collide_with_bodies = false
 [node name="Stars" parent="Player" unique_id=311487277 instance=ExtResource("4_s7cc2")]
 transform = Transform3D(-0.95692515, 0, -0.29033488, 0, 1, 0, 0.29033488, 0, -0.95692515, 0, 0, 0)
 longitude = 40.0
-rotation_rate = 1.0
+rotation_rate = 0.1
 flux_factor = 27
 
 [node name="Ecliptic" parent="Player/Stars" unique_id=1939243606 instance=ExtResource("5_4x75f")]
@@ -453,7 +455,6 @@ mesh = SubResource("CylinderMesh_mflgo")
 
 [node name="Game logic" type="Node" parent="." unique_id=1399732596 node_paths=PackedStringArray("telescope", "maps")]
 script = ExtResource("7_2n4co")
-Night = 2
 telescope = NodePath("../telescope")
 maps = NodePath("../Controls/Maps")
 
@@ -609,7 +610,6 @@ mesh = SubResource("PlaneMesh_7pvxh")
 shape = SubResource("ConcavePolygonShape3D_y3xxt")
 
 [node name="Trees" type="GridMap" parent="Environment" unique_id=1736956556]
-visible = false
 mesh_library = ExtResource("12_n15bo")
 cell_size = Vector3(1, 2, 1)
 cell_center_y = false
@@ -663,6 +663,14 @@ game_logic = NodePath("../../Game logic")
 
 [node name="UI_Animations" type="AnimationPlayer" parent="." unique_id=1976297843]
 libraries/ = SubResource("AnimationLibrary_y0oop")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1246476737]
+stream = ExtResource("18_8ktqk")
+volume_db = -20.0
+autoplay = true
+
+[node name="picnic_table" parent="." unique_id=1963934142 instance=ExtResource("19_6dy7b")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.771918, 0.90870214, -5.3889093)
 
 [connection signal="chart" from="telescope" to="Controls/Maps" method="_on_telescope_chart"]
 [connection signal="star_click" from="telescope" to="Controls/Maps" method="_on_telescope_star_click"]

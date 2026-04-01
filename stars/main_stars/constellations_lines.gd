@@ -75,9 +75,9 @@ func line_update(hip):
 	
 	if constellation_type[hip] in Gamestate.constellations_unlocked and hip != 25428:
 		return
-	if constellation_type[hip] not in logic.current_targets:
-		add_red_star(hip)
-		return
+	#if constellation_type[hip] not in logic.current_targets:
+		#add_red_star(hip)
+		#return
 		#if green_star_list == []:
 			#return
 	if get_node_or_null("../green_" + str(int(hip))) != null:

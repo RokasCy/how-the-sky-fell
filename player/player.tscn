@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bgmava8cehoj2"]
 
 [ext_resource type="Script" uid="uid://dv7b0lc84p6ee" path="res://player/player.gd" id="1_3vyb7"]
+[ext_resource type="AudioStream" uid="uid://dhe3x8f1p7vp1" path="res://assets/audio/jump.mp3" id="2_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://csvoogd1ny0fp" path="res://assets/audio/grasswalking.mp3" id="3_yw30f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -15,3 +17,12 @@ shape = SubResource("CapsuleShape3D_u8vuu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1484507731]
 mesh = SubResource("CapsuleMesh_3vyb7")
+
+[node name="jump" type="AudioStreamPlayer3D" parent="." unique_id=1332725979]
+stream = ExtResource("2_g1dw6")
+volume_db = -20.0
+
+[node name="walk" type="AudioStreamPlayer3D" parent="." unique_id=1588436552]
+stream = ExtResource("3_yw30f")
+volume_db = -28.0
+pitch_scale = 0.9
