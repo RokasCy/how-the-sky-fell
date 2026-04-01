@@ -6,6 +6,7 @@ signal map_interact(open)
 @export var telescope : Node3D
 @export var con_logic: Node
 
+@onready var paper0 = $Paper0
 @onready var paper1 = $Paper1
 @onready var discovery_text = $Paper1/RichTextLabel
 @onready var paper2 = $Paper2
@@ -38,9 +39,9 @@ var textures : Dictionary = {
 }
 
 var const_to_namepos : Dictionary = {
-	"Ori": Vector2(200, 280),
-	"Tau": Vector2(280, 160),
-	"Aur": Vector2(210, 50),
+	"Ori": Vector2(210, 280),
+	"Tau": Vector2(270, 150),
+	"Aur": Vector2(240, 60),
 	"Gem": Vector2(20, 170),
 	
 	"Hya": Vector2(136, 250),
@@ -155,11 +156,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	if !visible:
 		return
 	if Input.is_action_just_pressed("1"):
-		paper1.visible = true
+		paper0.visible = true
+		paper1.visible = false
 		paper2.visible = false
 	if Input.is_action_just_pressed("2"):
+		paper0.visible = false
+		paper1.visible = true
+		paper2.visible = false
+	if Input.is_action_just_pressed("3"):
+		paper0.visible = false
 		paper1.visible = false
 		paper2.visible = true
+		
 		
 
 #--planet charting--#

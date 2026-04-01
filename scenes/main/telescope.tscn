@@ -298,6 +298,93 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_shu7l")
 
+[sub_resource type="GDScript" id="GDScript_p55sb"]
+script/source = "extends Area3D
+
+signal telescope_interact()
+signal telescope_pickup()
+signal papers_picked_up()
+
+@export var interaction_type : String = \"\"
+@export var zone : float = 10.0
+@export var text_node_main : Label
+@export var text_node2 : Label
+
+@onready var collision = $CollisionShape3D
+var interactable : bool = false
+var picked_up : bool = false
+
+
+func _ready() -> void:
+	collision.shape.radius = zone
+	if text_node_main != null:
+		text_node_main.visible = false
+	if text_node2 != null:
+		text_node2.visible = false
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		interactable = true
+		if !picked_up:
+			if text_node_main != null:
+				text_node_main.visible = true
+		
+func _on_body_exited(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		if !picked_up:
+			interactable = false
+		if text_node_main != null:
+			text_node_main.visible = false
+
+func telescope_interaction():
+	if picked_up:
+		return
+	
+	telescope_interact.emit()
+
+func telescope_picking_up():
+	picked_up = !picked_up
+	if picked_up:
+		text_node_main.visible = false
+	text_node2.visible = !text_node2.visible
+	telescope_pickup.emit()
+
+
+
+func paper_pickup():
+	var papers =  $\"../../picnic_table/papers\"
+	papers.visible = false
+	text_node_main.text = \"Press Tab to Open Maps\"
+	papers_picked_up.emit()
+
+var pickup_time = 1.0
+var pressing_time = 0.0
+func _physics_process(delta: float) -> void:
+	
+	
+	if !interactable:
+		return
+	if interaction_type == \"telescope\":
+		if Input.is_action_just_pressed(\"interact\"):
+			telescope_interaction()
+		if Input.is_action_pressed(\"pickup\"):
+			pressing_time += delta
+			if pressing_time >= pickup_time:
+				telescope_picking_up()
+				pressing_time = 0.0
+		else:
+			pressing_time = 0.0
+	
+	if interaction_type == \"paper\":
+		if Input.is_action_just_pressed(\"interact\"):
+			paper_pickup()
+			
+	
+
+			
+		
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4g4tk"]
 shader = ExtResource("3_4unxv")
 shader_parameter/window_size = Vector2(640, 480)
@@ -328,106 +415,10 @@ corner_detail = 6
 
 [sub_resource type="Animation" id="Animation_ccl66"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/press j:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/press j:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Control/wasd:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Control/wasd:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_xj0f0"]
 resource_name = "fade_in_tips"
 length = 12.366667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/press j:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(5.8999996, 7.866667, 10.733334, 12.000001),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("Control/press j:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(5.5333347, 20.233334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Control/wasd:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.60000014, 2.5000002, 5.3333335, 6.6333337),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Control/wasd:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.099999994, 6.933334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p55sb"]
 _data = {
@@ -467,6 +458,7 @@ mesh = SubResource("ArrayMesh_e1hqw")
 
 [node name="interaction" parent="." index="6" unique_id=934976142 node_paths=PackedStringArray("text_node_main", "text_node2") instance=ExtResource("2_cmv3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.0875926, -4.090456)
+script = SubResource("GDScript_p55sb")
 interaction_type = "telescope"
 text_node_main = NodePath("../UI tips/pickup")
 text_node2 = NodePath("../UI tips/putdown")
@@ -580,44 +572,6 @@ offset_right = 137.0
 offset_bottom = 4.0
 theme_override_font_sizes/font_size = 13
 text = "press c to chart"
-
-[node name="press j" type="Label" parent="Control" index="4" unique_id=1754798975]
-z_index = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 432.0
-offset_top = 450.0
-offset_right = 639.0
-offset_bottom = 493.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/line_spacing = 1
-theme_override_font_sizes/font_size = 14
-text = "Press J on a star to select it"
-horizontal_alignment = 1
-
-[node name="wasd" type="Label" parent="Control" index="5" unique_id=1515224003]
-z_index = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = 450.0
-offset_right = 205.0
-offset_bottom = 493.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/line_spacing = 1
-theme_override_font_sizes/font_size = 14
-text = "Rotate Telescope with WASD"
-horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10" unique_id=1577195307]
 libraries/ = SubResource("AnimationLibrary_p55sb")

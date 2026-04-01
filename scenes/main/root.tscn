@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://dtrjmnw3h6614" path="res://scenes/main/animation_scripts.gd" id="17_vdg0n"]
 [ext_resource type="AudioStream" uid="uid://b7v4tdn3adobr" path="res://assets/audio/forest_ambience.mp3" id="18_8ktqk"]
 [ext_resource type="PackedScene" uid="uid://cpdgah5ako5b0" path="res://scenes/scenery/camp/picnic_table.tscn" id="19_6dy7b"]
+[ext_resource type="Texture2D" uid="uid://dlofgh118jbw6" path="res://targets/images/other/paper_texture01.png" id="20_3vptp"]
+[ext_resource type="PackedScene" uid="uid://b4nqxwoc2lfak" path="res://logic/interactions/interaction_paper.tscn" id="20_ogsmj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twpsu"]
 shader = ExtResource("2_66hh6")
@@ -47,15 +49,6 @@ fog_light_energy = 0.8
 fog_density = 0.0005
 volumetric_fog_density = 0.0005
 volumetric_fog_ambient_inject = 0.12
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdg0n"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0.9607843, 0.29411766, 0.75686276, 0.1882353)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_mflgo"]
-material = SubResource("StandardMaterial3D_vdg0n")
-bottom_radius = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbwk5"]
 content_margin_left = 0.0
@@ -412,6 +405,15 @@ _data = {
 &"objective": SubResource("Animation_ogsmj")
 }
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_6dy7b"]
+size = Vector2(0.2, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogsmj"]
+albedo_texture = ExtResource("20_3vptp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0oop"]
+albedo_texture = ExtResource("20_3vptp")
+
 [node name="Root" type="Node3D" unique_id=180768219]
 script = ExtResource("1_534gw")
 
@@ -445,14 +447,6 @@ flux_factor = 27
 [node name="milkyway" parent="Player/Stars" unique_id=1541727212 instance=ExtResource("6_4im6m")]
 transform = Transform3D(321.37186, 381.46014, -34.759495, 362.8108, -288.5927, 187.30328, 122.834816, -145.61026, -462.287, -1.2365112, 0.5897827, 3.0636787e-05)
 
-[node name="north" type="MeshInstance3D" parent="Player/Stars" unique_id=897438033]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -1000, 0)
-mesh = SubResource("CylinderMesh_mflgo")
-
-[node name="south" type="MeshInstance3D" parent="Player/Stars" unique_id=874506785]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
-mesh = SubResource("CylinderMesh_mflgo")
-
 [node name="Game logic" type="Node" parent="." unique_id=1399732596 node_paths=PackedStringArray("telescope", "maps")]
 script = ExtResource("7_2n4co")
 telescope = NodePath("../telescope")
@@ -467,8 +461,9 @@ light_energy = 3.0
 light_cull_mask = 4293918722
 shadow_enabled = true
 
-[node name="telescope" parent="." unique_id=832613763 instance=ExtResource("9_2ea41")]
+[node name="telescope" parent="." unique_id=832613763 node_paths=PackedStringArray("logic") instance=ExtResource("9_2ea41")]
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 1.8217955, 1.1586488, 1.820723)
+logic = NodePath("../Game logic")
 speed = 0.5
 
 [node name="Controls" type="Node" parent="." unique_id=1573289678]
@@ -557,6 +552,15 @@ offset_top = 10.0
 offset_right = 228.0
 offset_bottom = 33.0
 text = "Objective: Identify all night-sky targets"
+
+[node name="E to pick up" type="Label" parent="Controls/UI" unique_id=616143324]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 432.0
+offset_right = 388.0
+offset_bottom = 455.0
+text = "Press E to Pick Up"
+horizontal_alignment = 1
 
 [node name="Node2D" type="Node2D" parent="Controls" unique_id=441894485]
 visible = false
@@ -672,8 +676,30 @@ autoplay = true
 [node name="picnic_table" parent="." unique_id=1963934142 instance=ExtResource("19_6dy7b")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.771918, 0.90870214, -5.3889093)
 
+[node name="interaction" parent="picnic_table" unique_id=934976142 node_paths=PackedStringArray("text_node_main") instance=ExtResource("20_ogsmj")]
+zone = 1.0
+text_node_main = NodePath("../../Controls/UI/E to pick up")
+
+[node name="papers" type="Node3D" parent="picnic_table" unique_id=685818470]
+
+[node name="paper" type="MeshInstance3D" parent="picnic_table/papers" unique_id=544072676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332855, 0.043638587, 0.12870836)
+mesh = SubResource("PlaneMesh_6dy7b")
+surface_material_override/0 = SubResource("StandardMaterial3D_ogsmj")
+
+[node name="paper2" type="MeshInstance3D" parent="picnic_table/papers" unique_id=682731852]
+transform = Transform3D(0.98192567, 0, -0.18926683, 0, 1, 0, 0.18926683, 0, 0.98192567, 0.39273262, 0.043638587, -0.10913968)
+mesh = SubResource("PlaneMesh_6dy7b")
+surface_material_override/0 = SubResource("StandardMaterial3D_y0oop")
+
+[node name="paper3" type="MeshInstance3D" parent="picnic_table/papers" unique_id=647233723]
+transform = Transform3D(0.98192567, 0, -0.18926683, 0, 1, 0, 0.18926683, 0, 0.98192567, 0.3994515, 0.043928325, 0.02280593)
+mesh = SubResource("PlaneMesh_6dy7b")
+surface_material_override/0 = SubResource("StandardMaterial3D_ogsmj")
+
 [connection signal="chart" from="telescope" to="Controls/Maps" method="_on_telescope_chart"]
 [connection signal="star_click" from="telescope" to="Controls/Maps" method="_on_telescope_star_click"]
 [connection signal="zoom" from="telescope" to="Player" method="_on_telescope_zoom"]
 [connection signal="zoom" from="telescope" to="Game logic" method="_on_telescope_zoom"]
 [connection signal="map_interact" from="Controls/Maps" to="Game logic" method="_on_map_interact"]
+[connection signal="papers_picked_up" from="picnic_table/interaction" to="Game logic" method="_on_papers_picked_up"]

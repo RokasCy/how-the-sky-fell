@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="9_lb3k0"]
 [ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="10_8qj3r"]
 [ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/scripts/rotator.tscn" id="11_k5y3h"]
+[ext_resource type="AudioStream" uid="uid://c52x12fk7cumb" path="res://assets/audio/button.mp3" id="12_k17ts"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 content_margin_left = 4.0
@@ -27,20 +28,15 @@ corner_detail = 5
 [sub_resource type="ViewportTexture" id="ViewportTexture_chmv6"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5urqu"]
-noise_type = 0
-frequency = 0.5
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_twpsu"]
-noise = SubResource("FastNoiseLite_5urqu")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnl5v"]
 shader = ExtResource("2_l5uyn")
+shader_parameter/SunHeight = 0.0
+shader_parameter/topSkyEarly = Color(0, 0, 0, 1)
+shader_parameter/horizonSkyEarly = Color(0, 0, 0, 1)
 shader_parameter/topSkyDay = Color(0.30980393, 0.7058824, 0.972549, 1)
 shader_parameter/horizonSkyDay = Color(0.25784063, 0.336663, 0.5077665, 1)
 shader_parameter/topSkyNight = Color(0.0066264374, 0.012579033, 0.046730794, 1)
 shader_parameter/horizonSkyNight = Color(0, 0, 0, 1)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_twpsu")
 
 [sub_resource type="Sky" id="Sky_lrqlo"]
 sky_material = SubResource("ShaderMaterial_bnl5v")
@@ -104,7 +100,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.033333335, 0.5666666, 1.5666667),
 "transitions": PackedFloat32Array(1, 0.41764775, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vfm6"]
@@ -133,7 +129,7 @@ offset_top = 16.0
 offset_right = 164.0
 offset_bottom = 72.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0.8117647, 0.03529412, 0.16862746, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.23753911, 0.23753914, 0.23753911, 0.52156866)
 theme_override_constants/line_separation = 0
 theme_override_constants/shadow_offset_x = 3
@@ -177,10 +173,12 @@ text = "Exit
 alignment = 0
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=174071406]
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(640, 480)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1423231057]
-transform = Transform3D(0.885207, 0.200639, 0.41970545, 0, 0.9022093, -0.43129855, -0.46519744, 0.3817885, 0.79864186, 3.3076653, 0.5921307, 5.2085853)
+transform = Transform3D(0.88520706, -0.21904907, 0.4103976, -2.9802322e-08, 0.88220084, 0.4708734, -0.46519744, -0.41682038, 0.7809303, 6.2380686, 10.115062, 10.78474)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1270326474]
 z_index = -1
@@ -257,6 +255,11 @@ period = 640.0
 
 [node name="Animations" type="AnimationPlayer" parent="." unique_id=1523373089]
 libraries/ = SubResource("AnimationLibrary_1vfm6")
+
+[node name="buttonsfx" type="AudioStreamPlayer3D" parent="." unique_id=120145974]
+stream = ExtResource("12_k17ts")
+volume_db = 10.0
+bus = &"Menu"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]

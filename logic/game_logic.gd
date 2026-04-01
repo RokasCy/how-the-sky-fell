@@ -11,6 +11,7 @@ var player_can_move = true
 var player_visible = true
 
 var book_opened : bool = false
+var can_map_open : bool = false
 var telescope_zoomed : bool = false
 var map_opened : bool = false
 var zoomed_fov : int 
@@ -31,7 +32,7 @@ func _on_book_open(open_or_close: Variant) -> void:
 
 
 func _on_map_interact(open: Variant) -> void:
-	if telescope_zoomed:
+	if telescope_zoomed or !can_map_open:
 		return
 	map_opened = open
 	maps.visible = open
@@ -53,3 +54,7 @@ func update_perms():
 		player_visible = false
 	else:
 		player_visible = true
+
+
+func _on_papers_picked_up() -> void:
+	can_map_open = true

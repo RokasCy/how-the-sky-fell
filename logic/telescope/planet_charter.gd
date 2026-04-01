@@ -10,6 +10,8 @@ var planet_chart_value  : Dictionary = {
 }
 var speed : int = 20.0
 
+var sat_anomaly = false
+
 func _physics_process(delta: float):
 	if !ui.visible:
 		return 
@@ -31,7 +33,11 @@ func _physics_process(delta: float):
 				Gamestate.anomalies.append(1)
 				
 			progressbar.visible = false
-			return
+			if !sat_anomaly:
+				parent.chart.emit("saturn")
+				sat_anomaly = true
+				
+			
 		
 		if Input.is_action_pressed("chart"):
 			planet_chart_value[pname] += delta * speed

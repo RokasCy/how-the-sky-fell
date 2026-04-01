@@ -16,6 +16,8 @@ signal chart(planet)
 @onready var collider1 = $StaticBody3D/CollisionShape3D
 @onready var collider2 = $StaticBody3D/CollisionShape3D2
 
+@export var logic : Node
+
 
 @onready var sfx = $sfx
 
@@ -39,15 +41,14 @@ func _ready() -> void:
 	print(speed)
 	
 func _on_interaction_telescope() -> void:
+	if logic != null and logic.map_opened:
+		return
 	control.visible = !control.visible
 	zoom.emit(control.visible)
 	
 	sfx.play()
 	
 	zoomed_in = control.visible
-	if zoomed_in and tips_shown < 4:
-		if !animations.is_playing():
-			animations.play("fade_in_tips")
 	
 	#make shadows visible
 	if control.visible:
@@ -112,8 +113,9 @@ func _physics_process(delta: float):
 	zoomed_fov = camera.fov
 	
 func change_zoom(key):
+	sfx.play()
 	if key == 1 and zoom_type != 1:
-		zoom_speed = speed * 0.75
+		zoom_speed = speed * 1
 		zoom_type = 1
 		
 		tween = create_tween()

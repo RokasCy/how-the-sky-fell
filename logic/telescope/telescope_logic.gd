@@ -12,7 +12,7 @@ var angle_coord : Array
 func _physics_process(delta):
 	if 1 in Gamestate.anomalies and !played1:
 		$TextureRect.material.set_shader_parameter("red", true)
-		await get_tree().create_timer(13.0).timeout
+		await get_tree().create_timer(2.4).timeout
 		$TextureRect.material.set_shader_parameter("red", false)
 		played1 = true
 
