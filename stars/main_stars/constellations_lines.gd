@@ -115,6 +115,8 @@ func line_update(hip):
 			constellation_lines_drawn[c[0]] = arr
 			
 			finished_constellation_check()
+	
+
 
 func finished_constellation_check():
 	for key in constellation_lines_drawn:

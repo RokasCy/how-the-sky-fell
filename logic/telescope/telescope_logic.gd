@@ -7,15 +7,8 @@ extends Control
 
 @onready var star_chime = $"../star_chime"
 
-var played1 = false
 var angle_coord : Array
 func _physics_process(delta):
-	if 1 in Gamestate.anomalies and !played1:
-		$TextureRect.material.set_shader_parameter("red", true)
-		await get_tree().create_timer(2.4).timeout
-		$TextureRect.material.set_shader_parameter("red", false)
-		played1 = true
-
 	#---- how telescope_logic connects to constellation line draw ----#
 	if visible == true:
 		var hip = angle_to_hip()

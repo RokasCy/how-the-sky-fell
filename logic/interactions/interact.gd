@@ -10,6 +10,7 @@ signal papers_picked_up()
 @export var text_node2 : Label
 
 @onready var collision = $CollisionShape3D
+@export var pickupsfx : AudioStreamPlayer3D
 var interactable : bool = false
 var picked_up : bool = false
 
@@ -54,6 +55,8 @@ func paper_pickup():
 	var papers =  $"../../picnic_table/papers"
 	papers.visible = false
 	text_node_main.text = "Press Tab to Open Maps"
+	
+	pickupsfx.play()
 	papers_picked_up.emit()
 
 var pickup_time = 1.0

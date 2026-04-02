@@ -6,8 +6,8 @@
 [ext_resource type="Shader" uid="uid://26gb8u78cf1d" path="res://shaders/telescope_overlay.gdshader" id="3_4unxv"]
 [ext_resource type="Script" uid="uid://cg5gtsprnr85p" path="res://logic/telescope/planet_charter.gd" id="4_e1hqw"]
 [ext_resource type="Script" uid="uid://dv7p50a7cksbf" path="res://logic/telescope/telescope_logic.gd" id="4_shu7l"]
-[ext_resource type="AudioStream" uid="uid://ca8g2eb385ixe" path="res://assets/audio/telescope_zoom.mp3" id="7_xj0f0"]
-[ext_resource type="AudioStream" uid="uid://dxvxhnqtcdmmw" path="res://assets/audio/star_chime.mp3" id="8_p55sb"]
+[ext_resource type="AudioStream" uid="uid://ca8g2eb385ixe" path="res://assets/audio/player/telescope_zoom.mp3" id="7_xj0f0"]
+[ext_resource type="AudioStream" uid="uid://dxvxhnqtcdmmw" path="res://assets/audio/player/star_chime.mp3" id="8_p55sb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_shu7l"]
 size = Vector3(0.82, 1.825, 13.44)
@@ -578,11 +578,13 @@ libraries/ = SubResource("AnimationLibrary_p55sb")
 
 [node name="sfx" type="AudioStreamPlayer3D" parent="." index="11" unique_id=1250710458]
 stream = ExtResource("7_xj0f0")
+attenuation_model = 3
 volume_db = 25.0
 
 [node name="star_chime" type="AudioStreamPlayer3D" parent="." index="12" unique_id=1101616812]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 stream = ExtResource("8_p55sb")
+attenuation_model = 3
 volume_db = -25.0
 
 [connection signal="telescope_interact" from="interaction" to="." method="_on_interaction_telescope"]

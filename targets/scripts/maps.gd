@@ -14,7 +14,7 @@ signal map_interact(open)
 
 @onready var planet_chime = $planet_chime
 
-
+@export var papersfx: AudioStreamPlayer3D
 @export var animations : AnimationPlayer
 
 
@@ -149,6 +149,9 @@ var pressed2 = false
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_book") and !pressed1:
 		map_interact.emit(!visible)
+		if visible:
+			papersfx.play()
+			
 		pressed1 = true
 	else:
 		pressed1 = false

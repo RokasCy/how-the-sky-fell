@@ -17,10 +17,13 @@
 [ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="15_xj6in"]
 [ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="16_j2hem"]
 [ext_resource type="Script" uid="uid://dtrjmnw3h6614" path="res://scenes/main/animation_scripts.gd" id="17_vdg0n"]
-[ext_resource type="AudioStream" uid="uid://b7v4tdn3adobr" path="res://assets/audio/forest_ambience.mp3" id="18_8ktqk"]
+[ext_resource type="AudioStream" uid="uid://b7v4tdn3adobr" path="res://assets/audio/ambience/forest_ambience.mp3" id="18_8ktqk"]
 [ext_resource type="PackedScene" uid="uid://cpdgah5ako5b0" path="res://scenes/scenery/camp/picnic_table.tscn" id="19_6dy7b"]
+[ext_resource type="AudioStream" uid="uid://c5dm2gmm0c5gj" path="res://assets/audio/ambience/firecrackle.mp3" id="19_x7awh"]
+[ext_resource type="Script" uid="uid://cy33q7itvi38i" path="res://logic/anomaly/fire_crackle.gd" id="20_2pn42"]
 [ext_resource type="Texture2D" uid="uid://dlofgh118jbw6" path="res://targets/images/other/paper_texture01.png" id="20_3vptp"]
 [ext_resource type="PackedScene" uid="uid://b4nqxwoc2lfak" path="res://logic/interactions/interaction_paper.tscn" id="20_ogsmj"]
+[ext_resource type="AudioStream" uid="uid://bpabbifsrsael" path="res://assets/audio/player/paper.mp3" id="21_y0oop"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twpsu"]
 shader = ExtResource("2_66hh6")
@@ -45,10 +48,15 @@ glow_enabled = true
 glow_hdr_threshold = 0.5
 glow_hdr_scale = 1.05
 glow_hdr_luminance_cap = 103.56
-fog_light_energy = 0.8
-fog_density = 0.0005
-volumetric_fog_density = 0.0005
-volumetric_fog_ambient_inject = 0.12
+fog_light_color = Color(0.8745098, 0.05490196, 0.043137256, 1)
+fog_light_energy = 0.1
+fog_density = 0.0358
+fog_sky_affect = 0.0
+fog_depth_begin = 0.0
+fog_depth_end = 354.8
+volumetric_fog_density = 0.0097
+volumetric_fog_albedo = Color(0.45490196, 0.03529412, 0.03137255, 1)
+volumetric_fog_ambient_inject = 0.03
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbwk5"]
 content_margin_left = 0.0
@@ -468,10 +476,11 @@ speed = 0.5
 
 [node name="Controls" type="Node" parent="." unique_id=1573289678]
 
-[node name="Maps" parent="Controls" unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic", "animations") instance=ExtResource("10_2lq1y")]
+[node name="Maps" parent="Controls" unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic", "papersfx", "animations") instance=ExtResource("10_2lq1y")]
 stars = NodePath("../../Player/Stars")
 telescope = NodePath("../../telescope")
 con_logic = NodePath("../../Game logic/constellation")
+papersfx = NodePath("../../papersfx")
 animations = NodePath("../../Animations")
 metadata/_edit_use_anchors_ = true
 
@@ -668,17 +677,31 @@ game_logic = NodePath("../../Game logic")
 [node name="UI_Animations" type="AnimationPlayer" parent="." unique_id=1976297843]
 libraries/ = SubResource("AnimationLibrary_y0oop")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1246476737]
+[node name="ambience" type="AudioStreamPlayer3D" parent="." unique_id=1246476737]
 stream = ExtResource("18_8ktqk")
-volume_db = -20.0
+attenuation_model = 3
+volume_db = -10.0
 autoplay = true
+
+[node name="fire crackle" type="AudioStreamPlayer3D" parent="." unique_id=1125538910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011687756, 0.5110339, -0.010058403)
+stream = ExtResource("19_x7awh")
+attenuation_model = 2
+autoplay = true
+script = ExtResource("20_2pn42")
+
+[node name="papersfx" type="AudioStreamPlayer3D" parent="." unique_id=19404513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.771918, 0.90870214, -5.3889093)
+stream = ExtResource("21_y0oop")
+attenuation_model = 3
 
 [node name="picnic_table" parent="." unique_id=1963934142 instance=ExtResource("19_6dy7b")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.771918, 0.90870214, -5.3889093)
 
-[node name="interaction" parent="picnic_table" unique_id=934976142 node_paths=PackedStringArray("text_node_main") instance=ExtResource("20_ogsmj")]
+[node name="interaction" parent="picnic_table" unique_id=934976142 node_paths=PackedStringArray("text_node_main", "pickupsfx") instance=ExtResource("20_ogsmj")]
 zone = 1.0
 text_node_main = NodePath("../../Controls/UI/E to pick up")
+pickupsfx = NodePath("../../papersfx")
 
 [node name="papers" type="Node3D" parent="picnic_table" unique_id=685818470]
 

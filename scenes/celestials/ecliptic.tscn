@@ -32,7 +32,7 @@ script = ExtResource("2_dt6i7")
 distance = 800
 
 [node name="rotator" parent="mars" unique_id=1137402544 instance=ExtResource("7_jadm5")]
-period = 120.0
+period = 75.0
 
 [node name="venus" parent="." unique_id=1346411416 instance=ExtResource("3_td48e")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -261.49985, -8.757637, -290.1068)
@@ -40,7 +40,7 @@ script = ExtResource("2_dt6i7")
 distance = 800
 
 [node name="rotator" parent="venus" unique_id=376461186 instance=ExtResource("7_jadm5")]
-period = -160.0
+period = -70.0
 
 [node name="saturn" parent="." unique_id=1928700230 instance=ExtResource("4_segic")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -141.66696, 14.187552, -279.3679)
@@ -48,7 +48,7 @@ script = ExtResource("2_dt6i7")
 distance = 1500
 
 [node name="rotator" parent="saturn" unique_id=1516571708 instance=ExtResource("7_jadm5")]
-period = 120.0
+period = 50.0
 
 [node name="jupiter" parent="." unique_id=755711679 instance=ExtResource("5_141ji")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 334.9263, -9.536743e-07, -341.2671)

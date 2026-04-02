@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ctomfb0egscyn" path="res://targets/images/regionA/Taurus.PNG" id="6_84sbc"]
 [ext_resource type="Texture2D" uid="uid://b1unndh1q7b8j" path="res://targets/images/other/coord_grid.png" id="7_7nic5"]
 [ext_resource type="Texture2D" uid="uid://d25j4ffhh8ota" path="res://targets/images/other/planet.png" id="8_yq4gd"]
-[ext_resource type="AudioStream" uid="uid://dinr1p4661u6f" path="res://assets/audio/planet_chime.mp3" id="9_2jr0f"]
-[ext_resource type="Texture2D" uid="uid://bay248yiadcq0" path="res://targets/images/other/almagestimage.png" id="10_8d7cb"]
+[ext_resource type="AudioStream" uid="uid://dinr1p4661u6f" path="res://assets/audio/music/planet_chime.mp3" id="9_2jr0f"]
 
 [node name="Maps" type="Control" unique_id=766604441]
 layout_mode = 3
@@ -22,7 +21,6 @@ mouse_filter = 1
 script = ExtResource("1_1xqgt")
 
 [node name="Paper0" type="TextureRect" parent="." unique_id=630074355]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -55,9 +53,9 @@ text = "Instructions:"
 [node name="Keybinds" type="Label" parent="Paper0" unique_id=1836276158]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 221.00003
+offset_left = 198.00003
 offset_top = 561.0
-offset_right = 744.0
+offset_right = 721.0
 offset_bottom = 584.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 14
@@ -66,9 +64,9 @@ text = "Keybinds: "
 [node name="Instuctions" type="Label" parent="Paper0" unique_id=1486099321]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 242.00003
+offset_left = 219.00003
 offset_top = 545.0
-offset_right = 765.0
+offset_right = 742.0
 offset_bottom = 689.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 13
@@ -83,9 +81,9 @@ celestial coordinates given to you.
 [node name="Aditional" type="Label" parent="Paper0" unique_id=445162738]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 170.00003
+offset_left = 147.00003
 offset_top = 559.0
-offset_right = 693.0
+offset_right = 670.0
 offset_bottom = 598.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 13
@@ -101,11 +99,10 @@ offset_right = 569.0
 offset_bottom = 679.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 13
-text = "Sightings of incomprehensible sky phenomena have been surfacing 
-for the past few weeks. No one has been able to put forth any 
-convicing reason as to why this is occuring. Leading theory states that
-these anomalies are early signs of a vacuum decay sequence, the fabric
-of space losing its stability. "
+text = "Sightings of incomprehensible sky phenomena have been surfacing for the past
+ few weeks. No one has been able to put forth any convicing reason as to why 
+this is occuring. Leading theory states that these anomalies are early signs of a
+vacuum decay sequence, the fabric of space losing its stability. "
 
 [node name="num" type="Label" parent="Paper0" unique_id=564006678]
 modulate = Color(0, 0, 0, 1)
@@ -119,6 +116,7 @@ theme_override_font_sizes/font_size = 13
 text = "1"
 
 [node name="Paper1" type="TextureRect" parent="." unique_id=2110430604]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -153,9 +151,9 @@ rotation = -1.5707964
 
 [node name="con1" type="TextureRect" parent="Paper1/Constellations" unique_id=913973598]
 modulate = Color(0, 0, 0, 1)
-offset_left = 37.0
+offset_left = 29.0
 offset_top = 10.0
-offset_right = 417.0
+offset_right = 409.0
 offset_bottom = 390.0
 mouse_filter = 2
 texture = ExtResource("3_2jr0f")
@@ -173,9 +171,9 @@ text = "a"
 
 [node name="con2" type="TextureRect" parent="Paper1/Constellations" unique_id=2053608253]
 modulate = Color(0, 0, 0, 1)
-offset_left = 37.0
+offset_left = 29.0
 offset_top = 10.0
-offset_right = 417.0
+offset_right = 409.0
 offset_bottom = 390.0
 mouse_filter = 2
 texture = ExtResource("4_8d7cb")
@@ -193,9 +191,9 @@ text = "b"
 
 [node name="con3" type="TextureRect" parent="Paper1/Constellations" unique_id=1984266324]
 modulate = Color(0, 0, 0, 1)
-offset_left = 37.0
+offset_left = 29.0
 offset_top = 10.0
-offset_right = 417.0
+offset_right = 409.0
 offset_bottom = 390.0
 mouse_filter = 2
 texture = ExtResource("5_adfil")
@@ -213,9 +211,9 @@ text = "c"
 
 [node name="con4" type="TextureRect" parent="Paper1/Constellations" unique_id=1675752720]
 modulate = Color(0, 0, 0, 1)
-offset_left = 37.0
+offset_left = 29.0
 offset_top = 10.0
-offset_right = 417.0
+offset_right = 409.0
 offset_bottom = 390.0
 mouse_filter = 2
 texture = ExtResource("6_84sbc")
@@ -281,9 +279,9 @@ offset_bottom = 265.0
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 172.00002
-offset_top = 404.0
+offset_top = 412.0
 offset_right = 182.00002
-offset_bottom = 414.0
+offset_bottom = 422.0
 
 [node name="Paper2" type="TextureRect" parent="." unique_id=425496788]
 visible = false
@@ -452,8 +450,3 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("9_2jr0f")
 volume_db = -35.0
 pitch_scale = 1.5
-
-[node name="Almagestimage" type="Sprite2D" parent="." unique_id=35297657]
-position = Vector2(492, 276)
-scale = Vector2(0.48265892, 0.48265892)
-texture = ExtResource("10_8d7cb")

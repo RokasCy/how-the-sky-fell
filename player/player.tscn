@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bgmava8cehoj2"]
 
 [ext_resource type="Script" uid="uid://dv7b0lc84p6ee" path="res://player/player.gd" id="1_3vyb7"]
-[ext_resource type="AudioStream" uid="uid://dhe3x8f1p7vp1" path="res://assets/audio/jump.mp3" id="2_g1dw6"]
-[ext_resource type="AudioStream" uid="uid://csvoogd1ny0fp" path="res://assets/audio/grasswalking.mp3" id="3_yw30f"]
+[ext_resource type="AudioStream" uid="uid://dhe3x8f1p7vp1" path="res://assets/audio/player/jump.mp3" id="2_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://csvoogd1ny0fp" path="res://assets/audio/player/grasswalking.mp3" id="3_yw30f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 

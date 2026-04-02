@@ -94,7 +94,7 @@ func create_star(id, starposition, mag, b_v, mat=null):
 	
 	star.name = str(id)
 	star.layers = 1 << 1
-	self.add_child(star)
+	add_child(star)
 	
 func star_scale(mag):
 	var F0 = 3.6e-8  # flux of magnitude 0 star in V-band

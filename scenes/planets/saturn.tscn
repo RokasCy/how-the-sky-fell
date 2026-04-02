@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://8c1qiwyxndij" path="res://assets/planets/saturn.glb" id="1_mlpop"]
 [ext_resource type="Script" uid="uid://cntgx0qn6rhf0" path="res://scenes/planets/circle_001.gd" id="2_fpsqh"]
-[ext_resource type="AudioStream" uid="uid://daciorbxv6s81" path="res://assets/audio/message2.mp3" id="3_dvlhj"]
+[ext_resource type="AudioStream" uid="uid://daciorbxv6s81" path="res://assets/audio/eerie/message2.mp3" id="3_dvlhj"]
+[ext_resource type="AudioStream" uid="uid://dd4txe8phs8mn" path="res://assets/audio/eerie/alienhorn.mp3" id="4_l17rv"]
+[ext_resource type="AudioStream" uid="uid://by0eags1hsa5b" path="res://assets/audio/eerie/eerieambience.mp3" id="5_oi57x"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mlpop"]
 load_path = "res://.godot/imported/saturn_saturn_rings.png-d1a7f4a47516a3bcbbcf903b8013cd7c.s3tc.ctex"
@@ -67,4 +69,15 @@ shape = SubResource("SphereShape3D_mlpop")
 
 [node name="anomaly1" type="AudioStreamPlayer3D" parent="." index="4" unique_id=1259805295]
 stream = ExtResource("3_dvlhj")
+attenuation_model = 3
+volume_db = 40.0
+
+[node name="anomaly2" type="AudioStreamPlayer3D" parent="." index="5" unique_id=1830533348]
+stream = ExtResource("4_l17rv")
+attenuation_model = 3
+volume_db = 20.0
+
+[node name="anomaly3" type="AudioStreamPlayer3D" parent="." index="6" unique_id=120238219]
+stream = ExtResource("5_oi57x")
+attenuation_model = 3
 volume_db = 40.0
