@@ -132,16 +132,10 @@ func check_target_completion():
 			all_found = false
 			break
 		
-	#make morning
 	if all_found and !switched:
 		switched = true
-		
 		animations.play("all_targets_found")
 		
-
-func morning():
-	stars.rotation_rate = 40.0
-
 	
 #--toggling map view--#
 var pressed1 = false

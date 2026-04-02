@@ -1,0 +1,258 @@
+[gd_scene format=3 uid="uid://dyff1gxuf272s"]
+
+[ext_resource type="Script" uid="uid://i0olxuff17f0" path="res://menu/main_menu.gd" id="1_ddl1r"]
+[ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="2_vitjb"]
+[ext_resource type="Texture2D" uid="uid://cq4cboyo1pwix" path="res://assets/textures/ground.png" id="3_4h3q1"]
+[ext_resource type="Texture2D" uid="uid://co5b7agmyq114" path="res://assets/textures/ground_normal.png" id="4_aajfh"]
+[ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="5_n2il2"]
+[ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="6_see2u"]
+[ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="7_nncvd"]
+[ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="8_awqib"]
+[ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="9_inq62"]
+[ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="10_cxwac"]
+[ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/scripts/rotator.tscn" id="11_sf7r2"]
+[ext_resource type="Script" uid="uid://bfuqb3p63emce" path="res://menu/input_listener.gd" id="13_ddl1r"]
+[ext_resource type="AudioStream" uid="uid://y2t3blf573p6" path="res://assets/audio/music/reflection.mp3" id="13_pk4ad"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_chmv6"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnl5v"]
+shader = ExtResource("2_vitjb")
+shader_parameter/SunHeight = 0.0
+shader_parameter/topSkyEarly = Color(0, 0, 0, 1)
+shader_parameter/horizonSkyEarly = Color(0, 0, 0, 1)
+shader_parameter/topSkyDay = Color(0.30980393, 0.7058824, 0.972549, 1)
+shader_parameter/horizonSkyDay = Color(0.25784063, 0.336663, 0.5077665, 1)
+shader_parameter/topSkyNight = Color(0.0066264374, 0.012579033, 0.046730794, 1)
+shader_parameter/horizonSkyNight = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_lrqlo"]
+sky_material = SubResource("ShaderMaterial_bnl5v")
+
+[sub_resource type="Environment" id="Environment_qkuil"]
+background_mode = 2
+sky = SubResource("Sky_lrqlo")
+ambient_light_color = Color(0.15570363, 0.26431853, 0.42944184, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.3
+glow_enabled = true
+glow_hdr_threshold = 0.5
+glow_hdr_scale = 1.05
+glow_hdr_luminance_cap = 103.56
+fog_light_energy = 0.8
+fog_density = 0.0005
+volumetric_fog_density = 0.0005
+volumetric_fog_ambient_inject = 0.12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3hfy5"]
+albedo_texture = ExtResource("3_4h3q1")
+metallic_specular = 0.0
+normal_enabled = true
+normal_scale = 0.25
+normal_texture = ExtResource("4_aajfh")
+uv1_scale = Vector3(25, 25, 25)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pfmj8"]
+material = SubResource("StandardMaterial3D_3hfy5")
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_iqufe"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[sub_resource type="Animation" id="Animation_k5y3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k17ts"]
+resource_name = "fade_out"
+length = 1.5666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.5666666, 1.5666667),
+"transitions": PackedFloat32Array(1, 0.41764775, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vfm6"]
+_data = {
+&"RESET": SubResource("Animation_k5y3h"),
+&"fade_out": SubResource("Animation_k17ts")
+}
+
+[node name="End_card" type="Control" unique_id=626725129]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ddl1r")
+
+[node name="Title" type="RichTextLabel" parent="." unique_id=634159302]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -286.5
+offset_top = 26.0
+offset_right = 286.5
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.23753911, 0.23753914, 0.23753911, 0.52156866)
+theme_override_constants/line_separation = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/normal_font_size = 35
+text = "Thank you for playing my game!"
+
+[node name="Press" type="RichTextLabel" parent="." unique_id=1749489674]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 21.0
+offset_top = 436.0
+offset_right = 594.0
+offset_bottom = 502.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.23753911, 0.23753914, 0.23753911, 0.52156866)
+theme_override_constants/line_separation = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "press any button to exit"
+
+[node name="Created" type="RichTextLabel" parent="." unique_id=888997917]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -301.0
+offset_top = 436.0
+offset_right = 272.0
+offset_bottom = 502.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.23753911, 0.23753914, 0.23753911, 0.52156866)
+theme_override_constants/line_separation = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "created by rokas"
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=174071406]
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(640, 480)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1423231057]
+transform = Transform3D(0.88520706, -0.21904907, 0.4103976, -2.9802322e-08, 0.88220084, 0.4708734, -0.46519744, -0.41682038, 0.7809303, 6.2380686, 10.115062, 10.78474)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1270326474]
+z_index = -1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = SubResource("ViewportTexture_chmv6")
+
+[node name="Scene" type="Node" parent="." unique_id=540099327]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Scene" unique_id=871427882]
+environment = SubResource("Environment_qkuil")
+
+[node name="Ground" type="MeshInstance3D" parent="Scene" unique_id=2131118406]
+transform = Transform3D(0.9999999, -0.0002654435, 0.00034373114, 0.00026483487, 0.9999984, 0.0017804363, -0.0003442003, -0.0017803457, 0.9999984, 0.07046509, 0.11270857, -0.109233856)
+mesh = SubResource("PlaneMesh_pfmj8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scene/Ground" unique_id=1361764134]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/Ground/StaticBody3D" unique_id=383540517]
+shape = SubResource("ConcavePolygonShape3D_iqufe")
+
+[node name="Trees" type="GridMap" parent="Scene" unique_id=484151656]
+mesh_library = ExtResource("5_n2il2")
+cell_size = Vector3(1, 2, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65498, 65501, 0, 65502, 65513, 0, 65498, 65529, 0, 65502, 13, 0, 65500, 31, 0, 65520, 35, 0, 65514, 25, 0, 1, 28, 0, 65534, 37, 0, 65534, 38, 0, 20, 34, 0, 21, 34, 0, 29, 16, 0, 41, 25, 0, 36, 0, 0, 26, 65514, 0, 34, 65499, 0, 65533, 65498, 0, 65518, 65504, 0, 65512, 65497, 0, 65504, 65505, 0, 65495, 65518, 0, 5, 65495, 0, 16, 65498, 0, 16, 65499, 0, 15, 65508, 0, 5, 65502, 0, 65522, 65495, 0, 65531, 65491, 0, 34, 65503, 0, 35, 65503, 0, 39, 65513, 0, 43, 65522, 0, 24, 65502, 0, 32, 65519, 0, 24, 65518, 0, 19, 65510, 0, 26, 65508, 0, 27, 65508, 0, 27, 65509, 0, 34, 65513, 0, 37, 65522, 0, 34, 65532, 0, 29, 9, 0, 38, 15, 0, 30, 31, 0, 30, 30, 0, 33, 22, 0, 37, 27, 0, 36, 36, 0, 25, 39, 0, 10, 40, 0, 4, 33, 0, 14, 33, 0, 65529, 41, 0, 65524, 38, 0, 65524, 37, 0, 65518, 30, 0, 65507, 33, 0, 65494, 29, 0, 65492, 14, 0, 65496, 3, 0, 65503, 8, 0, 65499, 6, 0, 65497, 18, 0, 65501, 26, 0, 65507, 29, 0, 65512, 40, 0, 65502, 65527, 0, 65503, 65520, 0, 65510, 65504, 0, 65511, 65513, 0, 65520, 17, 0, 65531, 65512, 0, 65509, 65526, 0, 21, 19, 0, 8, 65521, 0, 1, 65519, 0, 65531, 65518, 0, 65525, 65521, 0, 65520, 65527, 0, 65517, 65533, 0, 65520, 4, 0, 65522, 8, 0, 9, 10, 0, 1, 14, 0, 65528, 12, 0, 65529, 12, 0, 11, 65525, 0, 14, 65530, 0, 14, 0, 0, 13, 5, 0, 48, 65533, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Foliage" type="GridMap" parent="Scene" unique_id=352860240]
+mesh_library = ExtResource("6_see2u")
+cell_size = Vector3(0.5, 2, 0.5)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65516, 65533, 0, 65524, 65519, 0, 14, 65525, 0, 65529, 11, 0, 14, 4, 0, 15, 5, 0, 13, 24, 0, 65516, 9, 0, 65521, 65509, 0, 65505, 65505, 0, 65490, 14, 0, 65514, 31, 0, 18, 50, 0, 25, 34, 0, 45, 27, 0, 44, 14, 0, 32, 33, 0, 32, 34, 0, 22, 55, 0, 65516, 65494, 0, 14, 65485, 0, 22, 65471, 0, 65522, 65478, 0, 65485, 19, 0, 65477, 0, 0, 65488, 65524, 0, 65506, 65494, 0, 65507, 65494, 0, 65501, 65488, 0, 46, 65527, 0, 54, 65516, 0, 85, 65534, 0, 85, 65535, 0, 81, 17, 0, 45, 9, 0, 41, 39, 0, 43, 60, 0, 17, 53, 0, 65522, 64, 0, 65487, 73, 0, 65461, 75, 0, 65446, 66, 0, 65448, 45, 0, 65441, 19, 0, 65441, 18, 0, 65441, 17, 0, 65451, 65527, 0, 65452, 65527, 0, 65452, 65526, 0, 65453, 65525, 0, 65453, 65524, 0, 65453, 65523, 0, 65451, 65483, 0, 65451, 65482, 0, 65497, 65472, 0, 65498, 65472, 0, 65520, 65489, 0, 65489, 65496, 0, 24, 65474, 0, 42, 65454, 0, 77, 65478, 0, 15, 65524, 0, 65506, 65527, 0, 23, 53, 0, 23, 52, 0, 65483, 31, 0, 65474, 65495, 0, 65453, 65470, 0, 71, 65470, 0, 88, 65497, 0, 94, 65527, 0, 82, 62, 0, 51, 54, 0)
+}
+
+[node name="campfire" parent="Scene" unique_id=2129771687 instance=ExtResource("7_nncvd")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Scene/campfire" unique_id=1425219279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17825395, 1.0845184, 0.054926455)
+light_color = Color(0.73721856, 0.5857735, 1.540184e-06, 1)
+light_energy = 0.8
+light_size = 0.045
+light_cull_mask = 4294967293
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 0.105
+
+[node name="Logs" type="Node" parent="Scene/campfire" unique_id=1932648799]
+
+[node name="log" parent="Scene/campfire/Logs" unique_id=2131037972 instance=ExtResource("8_awqib")]
+transform = Transform3D(0.99541956, 0, -0.09560253, 0, 1, 0, 0.09560253, 0, 0.99541956, 3.5745707, 0.027969122, 0.1941948)
+
+[node name="log2" parent="Scene/campfire/Logs" unique_id=125865838 instance=ExtResource("8_awqib")]
+transform = Transform3D(0.09348274, 0, -0.99562097, 0, 1, 0, 0.99562097, 0, 0.09348274, -0.20573854, 0.027969122, -3.4749389)
+
+[node name="log3" parent="Scene/campfire/Logs" unique_id=1840119115 instance=ExtResource("8_awqib")]
+transform = Transform3D(-0.6628553, 0, -0.7487475, 0, 1, 0, 0.7487475, 0, -0.6628553, -2.091414, 0.027969122, 2.2468586)
+
+[node name="car" parent="Scene" unique_id=758288718 instance=ExtResource("9_inq62")]
+transform = Transform3D(-0.57678336, 0, 0.25341833, 0, 0.63, 0, -0.25341833, 0, -0.57678336, -14.781224, 0.8435905, -15.666941)
+
+[node name="milkyway" parent="Scene" unique_id=290874618 instance=ExtResource("10_cxwac")]
+transform = Transform3D(382.1977, 315.6986, 65.2631, -318.42273, 385.49567, 0, -50.317284, -41.56251, 495.72244, -1.2365112, 0.5897827, 3.0636787e-05)
+
+[node name="rotator" parent="Scene/milkyway" unique_id=1137402544 instance=ExtResource("11_sf7r2")]
+transform = Transform3D(0.0013974168, 0.0013256532, 0.0005383972, 0.00074489875, -3.149829e-05, -0.0018558381, -0.0012216192, 0.001497215, -0.00051574653, 0.0009460577, 0.00093970966, -0.0023935614)
+period = 640.0
+
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=1523373089]
+libraries/ = SubResource("AnimationLibrary_1vfm6")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1501701137]
+stream = ExtResource("13_pk4ad")
+autoplay = true
+
+[node name="Node" type="Node" parent="." unique_id=1654708993]
+script = ExtResource("13_ddl1r")

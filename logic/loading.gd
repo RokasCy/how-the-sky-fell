@@ -9,3 +9,6 @@ func _ready():
 	if ui != null:
 		ui.play("objective")
 	pass 
+
+func end_card():
+	get_tree().change_scene_to_file("res://menu/end_card.tscn")
