@@ -12,6 +12,13 @@
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_dnaa7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nq8cj"]
+shading_mode = 0
+albedo_color = Color(0.715314, 0.12823954, 0.87141, 1)
+billboard_keep_scale = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nq8cj"]
+
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_j0rq6"]
 
 [node name="Stars" type="Node3D" unique_id=1768846438]
@@ -30,6 +37,10 @@ time_out = 60
 [node name="Finished" type="MeshInstance3D" parent="." unique_id=1233572757]
 material_override = ExtResource("2_1pfql")
 mesh = SubResource("ImmediateMesh_dnaa7")
+
+[node name="AnomalyMesh" type="MeshInstance3D" parent="." unique_id=1909501430]
+material_override = SubResource("StandardMaterial3D_nq8cj")
+mesh = SubResource("ImmediateMesh_nq8cj")
 
 [node name="Wrong" type="MeshInstance3D" parent="." unique_id=1739420306]
 material_override = ExtResource("5_mnp46")

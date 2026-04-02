@@ -3,10 +3,11 @@ extends MeshInstance3D
 @onready var parent = get_parent()
 @onready var constellations_done = $"../Finished"
 @onready var constellations_wrong = $"../Wrong"
+@onready var anomaly_mesh = $"../AnomalyMesh".mesh
 @onready var telescope = $"../../../telescope"
 @onready var logic = $"../../../Game logic/constellation"
 
-@export var time_out := 10
+@export var time_out := 3
 
 var const_lines_path = "res://stars/star_data/hip_constellation_line.csv"
 
@@ -71,6 +72,13 @@ func time_limit():
 	current_constellation_selected = ""
 
 func line_update(hip):
+	
+	#aldebaran or menkalinan
+	if 2 not in Gamestate.anomalies:
+		if "Ori" in Gamestate.constellations_unlocked:
+			if hip in [21421.0, 28360.0]:
+				Gamestate.anomalies.append(2)
+				
 	#hip 25428 is auriga 
 	
 	if constellation_type[hip] in Gamestate.constellations_unlocked and hip != 25428:
@@ -135,10 +143,17 @@ func finished_constellation_check():
 
 
 func finish_constellation(con):
-	print(Gamestate.constellations_unlocked)
 	var lines = constellation_lines[con]
 	
 	var m : ImmediateMesh = constellations_done.mesh
+	
+	if con=="Ori":
+		#make orion anomaly if all other constellations unlocked
+		if "Gem" in Gamestate.constellations_unlocked and "Aur" in Gamestate.constellations_unlocked and "Tau" in Gamestate.constellations_unlocked:	
+			await get_tree().create_timer(2.0).timeout
+			Gamestate.anomalies.append(2)
+			
+		m = anomaly_mesh
 		
 	m.surface_begin(Mesh.PRIMITIVE_LINES)
 	for couple in lines:
@@ -147,6 +162,7 @@ func finish_constellation(con):
 		m.surface_add_vertex(a)
 		m.surface_add_vertex(b)
 	m.surface_end()
+	mesh.clear_surfaces()
 	current_constellation_selected = ""
 
 var green_star_list = []
@@ -220,14 +236,12 @@ func remove_green_stars(finish_const = false):
 	green_star_list = []
 
 var count = 0
-func draw_line(star1, star2):
+func draw_line(star1, star2, m=mesh):
 	count += 1
 	
 	#--position line--#
 	var a = parent.star_to_position(star1)
 	var b = parent.star_to_position(star2)
-	
-	var m : ImmediateMesh = mesh
 
 	m.surface_add_vertex(a)
 	m.surface_add_vertex(b)

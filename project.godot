@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="how the sky fell"
-run/main_scene="uid://d0i0jkffp56vi"
+run/main_scene="uid://ci5hir3ycucwr"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [audio]
