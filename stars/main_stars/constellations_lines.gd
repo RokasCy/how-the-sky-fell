@@ -72,11 +72,10 @@ func time_limit():
 	current_constellation_selected = ""
 
 func line_update(hip):
-	
 	#aldebaran or menkalinan
 	if 2 not in Gamestate.anomalies:
 		if "Ori" in Gamestate.constellations_unlocked:
-			if hip in [21421.0, 28360.0]:
+			if hip in [21421.0]:
 				Gamestate.anomalies.append(2)
 				
 	#hip 25428 is auriga 

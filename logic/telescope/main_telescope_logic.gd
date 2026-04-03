@@ -38,7 +38,6 @@ var offset = Vector3(0.0, 0.275, -0.2)
 func _ready() -> void:
 	control.visible = false
 	camera.position = position + offset
-	print(speed)
 	
 func _on_interaction_telescope() -> void:
 	if logic != null and logic.map_opened:

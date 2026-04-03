@@ -20,7 +20,6 @@ func spin():
 	rotate_y(spin_speed * delta)
 	spin_speed += 0.015
 	spin_speed = min(spin_speed, 16.0)
-	print(spin_speed)
 
 func _physics_process(_delta: float) -> void:
 	if 3 in Gamestate.anomalies:
