@@ -8,4 +8,5 @@ func _ready():
 	speed = TAU / period
 
 func _physics_process(delta):
+	speed = TAU / period
 	planet.rotate_y(speed * delta)

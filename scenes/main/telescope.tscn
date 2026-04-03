@@ -515,6 +515,7 @@ text = "Hold Q to Put Up"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="." index="9" unique_id=1398561454]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("4_shu7l")

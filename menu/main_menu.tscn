@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/scripts/rotator.tscn" id="11_k5y3h"]
 [ext_resource type="AudioStream" uid="uid://c52x12fk7cumb" path="res://assets/audio/music/button.mp3" id="12_k17ts"]
 [ext_resource type="AudioStream" uid="uid://y2t3blf573p6" path="res://assets/audio/music/reflection.mp3" id="13_1vfm6"]
+[ext_resource type="Shader" uid="uid://d0oqhh7foyfdf" path="res://shaders/dithering.gdshader" id="14_lb3k0"]
+[ext_resource type="Texture2D" uid="uid://ca3ggiiu0q6ux" path="res://assets/readme/preview.png" id="15_5urqu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 content_margin_left = 4.0
@@ -90,7 +92,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_k17ts"]
 resource_name = "fade_out"
-length = 1.5666667
+length = 3.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -98,10 +100,24 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 0.5666666, 1.5666667),
+"times": PackedFloat32Array(1, 2.2666667, 2.5333333),
 "transitions": PackedFloat32Array(1, 0.41764775, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Post_Processing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"levels_fade_out"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vfm6"]
@@ -109,6 +125,40 @@ _data = {
 &"RESET": SubResource("Animation_k5y3h"),
 &"fade_out": SubResource("Animation_k17ts")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkuil"]
+shader = ExtResource("14_lb3k0")
+shader_parameter/preview = false
+shader_parameter/preview_texture = ExtResource("15_5urqu")
+shader_parameter/levels = 16.0
+shader_parameter/viewport_resolution = Vector2(640, 480)
+shader_parameter/virtual_resolution = Vector2(320, 240)
+shader_parameter/dither_strength = 0.06
+
+[sub_resource type="GDScript" id="GDScript_b06p2"]
+script/source = "extends ColorRect
+
+var current_level_in = 1.0
+func levels_fade_in():
+	material.set(\"shader_parameter/levels\", current_level_in)
+	current_level_in += 1.0
+	if current_level_in <= 16.0:
+		await get_tree().create_timer(0.1).timeout
+		levels_fade_in()
+	else:
+		current_level_in = 1.0
+
+var current_level_out = 16.0
+func levels_fade_out():
+	material.set(\"shader_parameter/levels\", current_level_out)
+	current_level_out -= 1.0
+	print(current_level_out)
+	if current_level_out >= 1.0:
+		await get_tree().create_timer(0.1).timeout
+		levels_fade_out()
+	else:
+		current_level_out = 16.0
+"
 
 [node name="Main_menu" type="Control" unique_id=626725129]
 layout_mode = 3
@@ -265,6 +315,15 @@ bus = &"Menu"
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1501701137]
 stream = ExtResource("13_1vfm6")
 autoplay = true
+
+[node name="Post_Processing" type="ColorRect" parent="." unique_id=1540772405]
+z_index = 10
+material = SubResource("ShaderMaterial_qkuil")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+script = SubResource("GDScript_b06p2")
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]

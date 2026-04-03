@@ -2,8 +2,10 @@ extends Node3D
 
 @onready var animator = $Animations
 @onready var ui = $UI_Animations
+@onready var shader_mat = $Controls/UI/Post_Processing.material
 
 func _ready():
+	shader_mat.set("shader_parameter/levels", 1.0)
 	if animator != null:
 		animator.play("fade_in")
 	if ui != null:

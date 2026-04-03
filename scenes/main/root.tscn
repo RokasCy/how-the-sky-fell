@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dy63vlm034cib" path="res://logic/loading.gd" id="1_534gw"]
 [ext_resource type="Shader" uid="uid://bm3rnud5qraip" path="res://shaders/night-sky.gdshader" id="2_66hh6"]
 [ext_resource type="PackedScene" uid="uid://bgmava8cehoj2" path="res://player/player.tscn" id="3_j7mxj"]
+[ext_resource type="Shader" uid="uid://d0oqhh7foyfdf" path="res://shaders/dithering.gdshader" id="4_3xqdj"]
 [ext_resource type="PackedScene" uid="uid://dxb4lufoh4iia" path="res://stars/main_stars/constellations.tscn" id="4_s7cc2"]
 [ext_resource type="PackedScene" uid="uid://did82x0xhe7le" path="res://scenes/celestials/ecliptic.tscn" id="5_4x75f"]
 [ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="6_4im6m"]
@@ -11,7 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://b1ifdanyuv32q" path="res://scenes/main/telescope.tscn" id="9_2ea41"]
 [ext_resource type="PackedScene" uid="uid://70106wa0yhxi" path="res://targets/scenes/maps.tscn" id="10_2lq1y"]
 [ext_resource type="Material" uid="uid://ds663dk1uukj5" path="res://assets/material/ground.tres" id="11_2ioay"]
+[ext_resource type="Shader" uid="uid://cnmqgjcanfbf7" path="res://shaders/processing_effects.gdshader" id="11_386mo"]
+[ext_resource type="Texture2D" uid="uid://ca3ggiiu0q6ux" path="res://assets/readme/preview.png" id="12_386mo"]
 [ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="12_n15bo"]
+[ext_resource type="Script" uid="uid://bsqhvmlifpsjw" path="res://shaders/shader_script.gd" id="13_0hbal"]
 [ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="13_8m583"]
 [ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="14_0nxy4"]
 [ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="15_xj6in"]
@@ -57,6 +61,26 @@ fog_depth_end = 354.8
 volumetric_fog_density = 0.0097
 volumetric_fog_albedo = Color(0.45490196, 0.03529412, 0.03137255, 1)
 volumetric_fog_ambient_inject = 0.03
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xqdj"]
+shader = ExtResource("4_3xqdj")
+shader_parameter/preview = false
+shader_parameter/preview_texture = ExtResource("12_386mo")
+shader_parameter/levels = 16.0
+shader_parameter/viewport_resolution = Vector2(640, 480)
+shader_parameter/virtual_resolution = Vector2(320, 240)
+shader_parameter/dither_strength = 0.06
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l6cfn"]
+noise_type = 0
+frequency = 0.0244
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3j36c"]
+noise = SubResource("FastNoiseLite_l6cfn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hbal"]
+shader = ExtResource("11_386mo")
+shader_parameter/constant_static_texture = SubResource("NoiseTexture2D_3j36c")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbwk5"]
 content_margin_left = 0.0
@@ -216,6 +240,20 @@ tracks/2/keys = {
 "method": &"end_card"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Controls/UI/Post_Processing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(9.433333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"levels_fade_out"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_kbwk5"]
 resource_name = "constellation_discovered"
@@ -235,6 +273,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ya6yc"]
 resource_name = "fade_in"
+length = 2.7333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -242,10 +281,24 @@ tracks/0/path = NodePath("Controls/UI/Panel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(-0.06666667, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Controls/UI/Post_Processing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"levels_fade_in"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6dy7b"]
@@ -353,7 +406,7 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_3vptp"]
-length = 0.001
+length = 1.1333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -418,8 +471,6 @@ target_position = Vector3(0, 0, -2000)
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Main_camera" unique_id=808082390]
-
 [node name="Stars" parent="Player" unique_id=311487277 instance=ExtResource("4_s7cc2")]
 transform = Transform3D(-0.95692515, 0, -0.29033488, 0, 1, 0, 0.29033488, 0, -0.95692515, 0, 0, 0)
 longitude = 40.0
@@ -453,6 +504,7 @@ speed = 0.5
 [node name="Controls" type="Node" parent="." unique_id=1573289678]
 
 [node name="Maps" parent="Controls" unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic", "papersfx", "animations") instance=ExtResource("10_2lq1y")]
+visible = false
 stars = NodePath("../../Player/Stars")
 telescope = NodePath("../../telescope")
 con_logic = NodePath("../../Game logic/constellation")
@@ -467,6 +519,24 @@ offset_right = 640.0
 offset_bottom = 480.0
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Post_Processing" type="ColorRect" parent="Controls/UI" unique_id=1510762638]
+z_index = 10
+material = SubResource("ShaderMaterial_3xqdj")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+script = ExtResource("13_0hbal")
+
+[node name="Processing_Effects" type="ColorRect" parent="Controls/UI" unique_id=1279861590]
+visible = false
+z_index = 10
+material = SubResource("ShaderMaterial_0hbal")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="Controls/UI" unique_id=1543459]
 modulate = Color(0, 0, 0, 1)
@@ -559,7 +629,7 @@ anchor_bottom = 0.5
 offset_left = 239.0
 offset_top = 212.5
 offset_right = 296.0
-offset_bottom = 267.50134
+offset_bottom = 267.50125
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
