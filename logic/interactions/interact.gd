@@ -3,6 +3,7 @@ extends Area3D
 signal telescope_interact()
 signal telescope_pickup()
 signal papers_picked_up()
+signal fire_burn_change()
 
 @export var interaction_type : String = ""
 @export var zone : float = 10.0
@@ -50,7 +51,6 @@ func telescope_picking_up():
 	telescope_pickup.emit()
 
 
-
 func paper_pickup():
 	var papers =  $"../../picnic_table/papers"
 	papers.visible = false
@@ -80,6 +80,10 @@ func _physics_process(delta: float) -> void:
 	if interaction_type == "paper":
 		if Input.is_action_just_pressed("interact"):
 			paper_pickup()
+			
+	if interaction_type == "fire":
+		if Input.is_action_just_pressed("interact"):
+			fire_burn_change.emit()
 			
 	
 

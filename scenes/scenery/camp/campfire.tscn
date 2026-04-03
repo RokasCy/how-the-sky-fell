@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://duy21c8lmqynq" path="res://assets/models/camp/campfire.glb" id="1_yfrnb"]
 [ext_resource type="Texture2D" uid="uid://dqt0ojvskasru" path="res://assets/textures/fire.png" id="2_8pk5p"]
+[ext_resource type="Script" uid="uid://daf1ku5b5s2iv" path="res://scenes/scenery/camp/campfire.gd" id="2_w3g6x"]
 [ext_resource type="Texture2D" uid="uid://cutcs733t48k3" path="res://assets/textures/smoke.png" id="3_m6xh0"]
+[ext_resource type="AudioStream" uid="uid://c5dm2gmm0c5gj" path="res://assets/audio/ambience/firecrackle.mp3" id="5_atkf8"]
 
 [sub_resource type="Gradient" id="Gradient_1v5ef"]
 offsets = PackedFloat32Array(0, 0.83116883)
@@ -94,7 +96,10 @@ grow = true
 [sub_resource type="QuadMesh" id="QuadMesh_7hpf1"]
 material = SubResource("StandardMaterial3D_k3mv4")
 
+[sub_resource type="GDScript" id="GDScript_1ynqb"]
+
 [node name="campfire" unique_id=2129771687 instance=ExtResource("1_yfrnb")]
+script = ExtResource("2_w3g6x")
 
 [node name="flames" type="GPUParticles3D" parent="." index="1" unique_id=752801945]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22347832, 0)
@@ -109,3 +114,21 @@ lifetime = 4.0
 preprocess = 4.0
 process_material = SubResource("ParticleProcessMaterial_sdndd")
 draw_pass_1 = SubResource("QuadMesh_7hpf1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=386379981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17825395, 1.0845184, 0.054926455)
+light_color = Color(1, 0.8, 0.050980393, 1)
+light_energy = 0.8
+light_size = 0.045
+light_cull_mask = 4294966273
+shadow_enabled = true
+shadow_caster_mask = 4294966273
+omni_range = 100.0
+omni_attenuation = 0.105
+
+[node name="fire crackle" type="AudioStreamPlayer3D" parent="." index="4" unique_id=1438791219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011687756, 0.5110339, -0.010058403)
+stream = ExtResource("5_atkf8")
+attenuation_model = 2
+autoplay = true
+script = SubResource("GDScript_1ynqb")

@@ -2,7 +2,7 @@ extends ColorRect
 
 var current_level_in = 1.0
 func levels_fade_in():
-	while current_level_out >= 1.0:
+	while current_level_in <= 16.0:
 		material.set("shader_parameter/levels", current_level_in)
 		current_level_in += 1.0
 
