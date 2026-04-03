@@ -32,10 +32,10 @@ func _physics_process(delta: float):
 			if 1 not in Gamestate.anomalies:
 				Gamestate.anomalies.append(1)
 				
-			progressbar.visible = false
-			if !sat_anomaly:
-				parent.chart.emit("saturn")
-				sat_anomaly = true
+			#progressbar.visible = false
+			#if !sat_anomaly:
+				#parent.chart.emit("saturn")
+				#sat_anomaly = true
 				
 			
 		

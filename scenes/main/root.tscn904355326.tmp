@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://b7v4tdn3adobr" path="res://assets/audio/ambience/forest_ambience.mp3" id="18_8ktqk"]
 [ext_resource type="PackedScene" uid="uid://cpdgah5ako5b0" path="res://scenes/scenery/camp/picnic_table.tscn" id="19_6dy7b"]
 [ext_resource type="AudioStream" uid="uid://c5dm2gmm0c5gj" path="res://assets/audio/ambience/firecrackle.mp3" id="19_x7awh"]
+[ext_resource type="Script" uid="uid://cy33q7itvi38i" path="res://logic/anomaly/fire_crackle.gd" id="20_2pn42"]
 [ext_resource type="Texture2D" uid="uid://dlofgh118jbw6" path="res://targets/images/other/paper_texture01.png" id="20_3vptp"]
 [ext_resource type="PackedScene" uid="uid://b4nqxwoc2lfak" path="res://logic/interactions/interaction_paper.tscn" id="20_ogsmj"]
 [ext_resource type="AudioStream" uid="uid://bpabbifsrsael" path="res://assets/audio/player/paper.mp3" id="21_y0oop"]
@@ -57,9 +58,8 @@ fog_density = 0.0358
 fog_sky_affect = 0.0
 fog_depth_begin = 0.0
 fog_depth_end = 354.8
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
-volumetric_fog_albedo = Color(0.25118154, 0.23548573, 0.21194193, 1)
+volumetric_fog_density = 0.0097
+volumetric_fog_albedo = Color(0.45490196, 0.03529412, 0.03137255, 1)
 volumetric_fog_ambient_inject = 0.03
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3xqdj"]
@@ -442,8 +442,6 @@ _data = {
 &"objective": SubResource("Animation_ogsmj")
 }
 
-[sub_resource type="GDScript" id="GDScript_0hbal"]
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_6dy7b"]
 size = Vector2(0.2, 0.15)
 
@@ -493,7 +491,7 @@ maps = NodePath("../Controls/Maps")
 script = ExtResource("8_5cho8")
 
 [node name="PlanetSun" type="DirectionalLight3D" parent="." unique_id=360062856]
-transform = Transform3D(-0.7202445, 0.5529766, -0.4188856, -0.35421535, -0.8123255, -0.4633143, -0.5964737, -0.18532358, 0.78094524, 0, 61.741932, 0)
+transform = Transform3D(-0.80220306, 0.571828, 0.17170772, -0.4589687, -0.40668303, -0.78990996, -0.38186228, -0.71247625, 0.5886932, 0, 61.741932, 0)
 light_energy = 3.0
 light_cull_mask = 4293918722
 shadow_enabled = true
@@ -736,7 +734,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011687756, 0.5110339, -0.01
 stream = ExtResource("19_x7awh")
 attenuation_model = 2
 autoplay = true
-script = SubResource("GDScript_0hbal")
+script = ExtResource("20_2pn42")
 
 [node name="papersfx" type="AudioStreamPlayer3D" parent="." unique_id=19404513]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.771918, 0.90870214, -5.3889093)

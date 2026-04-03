@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwrcketout1ij" path="res://logic/interactions/interaction.tscn" id="2_cmv3v"]
 [ext_resource type="Script" uid="uid://4abtw1yg5p04" path="res://logic/telescope/main_telescope_logic.gd" id="2_shu7l"]
 [ext_resource type="Shader" uid="uid://26gb8u78cf1d" path="res://shaders/telescope_overlay.gdshader" id="3_4unxv"]
+[ext_resource type="Script" uid="uid://cawvlbvwnnoai" path="res://logic/anomaly/moon.gd" id="3_6tqe4"]
 [ext_resource type="Script" uid="uid://cg5gtsprnr85p" path="res://logic/telescope/planet_charter.gd" id="4_e1hqw"]
 [ext_resource type="Script" uid="uid://dv7p50a7cksbf" path="res://logic/telescope/telescope_logic.gd" id="4_shu7l"]
 [ext_resource type="AudioStream" uid="uid://ca8g2eb385ixe" path="res://assets/audio/player/telescope_zoom.mp3" id="7_xj0f0"]
@@ -431,7 +432,10 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("2_shu7l")
 speed = 0.01
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="0" unique_id=1746451104]
+[node name="Anomaly" type="Node" parent="." index="0" unique_id=1096392142]
+script = ExtResource("3_6tqe4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1746451104]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2014403152]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6031768, -1.5270784)
@@ -441,35 +445,35 @@ shape = SubResource("BoxShape3D_shu7l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.201233, -1.8051829)
 shape = SubResource("CylinderShape3D_e1hqw")
 
-[node name="Main" parent="." index="1" unique_id=585572559]
+[node name="Main" parent="." index="2" unique_id=585572559]
 transform = Transform3D(0.2733716, 0, 0, 0, -1.1949451e-08, -0.27337158, 0, 0.27337158, -1.1949451e-08, 0, 0.33932805, -1.5409584)
 
-[node name="Leg2" parent="." index="3" unique_id=1686986120]
+[node name="Leg2" parent="." index="4" unique_id=1686986120]
 transform = Transform3D(-1.0163096e-07, 0.19302186, -0.3343237, -0.38604382, -7.5165495e-08, 7.3956485e-08, 2.8116991e-08, -0.3343237, -0.19302186, 0, -0.756521, -1.5873299)
 mesh = SubResource("ArrayMesh_cmv3v")
 
-[node name="Leg3" parent="." index="4" unique_id=850976379]
+[node name="Leg3" parent="." index="5" unique_id=850976379]
 transform = Transform3D(-1.5493455e-07, -0.38604376, 5.8290986e-08, -0.38604382, 1.5493451e-07, -6.289452e-08, -6.2894514e-08, 5.8291015e-08, 0.38604376, 0, -0.756521, -1.5873299)
 mesh = SubResource("ArrayMesh_4g4tk")
 
-[node name="Leg1" parent="." index="5" unique_id=1716298644]
+[node name="Leg1" parent="." index="6" unique_id=1716298644]
 transform = Transform3D(-8.360272e-08, 0.19302216, 0.33432356, -0.38604382, -2.9145493e-08, -7.970895e-08, 1.4613808e-08, 0.33432356, -0.19302216, 0, -0.756521, -1.5873299)
 mesh = SubResource("ArrayMesh_e1hqw")
 
-[node name="interaction" parent="." index="6" unique_id=934976142 node_paths=PackedStringArray("text_node_main", "text_node2") instance=ExtResource("2_cmv3v")]
+[node name="interaction" parent="." index="7" unique_id=934976142 node_paths=PackedStringArray("text_node_main", "text_node2") instance=ExtResource("2_cmv3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.0875926, -4.090456)
 script = SubResource("GDScript_p55sb")
 interaction_type = "telescope"
 text_node_main = NodePath("../UI tips/pickup")
 text_node2 = NodePath("../UI tips/putdown")
 
-[node name="PlanetCharter" type="Node" parent="." index="7" unique_id=1973207904 node_paths=PackedStringArray("ui", "raycast", "progressbar")]
+[node name="PlanetCharter" type="Node" parent="." index="8" unique_id=1973207904 node_paths=PackedStringArray("ui", "raycast", "progressbar")]
 script = ExtResource("4_e1hqw")
 ui = NodePath("../Control")
 raycast = NodePath("../Control/SubViewport/Camera3D/PlanetRaycast")
 progressbar = NodePath("../Control/ProgressBar")
 
-[node name="UI tips" type="Control" parent="." index="8" unique_id=1460471190]
+[node name="UI tips" type="Control" parent="." index="9" unique_id=1460471190]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
@@ -514,7 +518,7 @@ theme_override_constants/line_spacing = 1
 text = "Hold Q to Put Up"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="." index="9" unique_id=1398561454]
+[node name="Control" type="Control" parent="." index="10" unique_id=1398561454]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -574,19 +578,20 @@ offset_bottom = 4.0
 theme_override_font_sizes/font_size = 13
 text = "press c to chart"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10" unique_id=1577195307]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11" unique_id=1577195307]
 libraries/ = SubResource("AnimationLibrary_p55sb")
 
-[node name="sfx" type="AudioStreamPlayer3D" parent="." index="11" unique_id=1250710458]
+[node name="sfx" type="AudioStreamPlayer3D" parent="." index="12" unique_id=1250710458]
 stream = ExtResource("7_xj0f0")
 attenuation_model = 3
 volume_db = 25.0
 
-[node name="star_chime" type="AudioStreamPlayer3D" parent="." index="12" unique_id=1101616812]
+[node name="star_chime" type="AudioStreamPlayer3D" parent="." index="13" unique_id=1101616812]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 stream = ExtResource("8_p55sb")
 attenuation_model = 3
 volume_db = -25.0
 
+[connection signal="star_click" from="." to="Anomaly" method="_on_telescope_star_click"]
 [connection signal="telescope_interact" from="interaction" to="." method="_on_interaction_telescope"]
 [connection signal="telescope_pickup" from="interaction" to="." method="_on_telescope_pickup"]

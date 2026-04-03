@@ -23,8 +23,8 @@ func _physics_process(delta: float) -> void:
 	if 2 in Gamestate.anomalies:
 		if elapsed < 8.0:
 			#belatrix_node.position = belatrix_node.position.lerp(Vector3(20, 20, 20), delta / 10)
-			belatrix["RA_min"] -= delta*1
-			belatrix["DEC_min"] += delta*50
+			belatrix["RA_min"] -= delta*1.0
+			belatrix["DEC_min"] += delta*70
 			elapsed+=delta
 		else:
 			belatrix["RA_min"] = lerp(belatrix["RA_min"], belatrix_original["RA_min"], delta*15)

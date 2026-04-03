@@ -1,14 +1,19 @@
 [gd_scene format=3 uid="uid://6njnkk63g6lf"]
 
 [ext_resource type="PackedScene" uid="uid://cyocxwi31gpfl" path="res://assets/planets/moon.glb" id="1_njpme"]
-[ext_resource type="Script" uid="uid://crpkurlkwtwt8" path="res://logic/anomaly/moon_rotation.gd" id="2_lkae6"]
+[ext_resource type="Script" uid="uid://bdxydryojayvw" path="res://logic/anomaly/moonscript.gd" id="2_lkae6"]
 [ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/scripts/rotator.tscn" id="3_jmsg3"]
+[ext_resource type="AudioStream" uid="uid://0f56vtalm4iv" path="res://assets/audio/eerie/moonaudio.mp3" id="4_jmsg3"]
 
 [node name="moon" unique_id=627701337 instance=ExtResource("1_njpme")]
 
 [node name="Sphere_006" parent="." index="0" unique_id=1542842269]
+visible = false
 layers = 2
 script = ExtResource("2_lkae6")
 
 [node name="rotator" parent="Sphere_006" index="0" unique_id=1137402544 instance=ExtResource("3_jmsg3")]
 period = 1000.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="1" unique_id=600445679]
+stream = ExtResource("4_jmsg3")
