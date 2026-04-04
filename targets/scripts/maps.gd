@@ -131,7 +131,7 @@ func check_target_completion():
 		if !planet_to_unlocked[k]:
 			all_found = false
 			break
-	all_found=true
+	#all_found=true
 	if all_found and !switched:
 		switched = true
 		animations.play("all_targets_found")

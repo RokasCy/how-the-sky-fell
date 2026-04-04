@@ -2,12 +2,13 @@ extends Node
 
 @onready var exit_txt = $"../Press"
 @onready var animator = $"../Animations"
+@onready var processing = $"../Post_Processing"
 var clicks = 0
 
 func _ready():
 	exit_txt.visible = false
 	if animator != null:
-		animator.play_backwards("fade_out")
+		processing.levels_fade_in()
 		get_parent().visible = true
 		
 

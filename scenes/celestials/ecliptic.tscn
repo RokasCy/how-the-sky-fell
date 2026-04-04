@@ -61,7 +61,6 @@ script = ExtResource("2_dt6i7")
 distance = 50
 
 [node name="Sun" parent="." unique_id=988560279 instance=ExtResource("1_c6dww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 273.72598, -1.1831522e-05, 24.616951)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -347.66235, -1.2665987e-05, 277.8521)
 script = ExtResource("2_dt6i7")
 distance = 100

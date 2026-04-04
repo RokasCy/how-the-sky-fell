@@ -10,5 +10,6 @@ metallic_specular = 0.0
 normal_enabled = true
 normal_scale = 0.25
 normal_texture = ExtResource("2_lpxqa")
-uv1_scale = Vector3(25, 25, 25)
+uv1_scale = Vector3(100.14, 100.14, 100.14)
+uv1_triplanar_sharpness = 55.715225
 texture_filter = 0

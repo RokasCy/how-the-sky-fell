@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/scripts/rotator.tscn" id="11_sf7r2"]
 [ext_resource type="Script" uid="uid://bfuqb3p63emce" path="res://menu/input_listener.gd" id="13_ddl1r"]
 [ext_resource type="AudioStream" uid="uid://y2t3blf573p6" path="res://assets/audio/music/reflection.mp3" id="13_pk4ad"]
+[ext_resource type="Shader" uid="uid://d0oqhh7foyfdf" path="res://shaders/dithering.gdshader" id="14_4h3q1"]
+[ext_resource type="Texture2D" uid="uid://ca3ggiiu0q6ux" path="res://assets/readme/preview.png" id="15_aajfh"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_chmv6"]
 viewport_path = NodePath("SubViewport")
@@ -97,6 +99,36 @@ _data = {
 &"RESET": SubResource("Animation_k5y3h"),
 &"fade_out": SubResource("Animation_k17ts")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2il2"]
+shader = ExtResource("14_4h3q1")
+shader_parameter/preview = false
+shader_parameter/preview_texture = ExtResource("15_aajfh")
+shader_parameter/levels = 16.0
+shader_parameter/viewport_resolution = Vector2(640, 480)
+shader_parameter/virtual_resolution = Vector2(320, 240)
+shader_parameter/dither_strength = 0.06
+
+[sub_resource type="GDScript" id="GDScript_see2u"]
+script/source = "extends ColorRect
+
+var current_level_in = 1.0
+func levels_fade_in():
+	while current_level_in <= 16.0:
+		material.set(\"shader_parameter/levels\", current_level_in)
+		current_level_in += 1.0
+		await get_tree().create_timer(0.1).timeout
+	current_level_in = 1.0
+
+var current_level_out = 16.0
+func levels_fade_out():
+	while current_level_out >= 2.0:
+		material.set(\"shader_parameter/levels\", current_level_out)
+		current_level_out -= 1.0
+		
+		await get_tree().create_timer(0.1).timeout
+	current_level_out = 16.0
+"
 
 [node name="End_card" type="Control" unique_id=626725129]
 visible = false
@@ -256,3 +288,12 @@ autoplay = true
 
 [node name="Node" type="Node" parent="." unique_id=1654708993]
 script = ExtResource("13_ddl1r")
+
+[node name="Post_Processing" type="ColorRect" parent="." unique_id=965865254]
+z_index = 10
+material = SubResource("ShaderMaterial_n2il2")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+script = SubResource("GDScript_see2u")

@@ -6,6 +6,7 @@ extends Node3D
 
 func _ready():
 	shader_mat.set("shader_parameter/levels", 1.0)
+	print(animator)
 	if animator != null:
 		animator.play("fade_in")
 	if ui != null:

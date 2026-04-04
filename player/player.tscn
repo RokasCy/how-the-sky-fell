@@ -24,5 +24,6 @@ volume_db = -20.0
 
 [node name="walk" type="AudioStreamPlayer3D" parent="." unique_id=1588436552]
 stream = ExtResource("3_yw30f")
-volume_db = -28.0
+attenuation_model = 3
+volume_db = 40.0
 pitch_scale = 0.9
