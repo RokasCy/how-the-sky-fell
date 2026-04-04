@@ -216,7 +216,7 @@ data = {
 [node name="campfire" parent="Scene" unique_id=2129771687 instance=ExtResource("7_nncvd")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Scene/campfire" unique_id=1425219279]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Scene/campfire" unique_id=1425219279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17825395, 1.0845184, 0.054926455)
 light_color = Color(0.73721856, 0.5857735, 1.540184e-06, 1)
 light_energy = 0.8

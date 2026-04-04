@@ -21,12 +21,9 @@ func spin():
 	spin_speed += 0.015
 	spin_speed = min(spin_speed, 16.0)
 
+var moon_gone = false
 func _physics_process(_delta: float) -> void:
 	if 3 in Gamestate.anomalies:
-		if stop:
-			visible = false
-			moonnoise.stop()
-			return 
 		var cam_forward
 		if telescope_ui.visible:
 			cam_forward = -telescope_cam.global_basis.z.normalized()
@@ -37,10 +34,15 @@ func _physics_process(_delta: float) -> void:
 		
 		var dot = cam_forward.dot(to_target)
 		var db = (dot - 0.4)**3 * 60
+
+		if (stop and dot > 0.94) or moon_gone:
+			visible = false
+			moonnoise.stop()
+			moon_gone = true
+			return 
 		
 		moonnoise.volume_db = db
 		visible = true
-		#print(dot)
 		
 		if dot > 0.97:
 			spinning = true

@@ -7,18 +7,26 @@ extends MeshInstance3D
 @onready var bush1 = $"../anomaly4"
 @onready var bush2 = $"../anomaly5"
 @onready var environment = $"../../../../../WorldEnvironment".environment
-
+@onready var globe = $"../../.."
+@onready var milkyway = $"../../../milkyway"
+@onready var camera = $"../../../../Main_camera"
 @onready var saturn = get_parent()
 #var ring_mat = load("res://scenes/planets/saturn.tscn::StandardMaterial3D_fpsqh")
 
 var bush1pos = Vector3(12.46469, 1.017148, 5.294871)
 var bush2pos = Vector3(-15.22458, 0.975708, -5.983067)
+var original_globe_rotation 
+var original_milkyway_alpha
+func _ready():
+	
+	await get_tree().create_timer(1.0).timeout
+	original_milkyway_alpha = milkyway.max_alpha
 
 func fog_fade():
 	bush1.global_position = bush1pos
 	bush2.global_position = bush2pos
 	
-	var duration = 20.0
+	var duration = 10.0
 	var t=0.0
 	
 	var start_fog_density = 0.0
@@ -32,39 +40,44 @@ func fog_fade():
 		await get_tree().process_frame
 		if t > 2.0 and !wind.playing:
 			wind.play()
-		if t > 9.0 and !park.playing:
+		if t > 6.0 and !park.playing:
 			park.play()
 	
 	t = 0.0
-	while t < 20.0:
+	while t < 5.0:
 		bush1.global_position = bush1pos
 		bush2.global_position = bush2pos
 		t += get_process_delta_time()
 		await get_tree().process_frame
 		
-		if t > 12.0 and t < 14.0 and !bush2.playing:
+		if t > 2.0 and t < 3.0 and !bush2.playing:
 			bush2.play()
-			print('play2')
 		
-		if t > 5.0 and t < 7.0 and !bush1.playing:
-			print('play1')
-			bush1.play()
-		
-		if t > 18.0 and t < 19.0 and !bush1.playing:
-			print('play1')
+		if t > 1 and t < 3 and !bush1.playing:
 			bush1.play()
 	
 	bush2.stop()
-	print('hi')
+	original_globe_rotation = globe.rotation_degrees
+	globe.rotation_degrees = Vector3(-76.7, 16.9, 180)
+	milkyway.max_alpha = 0.8
 	t = 0.0
-	while t < 2.0:
+	while t < 3.0:
 		t += get_process_delta_time()
 		environment.volumetric_fog_density = lerp(target_fog_density, start_fog_density, t / 2.0)
 		await get_tree().process_frame
 		
-		if t > 1.0:
+		if t > 2.0:
 			wind.stop()
 			park.stop()
+	
+	while camera.rotation_degrees.x < 20.0:
+		await get_tree().process_frame
+	print('up')
+	while camera.rotation_degrees.x > -12.0:
+		await get_tree().process_frame
+	print('down')
+	globe.rotation_degrees = original_globe_rotation
+	milkyway.max_alpha = original_milkyway_alpha
 	
 	
 var played = false

@@ -14,7 +14,6 @@ func _on_settings_pressed() -> void:
 	buttonsfx.play()
 	pass # Replace with function body.
 
-
 func _on_exit_pressed() -> void:
 	buttonsfx.play()
 	animator.play("fade_out")

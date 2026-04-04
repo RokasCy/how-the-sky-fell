@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0vcvnwiobyk6" path="res://targets/images/regionA/Orion.PNG" id="5_adfil"]
 [ext_resource type="Texture2D" uid="uid://ctomfb0egscyn" path="res://targets/images/regionA/Taurus.PNG" id="6_84sbc"]
 [ext_resource type="Texture2D" uid="uid://b1unndh1q7b8j" path="res://targets/images/other/coord_grid.png" id="7_7nic5"]
+[ext_resource type="Texture2D" uid="uid://hjyf2io3syth" path="res://targets/images/other/stary symbol.png" id="7_8d7cb"]
 [ext_resource type="Texture2D" uid="uid://d25j4ffhh8ota" path="res://targets/images/other/planet.png" id="8_yq4gd"]
 [ext_resource type="AudioStream" uid="uid://dinr1p4661u6f" path="res://assets/audio/music/planet_chime.mp3" id="9_2jr0f"]
 
@@ -21,6 +22,7 @@ mouse_filter = 1
 script = ExtResource("1_1xqgt")
 
 [node name="Paper0" type="TextureRect" parent="." unique_id=630074355]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -116,7 +118,6 @@ theme_override_font_sizes/font_size = 13
 text = "1"
 
 [node name="Paper1" type="TextureRect" parent="." unique_id=2110430604]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -267,21 +268,23 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "identify the constellations in the night sky"
 
-[node name="Panel2" type="Panel" parent="Paper1" unique_id=229232725]
-modulate = Color(0, 0, 0, 1)
+[node name="star2" type="TextureRect" parent="Paper1" unique_id=892947203]
 layout_mode = 0
-offset_left = 60.00001
-offset_top = 255.0
-offset_right = 70.000015
-offset_bottom = 265.0
+offset_left = 8.000015
+offset_top = 197.0
+offset_right = 126.533554
+offset_bottom = 315.53357
+texture = ExtResource("7_8d7cb")
+expand_mode = 1
 
-[node name="Panel" type="Panel" parent="Paper1" unique_id=964354638]
-modulate = Color(0, 0, 0, 1)
+[node name="star1" type="TextureRect" parent="Paper1" unique_id=755274046]
 layout_mode = 0
-offset_left = 172.00002
-offset_top = 412.0
-offset_right = 182.00002
-offset_bottom = 422.0
+offset_left = 120.000015
+offset_top = 359.0
+offset_right = 238.53354
+offset_bottom = 477.53357
+texture = ExtResource("7_8d7cb")
+expand_mode = 1
 
 [node name="Paper2" type="TextureRect" parent="." unique_id=425496788]
 visible = false

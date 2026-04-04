@@ -14,6 +14,9 @@ func _ready():
 		shader = world_env.environment.sky.sky_material
 		
 func _physics_process(_delta: float) -> void:
+	if !parent.visible:
+		shader.set_shader_parameter("SunHeight", 0)
+		return 
 	look_at(Vector3(0, 0, 0), Vector3.UP)
 	
 	var sun_height = (global_position.y / distance) if global_position.y > 0 else 0
