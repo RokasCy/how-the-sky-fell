@@ -101,14 +101,14 @@ func _physics_process(_delta: float) -> void:
 			update_completion(name_to_node[c], c)
 		
 	check_target_completion()
-	if stars.sun_height > 0.2 and !morning_trans:
-		morning_trans = true
+	#if stars.sun_height > 0.2 and !morning_trans:
+		#morning_trans = true
 		
-		stars.rotation_rate = orig_rotation_rate
-		if switched:
-			await animations.animation_finished
+		#stars.rotation_rate = orig_rotation_rate
+		#if switched:
+			#await animations.animation_finished
 			
-		animations.play("night_transition")
+		#animations.play("night_transition")
 
 	
 func update_completion(node, name):

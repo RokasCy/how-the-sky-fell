@@ -118,6 +118,7 @@ theme_override_font_sizes/font_size = 13
 text = "1"
 
 [node name="Paper1" type="TextureRect" parent="." unique_id=2110430604]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -287,7 +288,6 @@ texture = ExtResource("7_8d7cb")
 expand_mode = 1
 
 [node name="Paper2" type="TextureRect" parent="." unique_id=425496788]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -400,18 +400,23 @@ texture = ExtResource("7_7nic5")
 expand_mode = 1
 
 [node name="venus" type="TextureRect" parent="Paper2/Clip/Graph" unique_id=423962031]
-modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+modulate = Color(0.19434938, 0.19434923, 0.1943492, 1)
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.14428571
 anchor_top = 0.39952153
 anchor_right = 0.15857142
 anchor_bottom = 0.423445
+offset_left = -41.0
+offset_top = 13.0
+offset_right = -41.0
+offset_bottom = 13.0
 texture = ExtResource("8_yq4gd")
 expand_mode = 1
 
 [node name="mars" type="TextureRect" parent="Paper2/Clip/Graph" unique_id=837848170]
-modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+modulate = Color(0.19434938, 0.19434923, 0.1943492, 1)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -419,11 +424,13 @@ anchor_left = 0.3042857
 anchor_top = 0.35645932
 anchor_right = 0.31857142
 anchor_bottom = 0.38038278
+offset_left = -41.0
+offset_right = -41.0
 texture = ExtResource("8_yq4gd")
 expand_mode = 1
 
 [node name="jupiter" type="TextureRect" parent="Paper2/Clip/Graph" unique_id=641071834]
-modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+modulate = Color(0.19434938, 0.19434923, 0.1943492, 1)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -431,23 +438,24 @@ anchor_left = 0.37285715
 anchor_top = 0.40669855
 anchor_right = 0.38714287
 anchor_bottom = 0.430622
-offset_right = 2.0
-offset_bottom = 2.0
+offset_left = -38.0
+offset_top = -10.0
+offset_right = -36.0
+offset_bottom = -8.0
 texture = ExtResource("8_yq4gd")
 expand_mode = 1
 
 [node name="saturn" type="TextureRect" parent="Paper2/Clip/Graph" unique_id=1177505869]
-modulate = Color(0.48962224, 0.48962224, 0.48962218, 1)
+modulate = Color(0.19434938, 0.19434923, 0.1943492, 1)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.20142858
-anchor_top = 0.33732057
-anchor_right = 0.21571429
-anchor_bottom = 0.36124402
+anchor_left = 0.13571429
+anchor_top = 0.3875598
+anchor_right = 0.15
+anchor_bottom = 0.41148326
 texture = ExtResource("8_yq4gd")
 expand_mode = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="planet_chime" type="AudioStreamPlayer3D" parent="." unique_id=1555457300]
 stream = ExtResource("9_2jr0f")

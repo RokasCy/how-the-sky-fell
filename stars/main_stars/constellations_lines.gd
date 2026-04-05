@@ -130,11 +130,11 @@ func finished_constellation_check():
 		if key in Gamestate.constellations_unlocked:
 			continue
 		
-		constellation_lines_drawn[key].sort()
-		constellation_lines[key].sort()
+		#constellation_lines_drawn[key].sort()
+		#constellation_lines[key].sort()
 		
 		#--all lines are drawn--#
-		if constellation_lines_drawn[key] == constellation_lines[key]:
+		if constellation_lines_drawn[key].size() == constellation_lines[key].size():
 			Gamestate.constellations_unlocked.append(key)
 			finish_constellation(key)
 			remove_green_stars(true)

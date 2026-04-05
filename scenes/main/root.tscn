@@ -14,7 +14,7 @@
 [ext_resource type="Material" uid="uid://ds663dk1uukj5" path="res://assets/material/ground.tres" id="11_2ioay"]
 [ext_resource type="Shader" uid="uid://cnmqgjcanfbf7" path="res://shaders/processing_effects.gdshader" id="11_386mo"]
 [ext_resource type="Texture2D" uid="uid://ca3ggiiu0q6ux" path="res://assets/readme/preview.png" id="12_386mo"]
-[ext_resource type="MeshLibrary" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="12_n15bo"]
+[ext_resource type="ArrayMesh" uid="uid://blib0hajqob85" path="res://assets/meshes/tree_mesh.tres" id="12_n15bo"]
 [ext_resource type="MeshLibrary" uid="uid://cy25xdaltfvuh" path="res://assets/meshes/foliage_mesh.tres" id="13_8m583"]
 [ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="14_0nxy4"]
 [ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="15_xj6in"]
@@ -121,6 +121,18 @@ size = Vector2(400, 400)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_386mo"]
 size = Vector3(400, 0.473, 400)
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_0hbal"]
+item/0/name = ""
+item/0/mesh = ExtResource("12_n15bo")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0hbal"]
+size = Vector3(0.635, 1, 3.51)
 
 [sub_resource type="Animation" id="Animation_mflgo"]
 tracks/0/type = "value"
@@ -536,6 +548,7 @@ transform = Transform3D(-0.7202445, 0.5529766, -0.4188856, -0.35421535, -0.81232
 light_energy = 3.0
 light_cull_mask = 4293918722
 shadow_enabled = true
+shadow_caster_mask = 4294966272
 
 [node name="telescope" parent="." unique_id=832613763 node_paths=PackedStringArray("logic") instance=ExtResource("9_2ea41")]
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 1.8217955, 1.1586488, 1.820723)
@@ -734,13 +747,13 @@ data = {
 }
 
 [node name="Trees" type="GridMap" parent="Environment" unique_id=1736956556]
-mesh_library = ExtResource("12_n15bo")
+mesh_library = SubResource("MeshLibrary_0hbal")
 cell_size = Vector3(1, 2, 1)
 cell_center_y = false
 data = {
 "cells": PackedInt32Array(65498, 65501, 0, 65502, 65513, 0, 65498, 65529, 0, 65502, 13, 0, 65500, 31, 0, 65520, 35, 0, 65514, 25, 0, 1, 28, 0, 65534, 37, 0, 65534, 38, 0, 20, 34, 0, 21, 34, 0, 29, 16, 0, 41, 25, 0, 36, 0, 0, 26, 65514, 0, 34, 65499, 0, 65533, 65498, 0, 65518, 65504, 0, 65512, 65497, 0, 65504, 65505, 0, 65495, 65518, 0, 5, 65495, 0, 16, 65498, 0, 16, 65499, 0, 15, 65508, 0, 5, 65502, 0, 65522, 65495, 0, 65531, 65491, 0, 34, 65503, 0, 35, 65503, 0, 39, 65513, 0, 43, 65522, 0, 24, 65502, 0, 32, 65519, 0, 24, 65518, 0, 19, 65510, 0, 26, 65508, 0, 27, 65508, 0, 27, 65509, 0, 34, 65513, 0, 37, 65522, 0, 34, 65532, 0, 29, 9, 0, 38, 15, 0, 30, 31, 0, 30, 30, 0, 33, 22, 0, 37, 27, 0, 36, 36, 0, 25, 39, 0, 10, 40, 0, 4, 33, 0, 14, 33, 0, 65529, 41, 0, 65524, 38, 0, 65524, 37, 0, 65518, 30, 0, 65507, 33, 0, 65494, 29, 0, 65492, 14, 0, 65496, 3, 0, 65503, 8, 0, 65499, 6, 0, 65497, 18, 0, 65501, 26, 0, 65507, 29, 0, 65512, 40, 0, 65502, 65527, 0, 65503, 65520, 0, 65510, 65504, 0, 65511, 65513, 0, 65520, 17, 0, 65531, 65512, 0, 65509, 65526, 0, 21, 19, 0, 8, 65521, 0, 1, 65519, 0, 65531, 65518, 0, 65525, 65521, 0, 65520, 65527, 0, 65517, 65533, 0, 65520, 4, 0, 65522, 8, 0, 9, 10, 0, 1, 14, 0, 65528, 12, 0, 65529, 12, 0, 11, 65525, 0, 14, 65530, 0, 14, 0, 0, 13, 5, 0, 48, 65533, 0, 31, 65492, 0, 5, 65482, 0, 65506, 65484, 0, 65521, 65485, 0, 65527, 65474, 0, 85, 65530, 0, 72, 25, 0, 51, 24, 0, 67, 10, 0, 68, 65532, 0, 76, 65521, 0, 85, 65507, 0, 65508, 65454, 0, 19, 65451, 0, 51, 65473, 0, 64, 65496, 0, 128, 65479, 0, 149, 10, 0, 107, 49, 0, 118, 19, 0, 123, 65527, 0, 98, 65488, 0, 41, 100, 0, 80, 139, 0, 65504, 143, 0, 30, 137, 0, 65510, 103, 0, 65528, 71, 0, 51, 77, 0, 101, 97, 0, 65509, 70, 0, 65508, 70, 0, 65427, 58, 0, 65426, 58, 0, 65425, 58, 0, 65420, 100, 0, 65450, 123, 0, 65466, 86, 0, 65458, 46, 0, 65427, 65531, 0, 65388, 42, 0, 65408, 82, 0, 65395, 75, 0, 65402, 57, 0, 65403, 57, 0, 65413, 53, 0, 65414, 32, 0, 65398, 26, 0, 65398, 46, 0, 65379, 69, 0, 65379, 50, 0, 65374, 36, 0, 65386, 31, 0, 65401, 41, 0, 65422, 46, 0, 65437, 25, 0, 65453, 4, 0, 65434, 65531, 0, 65427, 28, 0, 65414, 19, 0, 65430, 15, 0, 65449, 65524, 0, 65444, 65480, 0, 65415, 65480, 0, 65414, 65480, 0, 65393, 65532, 0, 65383, 65505, 0, 65426, 65450, 0, 14, 65381, 0, 105, 65427, 0, 65453, 65404, 0, 65468, 65370, 0, 65482, 65372, 0, 65468, 65361, 0, 65448, 65364, 0, 65425, 65406, 0, 65388, 65433, 0, 58, 65449, 0, 36, 65452, 0, 65471, 65532, 0, 65457, 82, 0, 65484, 93, 0, 65492, 103, 0, 65477, 124, 0, 65469, 116, 0, 65455, 107, 0, 103, 80, 0, 64, 83, 0, 65, 46, 0, 20, 67, 0, 135, 65449, 0, 99, 65446, 0, 84, 65431, 0, 54, 65426, 0, 25, 65416, 0, 44, 65389, 0, 84, 65390, 0, 4, 65432, 0, 65531, 65454, 0, 65510, 65431, 0, 65454, 65463, 0, 65481, 65470, 0, 65463, 65497, 0, 65476, 65431, 0, 65528, 65386, 0, 65490, 65388, 0, 65463, 65409, 0, 65493, 65413, 0, 65525, 65409, 0, 65526, 65409, 0, 65530, 65448, 0, 65420, 65449, 0, 65452, 65437, 0, 65426, 65427, 0, 65404, 65435, 0, 65391, 65460, 0, 65391, 65480, 0, 65403, 65526, 0, 65424, 65510, 0, 89, 54, 0, 78, 78, 0, 2, 89, 0, 12, 99, 0, 65515, 87, 0, 65523, 71, 0, 65480, 47, 0, 65472, 73, 0, 65528, 152, 0)
 }
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Foliage" type="GridMap" parent="Environment" unique_id=962317751]
 mesh_library = ExtResource("13_8m583")
@@ -755,11 +768,29 @@ data = {
 [node name="log" parent="Environment/Logs" unique_id=288332634 instance=ExtResource("14_0nxy4")]
 transform = Transform3D(0.99541956, 0, -0.09560253, 0, 1, 0, 0.09560253, 0, 0.99541956, 3.5745707, 0.027969122, 0.1941948)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Logs/log" unique_id=218039271]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Logs/log/StaticBody3D" unique_id=722233752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13383049, 0.07471528)
+shape = SubResource("BoxShape3D_0hbal")
+
 [node name="log2" parent="Environment/Logs" unique_id=615883064 instance=ExtResource("14_0nxy4")]
 transform = Transform3D(0.09348274, 0, -0.99562097, 0, 1, 0, 0.99562097, 0, 0.09348274, -0.20573854, 0.027969122, -3.4749389)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Logs/log2" unique_id=2143115721]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Logs/log2/StaticBody3D" unique_id=1202209601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13383049, 0.07471528)
+shape = SubResource("BoxShape3D_0hbal")
+
 [node name="log3" parent="Environment/Logs" unique_id=2080054370 instance=ExtResource("14_0nxy4")]
 transform = Transform3D(-0.6628553, 0, -0.7487475, 0, 1, 0, 0.7487475, 0, -0.6628553, -2.091414, 0.027969122, 2.2468586)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Logs/log3" unique_id=1642470476]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Logs/log3/StaticBody3D" unique_id=44708071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13383049, 0.07471528)
+shape = SubResource("BoxShape3D_0hbal")
 
 [node name="campfire" parent="Environment" unique_id=2129771687 instance=ExtResource("15_xj6in")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
@@ -845,10 +876,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_y0oop")
 transform = Transform3D(0.98192567, 0, -0.18926683, 0, 1, 0, 0.18926683, 0, 0.98192567, 0.3994515, 0.043928325, 0.02280593)
 mesh = SubResource("PlaneMesh_6dy7b")
 surface_material_override/0 = SubResource("StandardMaterial3D_ogsmj")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1510410657]
-transform = Transform3D(1, 0, 0, 0, -0.31970355, 0.94751763, 0, -0.94751763, -0.31970355, 0, 62.90698, 0)
-visible = false
 
 [connection signal="chart" from="telescope" to="Controls/Maps" method="_on_telescope_chart"]
 [connection signal="star_click" from="telescope" to="Controls/Maps" method="_on_telescope_star_click"]
