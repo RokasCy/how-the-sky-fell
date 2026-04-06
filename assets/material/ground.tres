@@ -7,7 +7,6 @@
 cull_mode = 2
 albedo_texture = ExtResource("1_rvlgf")
 metallic_specular = 0.0
-normal_enabled = true
 normal_scale = 0.25
 normal_texture = ExtResource("2_lpxqa")
 uv1_scale = Vector3(100.14, 100.14, 100.14)

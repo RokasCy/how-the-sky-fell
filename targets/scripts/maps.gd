@@ -15,7 +15,7 @@ signal map_interact(open)
 @onready var planet_chime = $planet_chime
 
 @export var papersfx: AudioStreamPlayer3D
-@export var animations : AnimationPlayer
+@onready var animations = $"../../Animations"
 
 
 #--constellation textures--#
@@ -64,7 +64,6 @@ var orig_rotation_rate : float
 @onready var targets = con_logic.night_targets[con_logic.main.Night]
 func _ready():
 	visible = false
-	animations.play("targets_found")
 	
 	
 	name_to_node = {
@@ -95,7 +94,6 @@ var morning_trans : bool = false
 func _physics_process(_delta: float) -> void:
 	
 	for c in Gamestate.constellations_unlocked:
-		print()
 		if con_to_unlocked.has(c) and con_to_unlocked[c] == false:
 			con_to_unlocked[c] = true
 			update_completion(name_to_node[c], c)
@@ -131,6 +129,8 @@ func check_target_completion():
 		if !planet_to_unlocked[k]:
 			all_found = false
 			break
+			
+	#all_found=true
 	if all_found and !switched:
 		animations.play("all_targets_found")
 		await animations.animation_finished
@@ -172,7 +172,7 @@ func _unhandled_input(event: InputEvent) -> void:
 #--planet charting--#
 
 var planet_to_unlocked : Dictionary = {
-	'venus': false, 'mars': false, 'jupiter': false, 'saturn': false
+	'venus': true, 'mars': true, 'jupiter': false, 'saturn': true
 }
 
 var planet_color : Dictionary = {

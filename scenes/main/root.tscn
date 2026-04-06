@@ -249,40 +249,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Controls/UI/Panel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Controls/UI/Post_Processing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
 
 [sub_resource type="Animation" id="Animation_kbwk5"]
 resource_name = "constellation_discovered"
@@ -524,7 +490,7 @@ transform = Transform3D(321.3719, 381.46014, -34.7595, 362.8108, -288.5927, 187.
 
 [node name="Game logic" type="Node" parent="." unique_id=1399732596 node_paths=PackedStringArray("telescope", "maps")]
 script = ExtResource("7_2n4co")
-telescope = NodePath("../Environment/telescope")
+telescope = NodePath("../telescope")
 maps = NodePath("../Controls/Maps")
 
 [node name="constellation" type="Node" parent="Game logic" unique_id=1710898200]
@@ -537,15 +503,19 @@ light_cull_mask = 4293918722
 shadow_enabled = true
 shadow_caster_mask = 4294966272
 
+[node name="telescope" parent="." unique_id=832613763 node_paths=PackedStringArray("logic") instance=ExtResource("9_2ea41")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 1.8217955, 1.1586488, 1.820723)
+logic = NodePath("../Game logic")
+speed = 0.5
+
 [node name="Controls" type="Node" parent="." unique_id=1573289678]
 
-[node name="Maps" parent="Controls" unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic", "papersfx", "animations") instance=ExtResource("10_2lq1y")]
+[node name="Maps" parent="Controls" unique_id=766604441 node_paths=PackedStringArray("stars", "telescope", "con_logic", "papersfx") instance=ExtResource("10_2lq1y")]
 visible = false
 stars = NodePath("../../Player/Stars")
-telescope = NodePath("../../Environment/telescope")
+telescope = NodePath("../../telescope")
 con_logic = NodePath("../../Game logic/constellation")
 papersfx = NodePath("../../papersfx")
-animations = NodePath("../../Animations")
 metadata/_edit_use_anchors_ = true
 
 [node name="UI" type="Control" parent="Controls" unique_id=2004545429]
@@ -809,11 +779,6 @@ transform = Transform3D(0.98192567, 0, -0.18926683, 0, 1, 0, 0.18926683, 0, 0.98
 mesh = SubResource("PlaneMesh_6dy7b")
 surface_material_override/0 = SubResource("StandardMaterial3D_ogsmj")
 
-[node name="telescope" parent="Environment" unique_id=832613763 node_paths=PackedStringArray("logic") instance=ExtResource("9_2ea41")]
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 1.8217955, 1.1586488, 1.820723)
-logic = NodePath("../../Game logic")
-speed = 0.5
-
 [node name="Logs" type="Node3D" parent="Environment" unique_id=281127719]
 
 [node name="log" parent="Environment/Logs" unique_id=2131037972 instance=ExtResource("14_0nxy4")]
@@ -873,9 +838,9 @@ stream = ExtResource("29_3j36c")
 attenuation_model = 3
 volume_db = 20.0
 
+[connection signal="chart" from="telescope" to="Controls/Maps" method="_on_telescope_chart"]
+[connection signal="star_click" from="telescope" to="Controls/Maps" method="_on_telescope_star_click"]
+[connection signal="zoom" from="telescope" to="Player" method="_on_telescope_zoom"]
+[connection signal="zoom" from="telescope" to="Game logic" method="_on_telescope_zoom"]
 [connection signal="map_interact" from="Controls/Maps" to="Game logic" method="_on_map_interact"]
 [connection signal="fire_burn_change" from="Environment/campfire/interaction" to="Environment/campfire" method="_on_interaction_fire_burn_change"]
-[connection signal="chart" from="Environment/telescope" to="Controls/Maps" method="_on_telescope_chart"]
-[connection signal="star_click" from="Environment/telescope" to="Controls/Maps" method="_on_telescope_star_click"]
-[connection signal="zoom" from="Environment/telescope" to="Player" method="_on_telescope_zoom"]
-[connection signal="zoom" from="Environment/telescope" to="Game logic" method="_on_telescope_zoom"]

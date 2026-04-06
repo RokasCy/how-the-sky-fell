@@ -8,6 +8,8 @@ extends Node
 @onready var rumble = $"../AudioStreamPlayer3D"
 @onready var env = $"../../../Environment"
 @onready var music = $"../../../music"
+@onready var telescope = $"../../../telescope"
+@onready var game_logic = $"../../../Game logic"
 var played = false
 
 var belatrix_node
@@ -22,7 +24,7 @@ func _ready():
 	belatrix_node = stars.get_node("25336_0")
 	belatrix_original = lines.hip_dict[25336.0].duplicate()
 	belatrix = lines.hip_dict[25336.0]
-	for i in range(693):
+	for i in range(701):
 		var child = stars.get_child(i)
 		if str(child.name)[0] in "0123456789":	
 			staranomalies.append(child.name)
@@ -98,19 +100,22 @@ func _physics_process(delta: float) -> void:
 		if !rumble.playing:
 			rumble.play()
 		
-		if t > 4.0:
+		if t > 18.0:
+			if is_instance_valid(telescope):
+				telescope.queue_free()
+				game_logic.player_can_move = true
 			env.position.y = move_toward(env.position.y, -1000.0, 10 * delta)
 			milkyway.visible = false
 			
-		if t > 10.0:
+		if t > 25.0:
 			var bus = AudioServer.get_bus_index("All sounds")
 			var db = AudioServer.get_bus_volume_db(bus)
 			AudioServer.set_bus_volume_db(bus, max(db-0.1, -80))
 		
-		if t > 13.0 and !music.playing:
+		if t > 30.0 and !music.playing:
 			music.play()
 		
-		if t > 41.8:
+		if t > 57.8:
 			get_tree().change_scene_to_file("res://menu/end_card.tscn")
 			
 		

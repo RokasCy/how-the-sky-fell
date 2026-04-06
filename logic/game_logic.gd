@@ -17,7 +17,8 @@ var map_opened : bool = false
 var zoomed_fov : int 
 
 func _physics_process(delta: float) -> void:
-	zoomed_fov = telescope.zoomed_fov
+	if is_instance_valid(telescope):
+		zoomed_fov = telescope.zoomed_fov
 
 func _on_telescope_zoom(in_or_out: Variant) -> void:
 	telescope_zoomed = in_or_out

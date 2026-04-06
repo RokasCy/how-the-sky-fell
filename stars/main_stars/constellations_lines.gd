@@ -4,7 +4,7 @@ extends MeshInstance3D
 @onready var constellations_done = $"../Finished"
 @onready var constellations_wrong = $"../Wrong"
 @onready var anomaly_mesh = $"../AnomalyMesh".mesh
-@onready var telescope = $"../../../Environment/telescope"
+@onready var telescope = $"../../../telescope"
 @onready var logic = $"../../../Game logic/constellation"
 
 @export var time_out := 3
