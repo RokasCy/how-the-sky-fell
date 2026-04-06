@@ -15,4 +15,6 @@ func _on_interaction_fire_burn_change() -> void:
 	else:
 		crackle.play()
 		
-	#print('change')
+func _physics_process(delta: float) -> void:
+	if 4 in Gamestate.anomalies:
+		crackle.stop()

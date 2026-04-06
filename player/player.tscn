@@ -21,9 +21,11 @@ mesh = SubResource("CapsuleMesh_3vyb7")
 [node name="jump" type="AudioStreamPlayer3D" parent="." unique_id=1332725979]
 stream = ExtResource("2_g1dw6")
 volume_db = -20.0
+bus = &"All sounds"
 
 [node name="walk" type="AudioStreamPlayer3D" parent="." unique_id=1588436552]
 stream = ExtResource("3_yw30f")
 attenuation_model = 3
 volume_db = 40.0
 pitch_scale = 0.9
+bus = &"All sounds"

@@ -4,7 +4,7 @@ extends MeshInstance3D
 @onready var constellations_done = $"../Finished"
 @onready var constellations_wrong = $"../Wrong"
 @onready var anomaly_mesh = $"../AnomalyMesh".mesh
-@onready var telescope = $"../../../telescope"
+@onready var telescope = $"../../../Environment/telescope"
 @onready var logic = $"../../../Game logic/constellation"
 
 @export var time_out := 3
@@ -130,9 +130,7 @@ func finished_constellation_check():
 		if key in Gamestate.constellations_unlocked:
 			continue
 		
-		#constellation_lines_drawn[key].sort()
-		#constellation_lines[key].sort()
-		
+		print("finish: ", key, " ", constellation_lines_drawn[key].size())
 		#--all lines are drawn--#
 		if constellation_lines_drawn[key].size() == constellation_lines[key].size():
 			Gamestate.constellations_unlocked.append(key)
@@ -202,8 +200,10 @@ func add_red_star(hip):
 func red_flash_lines(hip):
 	for c in lines_drawn:
 		if hip in c:
+			#wprint(lines_drawn)
 			lines_drawn.erase(c)
-			
+			#wdsprint(lines_drawn)
+			constellation_lines_drawn[constellation_type[hip]] = []
 			#draw red_line
 			var m = constellations_wrong.mesh
 			m.surface_begin(Mesh.PRIMITIVE_LINES)
@@ -222,6 +222,7 @@ func remove_green_stars(finish_const = false):
 		for hip in green_star_list:
 			add_red_star(hip)
 			red_flash_lines(hip)
+			
 	
 	for hip in green_star_list:
 		get_node("../green_" + str(int(hip))).queue_free()
@@ -231,7 +232,7 @@ func remove_green_stars(finish_const = false):
 		for c in lines_drawn:
 			if hip in c:
 				lines_drawn.erase(c)
-		
+			
 	green_star_list = []
 
 var count = 0

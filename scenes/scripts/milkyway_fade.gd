@@ -16,5 +16,6 @@ func _physics_process(delta: float) -> void:
 		fov_val = max_alpha
 	
 	mat.albedo_color.a = clamp(fov_val, 0, max_alpha)
+	print(mat.albedo_color.a)
 	$MeshInstance3D.set_surface_override_material(0, mat)
 	

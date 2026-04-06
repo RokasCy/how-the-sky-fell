@@ -3,6 +3,11 @@ extends Node
 @onready var stars = get_parent()
 @onready var lines = $"../Constellations"
 @onready var anomaly_mesh = $"../AnomalyMesh".mesh
+@onready var milkyway = $"../milkyway"
+
+@onready var rumble = $"../AudioStreamPlayer3D"
+@onready var env = $"../../../Environment"
+@onready var music = $"../../../music"
 var played = false
 
 var belatrix_node
@@ -17,7 +22,7 @@ func _ready():
 	belatrix_node = stars.get_node("25336_0")
 	belatrix_original = lines.hip_dict[25336.0].duplicate()
 	belatrix = lines.hip_dict[25336.0]
-	for i in range(692):
+	for i in range(693):
 		var child = stars.get_child(i)
 		if str(child.name)[0] in "0123456789":	
 			staranomalies.append(child.name)
@@ -29,7 +34,6 @@ func _ready():
 			
 
 func star_movement(delta, count):
-	print(count)
 	for i in range(count):
 		var hip = float(staranomalies[i].substr(0, staranomalies[i].length() - 2))
 		if lines.constellation_type[hip] in ["Aur", "Tau", "Ori", "Gem"]:
@@ -40,8 +44,29 @@ func star_movement(delta, count):
 		anomaly["DEC_min"] += delta*star_speed[i][0]
 		anomaly["RA_min"] += delta*star_speed[i][1]
 		
-		staranomalies_nodes[i].position = stars.star_to_position(anomaly)
+		if is_instance_valid(staranomalies_nodes[i]):
+			staranomalies_nodes[i].position = stars.star_to_position(anomaly)
+
+func star_escape(delta):
+	#milkyway.max_alpha -= delta/10
+	#milkyway.max_alpha = max(milkyway.max_alpha, 0)
+	for i in range(staranomalies.size()):
+		var hip = float(staranomalies[i].substr(0, staranomalies[i].length() - 2))
+		
+		var anomaly = lines.hip_dict[hip]
+		
+		anomaly["DEC_min"] += delta*300
+		
+		if is_instance_valid(staranomalies_nodes[i]):
+			staranomalies_nodes[i].position = stars.star_to_position(anomaly)
+			
+			var declination = abs(anomaly["DEC_deg"]) + abs(anomaly["DEC_min"] / 60)
+			if declination > 89:
+				staranomalies_nodes[i].queue_free()
+	
 var elapsed = 0.0
+var t = 0.0
+var ending = false
 func _physics_process(delta: float) -> void:
 	if 2 in Gamestate.anomalies:
 		if elapsed < 6.0:
@@ -58,9 +83,36 @@ func _physics_process(delta: float) -> void:
 		anomaly_mesh.clear_surfaces()
 		finish_constellation("Ori")
 	
+		star_movement(delta, 10*Gamestate.constellations_unlocked.size()+8)
 	
-		star_movement(delta, 15*Gamestate.constellations_unlocked.size()+10)
-	
+	if 4 in Gamestate.anomalies:
+		t += delta
+		
+		lines.constellations_done.mesh.clear_surfaces()
+		star_escape(delta)
+		finish_constellation("Ori")
+		finish_constellation("Tau")
+		finish_constellation("Aur")
+		finish_constellation("Gem")
+		
+		if !rumble.playing:
+			rumble.play()
+		
+		if t > 4.0:
+			env.position.y = move_toward(env.position.y, -1000.0, 10 * delta)
+			milkyway.visible = false
+			
+		if t > 10.0:
+			var bus = AudioServer.get_bus_index("All sounds")
+			var db = AudioServer.get_bus_volume_db(bus)
+			AudioServer.set_bus_volume_db(bus, max(db-0.1, -80))
+		
+		if t > 13.0 and !music.playing:
+			music.play()
+		
+		if t > 41.8:
+			get_tree().change_scene_to_file("res://menu/end_card.tscn")
+			
 		
 
 func finish_constellation(con):

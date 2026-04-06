@@ -2,7 +2,7 @@ extends Control
 
 
 @onready var parent = get_parent()
-@onready var stars : Node3D = $"../../Player/Stars"
+@onready var stars : Node3D = $"../../../Player/Stars"
 @onready var camera : Camera3D = $SubViewport/Camera3D
 
 @onready var star_chime = $"../star_chime"

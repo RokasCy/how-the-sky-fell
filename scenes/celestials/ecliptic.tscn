@@ -51,7 +51,7 @@ distance = 1500
 period = 50.0
 
 [node name="jupiter" parent="." unique_id=755711679 instance=ExtResource("5_141ji")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 334.9263, -9.536743e-07, -341.2671)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 322.62277, 29.60347, -341.2671)
 script = ExtResource("2_dt6i7")
 distance = 1200
 

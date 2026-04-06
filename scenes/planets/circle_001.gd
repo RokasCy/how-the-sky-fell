@@ -19,7 +19,7 @@ var bush2pos = Vector3(-15.22458, 0.975708, -5.983067)
 var original_globe_rotation 
 var original_milkyway_alpha
 func _ready():
-	
+	sun.visible = false
 	await get_tree().create_timer(1.0).timeout
 	original_milkyway_alpha = milkyway.max_alpha
 

@@ -73,22 +73,27 @@ shape = SubResource("SphereShape3D_mlpop")
 [node name="anomaly1" type="AudioStreamPlayer3D" parent="." index="4" unique_id=1259805295]
 stream = ExtResource("3_dvlhj")
 attenuation_model = 3
+bus = &"All sounds"
 
 [node name="anomaly2" type="AudioStreamPlayer3D" parent="." index="5" unique_id=1830533348]
 stream = ExtResource("4_l17rv")
 attenuation_model = 3
 volume_db = 20.0
+bus = &"All sounds"
 
 [node name="anomaly3" type="AudioStreamPlayer3D" parent="." index="6" unique_id=120238219]
 stream = ExtResource("5_oi57x")
 attenuation_model = 3
 volume_db = -20.0
+bus = &"All sounds"
 
 [node name="anomaly4" type="AudioStreamPlayer3D" parent="." index="7" unique_id=1045373809]
 stream = ExtResource("6_xw1bv")
 attenuation_model = 2
 volume_db = -5.0
+bus = &"All sounds"
 
 [node name="anomaly5" type="AudioStreamPlayer3D" parent="." index="8" unique_id=1818053027]
 stream = ExtResource("7_jo8gj")
 attenuation_model = 2
+bus = &"All sounds"

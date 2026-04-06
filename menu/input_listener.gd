@@ -14,7 +14,7 @@ func _ready():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.pressed:
+		if event.is_released():
 			clicks+=1
 			exit_txt.visible = true
 			if clicks>1:
