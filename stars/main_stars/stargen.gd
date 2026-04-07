@@ -1,42 +1,30 @@
-extends Node3D
+@tool
+extends EditorScript
 
+var scene
+var stars
 var star_path = "res://stars/star_data/hip_constellation_line_star.csv"
-
-@onready var constellation_type = $Constellations.constellation_type
-@onready var hip_dict = $Constellations.hip_dict
-
-
 var headers = ["HIP","RA_hour","RA_min","RA_sec","DEC_deg","DEC_min","DEC_sec","Magnitude", "B-V"]
 var star_data = load_csv(star_path)
+func _run() -> void:
+	scene = get_scene()
+	stars = scene.get_node("Player").get_node("Stars")
+	
+	generate_stars()
+
+
+
+
 
 @export_group("Sky")
 @export_range(-90.0, 90.0) var longitude := 90.0
 @export_range(0.0, 20.0) var rotation_rate := 0.0
 
 @export_group("Star properties")
-@export var distance := 100
-@export var scale_factor := 11
-@export var flux_factor := 8
+var distance := 1000
+var scale_factor := 8
+var flux_factor := 27
 
-#@onready var constellations_finished = $Constellations.constellations_finished
-
-#variable changed by sun_light.gd 
-var sun_height : float
-
-func _ready() -> void:
-	#setting location
-	self.rotation.x = deg_to_rad(90 - longitude)
-	#generate_stars()
-
-#----debug utility----#
-func _physics_process(delta: float) -> void:
-	#rotate around local basis.y axis
-	#set players initial rotation to (0, 0, 0) or else this shit breaks
-	rotate(global_transform.basis.y, -deg_to_rad(rotation_rate * delta))
-
-func remove_stars():
-	for child in self.get_children():
-		child.queue_free()	
 		
 func generate_stars():
 	for star in star_data:
@@ -51,7 +39,7 @@ func generate_stars():
 
 	
 	
-func star_to_position(star, dis=distance):
+func star_to_position(star):
 	var ra_hour = float(star["RA_hour"]) + float(star["RA_min"]) / 60 + float(star["RA_sec"]) / 3600
 	var dec_deg = abs(float(star["DEC_deg"])) + abs(float(star["DEC_min"])) / 60 + abs(float(star["DEC_sec"])) / 3600
 		
@@ -61,9 +49,9 @@ func star_to_position(star, dis=distance):
 	var ra_rad = deg_to_rad(ra_hour * 15) 
 	var dec_rad = deg_to_rad(dec_deg) 
 	
-	var x = dis * cos(dec_rad) * cos(-ra_rad)
-	var y = dis * sin(dec_rad)
-	var z = dis * cos(dec_rad) * sin(-ra_rad)
+	var x = distance * cos(dec_rad) * cos(-ra_rad)
+	var y = distance * sin(dec_rad)
+	var z = distance * cos(dec_rad) * sin(-ra_rad)
 	
 	return Vector3(x, y, z)
 
@@ -88,14 +76,20 @@ func create_star(id, starposition, mag, b_v, mat=null):
 		mesh.material = material
 	else:
 		mesh.material = mat
-		
 	
 	star.mesh = mesh
 	star.position = starposition
 	
-	star.name = str(id)
 	star.layers = 1 << 1
-	add_child(star)
+	
+	stars.add_child(star)
+	star.owner = stars.owner 
+	
+	id = str(id)
+	id = id.substr(0, id.length()-2) + "_0"
+	print(id)
+	star.name = id
+	print(star.name)
 	
 func star_scale(mag):
 	var F0 = 3.6e-8  # flux of magnitude 0 star in V-band

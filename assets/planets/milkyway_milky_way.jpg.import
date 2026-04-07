@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpa0csjgr50or"
-path.s3tc="res://.godot/imported/foliage_small_foliage.png-b22fce178eae846b05a855fe24d6bd76.s3tc.ctex"
+uid="uid://beynmcillgcrp"
+path.s3tc="res://.godot/imported/milkyway_milky_way.jpg-5bcd11c76494ce2fcdf6c0cfdec1e923.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "e41df05bbeefb40d2e29255784ff6d8e"
+}
 
 [deps]
 
-source_file="res://assets/models/foliage/foliage_small_foliage.png"
-dest_files=["res://.godot/imported/foliage_small_foliage.png-b22fce178eae846b05a855fe24d6bd76.s3tc.ctex"]
+source_file="res://assets/planets/milkyway_milky_way.jpg"
+dest_files=["res://.godot/imported/milkyway_milky_way.jpg-5bcd11c76494ce2fcdf6c0cfdec1e923.s3tc.ctex"]
 
 [params]
 

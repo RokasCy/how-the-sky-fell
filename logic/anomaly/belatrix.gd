@@ -4,6 +4,7 @@ extends Node
 @onready var lines = $"../Constellations"
 @onready var anomaly_mesh = $"../AnomalyMesh".mesh
 @onready var milkyway = $"../milkyway"
+@onready var ecliptic = $"../Ecliptic"
 
 @onready var rumble = $"../AudioStreamPlayer3D"
 @onready var env = $"../../../Environment"
@@ -21,7 +22,7 @@ var staranomalies_nodes = []
 var star_speed = []
 func _ready():
 	await get_tree().create_timer(1.0).timeout
-	belatrix_node = stars.get_node("25336_0")
+	belatrix_node = stars.get_node("25336_1")
 	belatrix_original = lines.hip_dict[25336.0].duplicate()
 	belatrix = lines.hip_dict[25336.0]
 	for i in range(701):
@@ -33,6 +34,7 @@ func _ready():
 			var dec_speed = randf_range(-75.0, 75.0)
 			var ra_speed = randf_range(-5.0, 5.0)
 			star_speed.append([dec_speed, ra_speed])
+
 			
 
 func star_movement(delta, count):
@@ -57,41 +59,32 @@ func star_escape(delta):
 		
 		var anomaly = lines.hip_dict[hip]
 		
-		anomaly["DEC_min"] += delta*300
+		var declination = abs(anomaly["DEC_deg"]) + abs(anomaly["DEC_min"] / 60)
+		
+		if declination < 90:
+			anomaly["DEC_min"] += delta*300
+
+			
 		
 		if is_instance_valid(staranomalies_nodes[i]):
 			staranomalies_nodes[i].position = stars.star_to_position(anomaly)
 			
-			var declination = abs(anomaly["DEC_deg"]) + abs(anomaly["DEC_min"] / 60)
 			if declination > 89:
 				staranomalies_nodes[i].queue_free()
 	
+	#belatrix["DEC_deg"] += delta/60 * 200
+	#belatrix_node.position = stars.star_to_position(belatrix)
+	#print(belatrix)
 var elapsed = 0.0
 var t = 0.0
 var ending = false
 func _physics_process(delta: float) -> void:
-	if 2 in Gamestate.anomalies:
-		if elapsed < 6.0:
-			#belatrix_node.position = belatrix_node.position.lerp(Vector3(20, 20, 20), delta / 10)
-			belatrix["RA_min"] -= delta*1.0
-			belatrix["DEC_min"] += delta*90
-			
-			elapsed+=delta
-		else:
-			belatrix["RA_min"] = lerp(belatrix["RA_min"], belatrix_original["RA_min"], delta*15)
-			belatrix["DEC_min"] = lerp(belatrix["DEC_min"], belatrix_original["DEC_min"], delta*15)
-			
-		belatrix_node.position = stars.star_to_position(belatrix)
-		anomaly_mesh.clear_surfaces()
-		finish_constellation("Ori")
-	
-		star_movement(delta, 10*Gamestate.constellations_unlocked.size()+8)
-	
 	if 4 in Gamestate.anomalies:
 		t += delta
 		
-		lines.constellations_done.mesh.clear_surfaces()
 		star_escape(delta)
+		lines.constellations_done.mesh.clear_surfaces()
+		anomaly_mesh.clear_surfaces()
 		finish_constellation("Ori")
 		finish_constellation("Tau")
 		finish_constellation("Aur")
@@ -101,11 +94,13 @@ func _physics_process(delta: float) -> void:
 			rumble.play()
 		
 		if t > 18.0:
+			anomaly_mesh.clear_surfaces()
 			if is_instance_valid(telescope):
 				telescope.queue_free()
 				game_logic.player_can_move = true
 			env.position.y = move_toward(env.position.y, -1000.0, 10 * delta)
 			milkyway.visible = false
+			ecliptic.visible = false
 			
 		if t > 25.0:
 			var bus = AudioServer.get_bus_index("All sounds")
@@ -117,9 +112,24 @@ func _physics_process(delta: float) -> void:
 		
 		if t > 57.8:
 			get_tree().change_scene_to_file("res://menu/end_card.tscn")
+				
+	elif 2 in Gamestate.anomalies:
+		if elapsed < 6.0:
+			belatrix["RA_min"] -= delta*1.0
+			belatrix["DEC_min"] += delta*90
 			
+			elapsed+=delta
+		else:
+			belatrix["RA_min"] = lerp(belatrix["RA_min"], belatrix_original["RA_min"], delta*15)
+			belatrix["DEC_min"] = lerp(belatrix["DEC_min"], belatrix_original["DEC_min"], delta*15)
 		
-
+		belatrix_node.position = stars.star_to_position(belatrix)
+		anomaly_mesh.clear_surfaces()
+		finish_constellation("Ori")
+	
+		star_movement(delta, 10*Gamestate.constellations_unlocked.size()+8)
+	
+	
 func finish_constellation(con):
 	var con_lines = lines.constellation_lines[con]
 	

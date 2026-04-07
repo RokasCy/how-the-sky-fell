@@ -16,7 +16,6 @@ func _physics_process(delta):
 			star_chime.play()
 			parent.star_click.emit(hip)
 		
-		
 func angle_to_hip():
 	#forward direction of telescope (-Z)
 	var forward = -camera.global_basis.z

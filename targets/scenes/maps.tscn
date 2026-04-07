@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://70106wa0yhxi"]
 
 [ext_resource type="Script" uid="uid://7gjixcjptj52" path="res://targets/scripts/maps.gd" id="1_1xqgt"]
-[ext_resource type="Texture2D" uid="uid://dlofgh118jbw6" path="res://targets/images/other/paper_texture01.png" id="1_ghv6j"]
+[ext_resource type="Texture2D" uid="uid://dskpewmj3mqyy" path="res://targets/images/other/paper_texture01.png" id="1_ghv6j"]
 [ext_resource type="Texture2D" uid="uid://behsstyl417vy" path="res://targets/images/regionA/Auriga.PNG" id="3_2jr0f"]
 [ext_resource type="Texture2D" uid="uid://do448vpp5if6d" path="res://targets/images/regionA/Gemini.PNG" id="4_8d7cb"]
 [ext_resource type="Texture2D" uid="uid://d0vcvnwiobyk6" path="res://targets/images/regionA/Orion.PNG" id="5_adfil"]
 [ext_resource type="Texture2D" uid="uid://ctomfb0egscyn" path="res://targets/images/regionA/Taurus.PNG" id="6_84sbc"]
-[ext_resource type="Texture2D" uid="uid://b1unndh1q7b8j" path="res://targets/images/other/coord_grid.png" id="7_7nic5"]
-[ext_resource type="Texture2D" uid="uid://hjyf2io3syth" path="res://targets/images/other/stary symbol.png" id="7_8d7cb"]
-[ext_resource type="Texture2D" uid="uid://d25j4ffhh8ota" path="res://targets/images/other/planet.png" id="8_yq4gd"]
-[ext_resource type="AudioStream" uid="uid://dinr1p4661u6f" path="res://assets/audio/music/planet_chime.mp3" id="9_2jr0f"]
+[ext_resource type="Texture2D" uid="uid://dwu4p8b1vksug" path="res://targets/images/other/coord_grid.png" id="7_7nic5"]
+[ext_resource type="Texture2D" uid="uid://f43ydkw3i5p1" path="res://targets/images/other/stary symbol.png" id="7_8d7cb"]
+[ext_resource type="Texture2D" uid="uid://bqr3du15up4aj" path="res://targets/images/other/planet.png" id="8_yq4gd"]
+[ext_resource type="AudioStream" uid="uid://c544rrxti6ei2" path="res://assets/audio/music/planet_chime.mp3" id="9_2jr0f"]
 
 [node name="Maps" type="Control" unique_id=766604441]
 layout_mode = 3
@@ -55,9 +55,9 @@ text = "Instructions:"
 [node name="Keybinds" type="Label" parent="Paper0" unique_id=1836276158]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 198.00003
+offset_left = 208.00003
 offset_top = 561.0
-offset_right = 721.0
+offset_right = 731.0
 offset_bottom = 584.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 14
@@ -66,9 +66,9 @@ text = "Keybinds: "
 [node name="Instuctions" type="Label" parent="Paper0" unique_id=1486099321]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 219.00003
+offset_left = 229.00003
 offset_top = 545.0
-offset_right = 742.0
+offset_right = 752.0
 offset_bottom = 689.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 13
@@ -83,10 +83,10 @@ celestial coordinates given to you.
 [node name="Aditional" type="Label" parent="Paper0" unique_id=445162738]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 147.00003
-offset_top = 559.0
-offset_right = 670.0
-offset_bottom = 598.0
+offset_left = 164.00003
+offset_top = 560.0
+offset_right = 687.0
+offset_bottom = 599.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 13
 text = "The next pages detail especially activate regions of these phenomena.
@@ -101,10 +101,11 @@ offset_right = 569.0
 offset_bottom = 679.0
 rotation = -1.5707964
 theme_override_font_sizes/font_size = 13
-text = "Sightings of incomprehensible sky phenomena have been surfacing for the past
- few weeks. No one has been able to put forth any convicing reason as to why 
-this is occuring. Leading theory states that these anomalies are early signs of a
-vacuum decay sequence, the fabric of space losing its stability. "
+text = "Sightings of incomprehensible sky phenomena have been causing worldwide 
+panic. No one has been able to put forth any convincing, or more importantly, 
+any calming explanation as to what is causing these. Leading theory states that 
+these anomalies are early stages of a vacuum decay sequence, the fabric of space 
+losing its stability. "
 
 [node name="num" type="Label" parent="Paper0" unique_id=564006678]
 modulate = Color(0, 0, 0, 1)
@@ -118,7 +119,6 @@ theme_override_font_sizes/font_size = 13
 text = "1"
 
 [node name="Paper1" type="TextureRect" parent="." unique_id=2110430604]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -288,6 +288,7 @@ texture = ExtResource("7_8d7cb")
 expand_mode = 1
 
 [node name="Paper2" type="TextureRect" parent="." unique_id=425496788]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

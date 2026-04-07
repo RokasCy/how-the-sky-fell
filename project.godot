@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="how the sky fell"
-run/main_scene="uid://ci5hir3ycucwr"
+run/main_scene="uid://d0i0jkffp56vi"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [audio]
@@ -26,8 +26,7 @@ Gamestate="*uid://ccacbo0dlyrd6"
 
 window/size/viewport_width=640
 window/size/viewport_height=480
-window/size/window_width_override=1270
-window/size/window_height_override=740
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [input]
@@ -114,4 +113,5 @@ chart={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

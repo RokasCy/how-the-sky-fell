@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://56vvmib5jb8o"
+uid="uid://cjxepkkofd6s3"
 path.s3tc="res://.godot/imported/mars_mars_normal.jpg-692276d5347c5562f5908f81caf01e3a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "5db8de423b2f1af0c98d9b99954fe83a"
 }
 
 [deps]

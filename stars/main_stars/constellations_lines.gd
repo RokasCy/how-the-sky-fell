@@ -40,6 +40,7 @@ func _ready():
 		hip_dict[float(star["HIP"])] = star 
 		stars_selected[star["HIP"]] = false
 	
+	
 	telescope.connect("star_click", line_update)
 	Gamestate.constellations_unlocked = Gamestate.constellations_unlocked
 	for c in Gamestate.constellations_unlocked:
@@ -168,7 +169,7 @@ var red_star_list = []
 func add_green_star(hip):
 	var clicked_star = parent.hip_dict[hip]
 	
-	var starpos = parent.star_to_position(clicked_star)
+	var starpos = parent.star_to_position(clicked_star, parent.distance - 5)
 	var mag = clicked_star["Magnitude"]
 	
 	var mat : StandardMaterial3D = load("res://assets/material/selected_star.tres").duplicate()
@@ -176,11 +177,11 @@ func add_green_star(hip):
 	parent.create_star(sname, starpos, mag, 0, mat)
 	
 	green_star_list.append(clicked_star["HIP"])
-
+	print('add green star')
 func add_red_star(hip):
 	var clicked_star = parent.hip_dict[hip]
 	
-	var starpos = parent.star_to_position(clicked_star)
+	var starpos = parent.star_to_position(clicked_star, parent.distance - 5)
 	var mag = clicked_star["Magnitude"]
 	
 	var mat : StandardMaterial3D = load("res://assets/material/wrong_star.tres").duplicate()

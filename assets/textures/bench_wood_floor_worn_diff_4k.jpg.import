@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwcvqbw5bej54"
+uid="uid://cofcbh5pcap8o"
 path.s3tc="res://.godot/imported/bench_wood_floor_worn_diff_4k.jpg-ba9e8b14c0ab032d44ff2424192d1e7c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "3599fc1a1c6e3db13cbfc03b8d6c42c1"
 }
 
 [deps]

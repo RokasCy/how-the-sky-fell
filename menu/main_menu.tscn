@@ -7,13 +7,13 @@
 [ext_resource type="Material" uid="uid://ds663dk1uukj5" path="res://assets/material/ground.tres" id="6_23ste"]
 [ext_resource type="PackedScene" uid="uid://dmgnihiuyaelf" path="res://scenes/scenery/camp/campfire.tscn" id="7_23ste"]
 [ext_resource type="MeshLibrary" uid="uid://5cck7kjdfwn0" path="res://assets/meshes/mountain_mesh.tres" id="7_b06p2"]
-[ext_resource type="PackedScene" uid="uid://db4ywwptwmssp" path="res://assets/models/camp/log.glb" id="8_b06p2"]
+[ext_resource type="PackedScene" uid="uid://dj82wucrwla1r" path="res://assets/models/camp/log.glb" id="8_b06p2"]
 [ext_resource type="PackedScene" uid="uid://d73iwn6t74k7" path="res://scenes/scenery/camp/car.tscn" id="9_lb3k0"]
 [ext_resource type="PackedScene" uid="uid://depnt4l4ne40t" path="res://scenes/planets/milkyway.tscn" id="10_8qj3r"]
 [ext_resource type="PackedScene" uid="uid://u88qpni3qv6q" path="res://scenes/scripts/rotator.tscn" id="11_k5y3h"]
-[ext_resource type="AudioStream" uid="uid://c52x12fk7cumb" path="res://assets/audio/music/button.mp3" id="12_k17ts"]
+[ext_resource type="AudioStream" uid="uid://dxkv11y2ji3wi" path="res://assets/audio/music/button.mp3" id="12_k17ts"]
 [ext_resource type="PackedScene" uid="uid://c87esculffby4" path="res://logic/interactions/interaction_fire.tscn" id="12_lb3k0"]
-[ext_resource type="AudioStream" uid="uid://y2t3blf573p6" path="res://assets/audio/music/reflection.mp3" id="13_1vfm6"]
+[ext_resource type="AudioStream" uid="uid://dh52y3ffun42f" path="res://assets/audio/music/reflection.mp3" id="13_1vfm6"]
 [ext_resource type="Shader" uid="uid://d0oqhh7foyfdf" path="res://shaders/dithering.gdshader" id="14_lb3k0"]
 [ext_resource type="Texture2D" uid="uid://ca3ggiiu0q6ux" path="res://assets/readme/preview.png" id="15_5urqu"]
 
@@ -184,11 +184,15 @@ theme_override_font_sizes/normal_font_size = 35
 text = "How the sky fell"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=938415790]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 192.0
-offset_right = 161.0
-offset_bottom = 329.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -32.0
+offset_right = 153.0
+offset_bottom = 105.0
+grow_vertical = 2
 
 [node name="Play" type="Button" parent="VBoxContainer" unique_id=275687884]
 texture_filter = 1
@@ -197,15 +201,6 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 text = "Play"
-alignment = 0
-
-[node name="Settings" type="Button" parent="VBoxContainer" unique_id=405131229]
-texture_filter = 1
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
-text = "Settings"
 alignment = 0
 
 [node name="Exit" type="Button" parent="VBoxContainer" unique_id=1921272616]
@@ -240,7 +235,6 @@ libraries/ = SubResource("AnimationLibrary_1vfm6")
 [node name="buttonsfx" type="AudioStreamPlayer3D" parent="." unique_id=120145974]
 stream = ExtResource("12_k17ts")
 volume_db = 10.0
-bus = &"Menu"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1501701137]
 stream = ExtResource("13_1vfm6")
@@ -324,10 +318,9 @@ shape = SubResource("BoxShape3D_qkuil")
 [node name="campfire" parent="Environment" unique_id=2129771687 instance=ExtResource("7_23ste")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 
-[node name="interaction" parent="Environment/campfire" unique_id=934976142 node_paths=PackedStringArray("text_node_main") instance=ExtResource("12_lb3k0")]
+[node name="interaction" parent="Environment/campfire" unique_id=934976142 instance=ExtResource("12_lb3k0")]
 interaction_type = "fire"
 zone = 0.5
-text_node_main = NodePath("../../../../../../../../../../../@WindowWrapper@10775/@ScriptEditor@10774/@VBoxContainer@9989/@HSplitContainer@9992/@VBoxContainer@10018/@TabContainer@10021/@ScriptTextEditor@39281/@VSplitContainer@39283/@CodeTextEditor@39284/@HBoxContainer@39088/@Label@39108")
 
 [node name="car" parent="Environment" unique_id=758288718 instance=ExtResource("9_lb3k0")]
 transform = Transform3D(-0.57678336, 0, 0.25341833, 0, 0.63, 0, -0.25341833, 0, -0.57678336, -14.781224, 0.8435905, -15.666941)
@@ -365,12 +358,12 @@ environment = SubResource("Environment_qkuil")
 
 [node name="milkyway" parent="Environment" unique_id=290874618 instance=ExtResource("10_8qj3r")]
 transform = Transform3D(382.1977, 315.6986, 65.2631, -318.42273, 385.49567, 0, -50.317284, -41.56251, 495.72244, -1.2365112, 0.5897827, 3.0636787e-05)
+script = null
 
 [node name="rotator" parent="Environment/milkyway" unique_id=1137402544 instance=ExtResource("11_k5y3h")]
 transform = Transform3D(0.0013974168, 0.0013256532, 0.0005383972, 0.00074489875, -3.149829e-05, -0.0018558381, -0.0012216192, 0.001497215, -0.00051574653, 0.0009460577, 0.00093970966, -0.0023935614)
 period = 640.0
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="fire_burn_change" from="Environment/campfire/interaction" to="Environment/campfire" method="_on_interaction_fire_burn_change"]

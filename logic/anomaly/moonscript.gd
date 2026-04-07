@@ -25,7 +25,7 @@ var moon_gone = false
 func _physics_process(_delta: float) -> void:
 	if 3 in Gamestate.anomalies:
 		var cam_forward
-		if telescope_ui.visible:
+		if is_instance_valid(telescope_ui) and telescope_ui.visible:
 			cam_forward = -telescope_cam.global_basis.z.normalized()
 		else:	
 			cam_forward = -camera.global_basis.z.normalized()

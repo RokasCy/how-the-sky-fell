@@ -22,10 +22,10 @@ signal map_interact(open)
 
 # name : [unfinished, finished] textures
 var textures : Dictionary = {
-	'Ori': ["uid://d0vcvnwiobyk6", "uid://dmnmqcbpdr6qm"],
-	'Tau': ["uid://ctomfb0egscyn", "uid://cfqr4oddic1fj"],
-	'Aur': ["uid://behsstyl417vy", "uid://die0bsok7r3mk"],
-	'Gem': ["uid://do448vpp5if6d", "uid://dh4c2jykyaxmg"],
+	'Ori': ["res://targets/images/regionA/Orion.PNG", "res://targets/images/regionA_completed/Orion.PNG"],
+	'Tau': ["res://targets/images/regionA/Taurus.PNG", "res://targets/images/regionA_completed/Taurus.PNG"],
+	'Aur': ["res://targets/images/regionA/Auriga.PNG", "res://targets/images/regionA_completed/Aur.PNG"],
+	'Gem': ["res://targets/images/regionA/Gemini.PNG", "res://targets/images/regionA_completed/Gemini.PNG"],
 	
 	'Hya': ["uid://djyeudgw4ja87", "uid://n6lnkamkiumn"],
 	'Cnc': ["uid://b1xv626065ogd", "uid://bht7tgho08ctc"],
@@ -166,13 +166,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		paper0.visible = false
 		paper1.visible = false
 		paper2.visible = true
-		
-		
 
 #--planet charting--#
 
 var planet_to_unlocked : Dictionary = {
-	'venus': true, 'mars': true, 'jupiter': false, 'saturn': true
+	'venus': true, 'mars': false, 'jupiter': true, 'saturn': true
 }
 
 var planet_color : Dictionary = {

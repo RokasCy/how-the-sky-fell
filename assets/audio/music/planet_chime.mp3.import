@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://dinr1p4661u6f"
+uid="uid://c544rrxti6ei2"
 path="res://.godot/imported/planet_chime.mp3-bf6d65c89f45787b72ca1947e1dd49cb.mp3str"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/planet_chime.mp3-bf6d65c89f45787b72ca1947e1dd
 [params]
 
 loop=false
-loop_offset=0.0
-bpm=0.0
+loop_offset=0
+bpm=0
 beat_count=0
 bar_beats=4
