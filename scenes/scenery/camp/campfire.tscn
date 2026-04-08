@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dmgnihiuyaelf"]
 
-[ext_resource type="PackedScene" uid="uid://duy21c8lmqynq" path="res://assets/models/camp/campfire.glb" id="1_yfrnb"]
-[ext_resource type="Texture2D" uid="uid://dqt0ojvskasru" path="res://assets/textures/fire.png" id="2_8pk5p"]
+[ext_resource type="PackedScene" uid="uid://bgab6pitv637w" path="res://assets/models/camp/campfire.glb" id="1_yfrnb"]
+[ext_resource type="Texture2D" uid="uid://xbkdmtre1iat" path="res://assets/textures/fire.png" id="2_8pk5p"]
 [ext_resource type="Script" uid="uid://daf1ku5b5s2iv" path="res://scenes/scenery/camp/campfire.gd" id="2_w3g6x"]
-[ext_resource type="Texture2D" uid="uid://cutcs733t48k3" path="res://assets/textures/smoke.png" id="3_m6xh0"]
-[ext_resource type="AudioStream" uid="uid://c5dm2gmm0c5gj" path="res://assets/audio/ambience/firecrackle.mp3" id="5_atkf8"]
-[ext_resource type="AudioStream" uid="uid://cfm5h7xxupukf" path="res://assets/audio/ambience/lightingmatch.mp3" id="6_1ynqb"]
+[ext_resource type="Texture2D" uid="uid://4m8we7vsywpg" path="res://assets/textures/smoke.png" id="3_m6xh0"]
+[ext_resource type="AudioStream" uid="uid://bs4vhx8t3s7xv" path="res://assets/audio/ambience/firecrackle.mp3" id="5_atkf8"]
+[ext_resource type="AudioStream" uid="uid://6pmg8aicvxg1" path="res://assets/audio/ambience/lightingmatch.mp3" id="6_1ynqb"]
 
 [sub_resource type="Gradient" id="Gradient_1v5ef"]
 offsets = PackedFloat32Array(0, 0.83116883)

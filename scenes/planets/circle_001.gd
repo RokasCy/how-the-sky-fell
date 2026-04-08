@@ -85,8 +85,7 @@ func fog_fade():
 	print('down')
 	globe.rotation_degrees = original_globe_rotation
 	milkyway.max_alpha = original_milkyway_alpha
-	print(milkyway.alpha)
-	
+
 	
 var played = false
 func _physics_process(_delta: float) -> void:

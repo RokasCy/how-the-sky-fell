@@ -22,7 +22,6 @@ mouse_filter = 1
 script = ExtResource("1_1xqgt")
 
 [node name="Paper0" type="TextureRect" parent="." unique_id=630074355]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -119,6 +118,7 @@ theme_override_font_sizes/font_size = 13
 text = "1"
 
 [node name="Paper1" type="TextureRect" parent="." unique_id=2110430604]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -170,7 +170,7 @@ func _unhandled_input(event: InputEvent) -> void:
 #--planet charting--#
 
 var planet_to_unlocked : Dictionary = {
-	'venus': true, 'mars': false, 'jupiter': true, 'saturn': true
+	'venus': false, 'mars': false, 'jupiter': false, 'saturn': false
 }
 
 var planet_color : Dictionary = {
