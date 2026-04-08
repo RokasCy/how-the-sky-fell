@@ -1,4 +1,4 @@
 extends Node
 
 var constellations_unlocked = []
-var anomalies = []
+var anomalies = [4]

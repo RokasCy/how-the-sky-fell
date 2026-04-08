@@ -13,7 +13,7 @@ extends MeshInstance3D
 @onready var sun = $"../../Sun"
 @onready var saturn = get_parent()
 #var ring_mat = load("res://scenes/planets/saturn.tscn::StandardMaterial3D_fpsqh")
-
+#Gamestate
 var bush1pos = Vector3(12.46469, 1.017148, 5.294871)
 var bush2pos = Vector3(-15.22458, 0.975708, -5.983067)
 var original_globe_rotation 
@@ -76,7 +76,7 @@ func fog_fade():
 		if t > 0.5 and t < 0.6:
 			sun.visible = false
 
-	
+	print(milkyway.visible)
 	while camera.rotation_degrees.x < 20.0:
 		await get_tree().process_frame
 	print('up')
@@ -85,6 +85,7 @@ func fog_fade():
 	print('down')
 	globe.rotation_degrees = original_globe_rotation
 	milkyway.max_alpha = original_milkyway_alpha
+	print(milkyway.alpha)
 	
 	
 var played = false
