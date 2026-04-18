@@ -1,18 +1,27 @@
 # how-the-sky-fell
-Cosmic horror game about charting the sky. This is my first *completed* game and first godot project. It took me about a month finish (not counting breaks).
-I used the data from [Hipparcos Planetarium Data](https://creativival.github.io/hipparcos_planetarium_data_creator/index.en.html) to generate the stars and constellations. All 3D models were made by me in blender following tutorials.
- 
+This is a cosmic horror game about charting the sky. I wanted to create an accurate night sky simulator and use it to make a creepy and atmospheric video game. All 3D models were made by me in blender. The project took about a month finish (not counting breaks). 
 
-For more info or to play the game go to: https://rokkks.itch.io/how-the-sky-fell
+Play here: https://rokkks.itch.io/how-the-sky-fell
 
-<img src="assets/readme/titlescreen.png" width="500">
+<img src="assets/readme/videos/overview.gif" width="500"/>
 
-### Description
-You are an amateur astronomer, out in the deep woods, trying to detect the "weird" sky phenomena that have been reported. With your trusty telescope and paper maps by your side, you will chart an area of the sky by outlining the constellations and surveying the planets.
+## Night Sky
+I used the data from [Hipparcos Planetarium Data](https://creativival.github.io/hipparcos_planetarium_data_creator/index.en.html) to generate the stars and constellations.
+
+Star generation was done with hip_constellation_line_star.csv by:
+- Converting their **right ascension and declination** into xyz coordinates with a set distance from the player
+- Setting their size and brightness based on their **visual magnitude**
+- Coloring them using **B-V index**
+
+The constellations were made with hip_constellation_line.csv by:
+- Mapping each hip value (id) to the star and drawing a line which connects the 2 stars positions.
 
 
 
+## Game Description
+The player is given a list of target constellations and planets to chart. Using their telescope they need to click on stars to connect them into their correct constellation shape and find the planets. During this charting they will encounter creepy phenomena (stars moving, planets appearing/disappearing, location changing etc.)
 
+<img src="assets/readme/videos/connecting.gif" width="400"/>
 
 ### Images
 
